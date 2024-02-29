@@ -8,17 +8,51 @@ public class Character : MonoBehaviour
     public LayerMask groundingLayers;
     public float groundedCheckDistance;
     public Dictionary<string, MovementComponent> movementComponents = new();
+    public SpriteRenderer graphic;
+    public Vector2 originalScale;
+    public VectorCurve groundMoveScale;
+    public VectorCurve landScale;
+    Vector2 lastVelocity;
+    Vector2 currentVelocity;
+    Vector2 velocityDelta;
+    bool lastGroundedValue;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         boundingBoxCollider = GetComponent<BoxCollider2D>();
+        landScale.currentTime = 1;
     }
     public (bool, RaycastHit2D) GroundedCheck()
     {
         RaycastHit2D hit = Physics2D.BoxCast(transform.position, boundingBoxCollider.size, 0f, Vector2.down, groundedCheckDistance, groundingLayers);
         return (hit.collider == true, hit);
     }
-
+    void Update()
+    {
+        (bool, RaycastHit2D) groundCheckData = GroundedCheck();
+        bool grounded = groundCheckData.Item1;
+        if(grounded)
+        {
+            rb.SetRotation(Quaternion.identity);
+        }
+        Vector3 localScale = originalScale;
+        if (lastGroundedValue != grounded)
+        {
+            if (!lastGroundedValue && grounded)
+            {
+                landScale.Reset();
+            }
+            lastGroundedValue = grounded;
+        }
+        if (grounded && Mathf.Abs(rb.velocity.x) > 0.1f)
+        {
+            groundMoveScale.Update(Time.deltaTime * Mathf.Abs(rb.velocity.x));
+            localScale += (Vector3)groundMoveScale.output;
+        }
+        landScale.Update(Time.deltaTime);
+        localScale += (Vector3)landScale.output;
+        graphic.transform.localScale = localScale;
+    }
     void FixedUpdate()
     {
         Vector2 finalVelocity = Vector2.zero;
@@ -36,6 +70,9 @@ public class Character : MonoBehaviour
             }
             finalVelocity += movementComponent.componentOutput;
         }
+        lastVelocity = currentVelocity;
+        currentVelocity = finalVelocity;
+        velocityDelta = currentVelocity - lastVelocity;
         rb.velocity = finalVelocity;
     }
     public bool TryAddComponent(MovementData movementData)

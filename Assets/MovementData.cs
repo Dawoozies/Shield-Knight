@@ -52,4 +52,8 @@ public class MovementData
             action();
         }
     }
+    public void ForceEnd()
+    {
+        currentTime = curveTime;
+    }
 }

@@ -19,7 +19,7 @@ public class InputManager : MonoBehaviour
         {
             action(mouseWorldPos);
         }
-        Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         foreach (Action<Vector2> action in moveInputActions)
         {
             action(moveInput);
