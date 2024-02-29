@@ -1,32 +1,55 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu]
-public class MovementData : ScriptableObject
+[Serializable]
+public class MovementData
 {
-    public float output { get; set; }
+    public string movementName;
+    public List<string> nullifyWhileActive;
+    public bool keepAtMax;
+    public float maxOutput;
+    public Vector2 direction;
+    public float output => maxOutput * curve.Evaluate(currentTime);
     public AnimationCurve curve;
     public float curveTime => curve.keys[curve.keys.Length - 1].time;
     public float currentTime { get; set; }
     public enum State
     {
-        Starting, InProgress, Completed
+        Awake, InProgress, Completed
     }
     public State state { get; set; }
-    public void Update(float timeDelta)
+    Func<float> TimeDelta;
+    public List<Action> onStartActions = new();
+    public List<Action> onCompletedActions = new();
+    public void Update()
     {
-        if(currentTime == 0)
-        {
-            state = State.Starting;
-        }
-        if(currentTime > 0)
-        {
-            state = State.InProgress;
-        }
-        if(currentTime >= 1)
+        if(TimeDelta == null)
+            return;
+
+        if (currentTime >= curveTime)
         {
             state = State.Completed;
+            TimeDelta = () => 0;
+            if(!keepAtMax)
+            {
+                currentTime = 0;
+            }
+            foreach(var action in onCompletedActions)
+            {
+                action();
+            }
         }
-        currentTime += timeDelta;
+        currentTime += TimeDelta();
+    }
+    public void Start(Func<float> TimeDeltaFunc)
+    {
+        state = State.InProgress;
+        currentTime = 0;
+        TimeDelta = TimeDeltaFunc;
+        foreach (var action in onStartActions)
+        {
+            action();
+        }
     }
 }

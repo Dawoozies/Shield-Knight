@@ -8,18 +8,29 @@ public class PlayerManager : MonoBehaviour
     float maxMoveSpeed;
     Vector2 moveInput;
     float jumpHeldTime;
+    bool canJump;
+    public MovementData gravity;
+    public MovementData jumpAscent;
     void Start()
     {
         InputManager.RegisterMoveInputCallback(HandleMoveInput);
         InputManager.RegisterJumpInputCallback(HandleJumpInput);
+        player.TryAddComponent(gravity);
+        player.TryAddComponent(jumpAscent);
+
+        jumpAscent.onCompletedActions.Add(() => gravity.Start(() => Time.fixedDeltaTime));
+        gravity.Start(() => Time.fixedDeltaTime);
     }
     void FixedUpdate()
     {
         (bool, RaycastHit2D) groundCheckData = player.GroundedCheck();
-        if(groundCheckData.Item1)
+        bool grounded = groundCheckData.Item1;
+        if(jumpAscent.state != MovementData.State.InProgress && grounded && jumpHeldTime > 0)
         {
-
+            jumpAscent.Start(() => Time.fixedDeltaTime);
         }
+        jumpAscent.Update();
+        gravity.Update();
     }
     void HandleMoveInput(Vector2 moveInput)
     {
