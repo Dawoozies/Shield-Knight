@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     public Character player;
     public Camera mainCamera;
     public float cameraSmoothTime;
+    public Vector2 cameraOffset;
     Vector3 cameraVelocity;
     float maxMoveSpeed;
     Vector2 moveInput;
@@ -35,7 +36,7 @@ public class PlayerManager : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Vector3 cameraTarget = player.transform.position;
+        Vector3 cameraTarget = player.transform.position + (Vector3)cameraOffset;
         Vector3 cameraPosition = mainCamera.transform.position;
         cameraTarget.z = cameraPosition.z;
         Vector3 newCameraPosition = Vector3.SmoothDamp(

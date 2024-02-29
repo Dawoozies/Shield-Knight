@@ -1043,6 +1043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 502530325}
   - component: {fileID: 502530324}
+  - component: {fileID: 502530326}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Shield
@@ -1111,6 +1112,18 @@ Transform:
   - {fileID: 1195952260}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &502530326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502530323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729532e9cd2648f45ae6c09f312221ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3484,6 +3497,7 @@ GameObject:
   - component: {fileID: 1651003488}
   - component: {fileID: 1651003490}
   - component: {fileID: 1651003491}
+  - component: {fileID: 1651003492}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3533,6 +3547,7 @@ MonoBehaviour:
   player: {fileID: 576396708}
   mainCamera: {fileID: 519420031}
   cameraSmoothTime: 0.3
+  cameraOffset: {x: 0, y: 0}
   gravity:
     movementName: Gravity
     nullifyWhileActive: []
@@ -3651,6 +3666,24 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+--- !u!114 &1651003492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651003487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30da9fca3b20678458e8d42f8b9cd2b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shield: {fileID: 502530326}
+  player: {fileID: 576396708}
+  distanceFromPlayer: 1
+  shieldNonIntersecting:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1681725877
 GameObject:
   m_ObjectHideFlags: 0
