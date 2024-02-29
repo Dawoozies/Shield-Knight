@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
     }
     public (bool, RaycastHit2D) GroundedCheck()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, boundingBoxCollider.size, 0f, Vector2.down, groundedCheckDistance);
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, boundingBoxCollider.size, 0f, Vector2.down, groundedCheckDistance, groundingLayers);
         return (hit.collider == true, hit);
     }
 

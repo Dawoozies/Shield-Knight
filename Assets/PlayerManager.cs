@@ -27,6 +27,7 @@ public class PlayerManager : MonoBehaviour
         bool grounded = groundCheckData.Item1;
         if(jumpAscent.state != MovementData.State.InProgress && grounded && jumpHeldTime > 0)
         {
+            Debug.Log("Run");
             jumpAscent.Start(() => Time.fixedDeltaTime);
         }
         jumpAscent.Update();
