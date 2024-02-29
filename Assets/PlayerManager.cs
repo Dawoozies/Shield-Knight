@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public Character player;
-    public SpriteRenderer sprite;
+    public Camera mainCamera;
+    public float cameraSmoothTime;
+    Vector3 cameraVelocity;
     float maxMoveSpeed;
     Vector2 moveInput;
     float jumpHeldTime;
@@ -15,6 +17,8 @@ public class PlayerManager : MonoBehaviour
     public MovementData run;
     void Start()
     {
+        if (mainCamera == null)
+            mainCamera = Camera.main;
         InputManager.RegisterMoveInputCallback(HandleMoveInput);
         InputManager.RegisterJumpInputCallback(HandleJumpInput);
         player.TryAddComponent(gravity);
@@ -31,7 +35,17 @@ public class PlayerManager : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if(jumpAscent.state != MovementData.State.InProgress && grounded && jumpHeldTime > 0)
+        Vector3 cameraTarget = player.transform.position;
+        Vector3 cameraPosition = mainCamera.transform.position;
+        cameraTarget.z = cameraPosition.z;
+        Vector3 newCameraPosition = Vector3.SmoothDamp(
+                cameraPosition,
+                cameraTarget,
+                ref cameraVelocity,
+                cameraSmoothTime
+            );
+        mainCamera.transform.position = newCameraPosition;
+        if (jumpAscent.state != MovementData.State.InProgress && grounded && jumpHeldTime > 0)
         {
             jumpAscent.Start(() => Time.fixedDeltaTime);
         }
