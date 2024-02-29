@@ -33,7 +33,8 @@ public class Character : MonoBehaviour
         bool grounded = groundCheckData.Item1;
         if(grounded)
         {
-            rb.SetRotation(Quaternion.identity);
+            Debug.Log("Rotating");
+            transform.localEulerAngles = Vector3.zero;
         }
         Vector3 localScale = originalScale;
         if (lastGroundedValue != grounded)
