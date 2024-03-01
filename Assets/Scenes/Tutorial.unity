@@ -1555,7 +1555,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1573,7 +1573,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f485dfa928fcb44eb2377130161e453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trailLength: 10
+  minVelocityMagnitude: 10
+  maxVelocityMagnitude: 40
+  magnitudeBuffer:
+    value: 0
+    bufferTime: 1
+    bufferWriteSpeed: 2
+    timeLeft: 0
+  totalPoolSize: 40
+  trailLengthDefault: 5
+  trailLength: 0
+  emitTime: 0.1
+  trailFadeSpeed: 2
 --- !u!1 &555230387
 GameObject:
   m_ObjectHideFlags: 0
