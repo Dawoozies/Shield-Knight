@@ -1044,7 +1044,7 @@ GameObject:
   - component: {fileID: 502530325}
   - component: {fileID: 502530324}
   - component: {fileID: 502530326}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shield
   m_TagString: Shield
   m_Icon: {fileID: 0}
@@ -1486,7 +1486,8 @@ GameObject:
   m_Component:
   - component: {fileID: 550771175}
   - component: {fileID: 550771176}
-  m_Layer: 0
+  - component: {fileID: 550771177}
+  m_Layer: 7
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1560,6 +1561,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &550771177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550771174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f485dfa928fcb44eb2377130161e453, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trailLength: 10
 --- !u!1 &555230387
 GameObject:
   m_ObjectHideFlags: 0
@@ -1702,7 +1716,7 @@ GameObject:
   - component: {fileID: 576396705}
   - component: {fileID: 576396704}
   - component: {fileID: 576396708}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2762,7 +2776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1195952260}
   - component: {fileID: 1195952261}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3666,6 +3680,49 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+  airDash:
+    movementName: AirDash
+    nullifyWhileActive:
+    - Gravity
+    - JumpAscent
+    - Run
+    keepAtMax: 0
+    maxOutput: 40
+    direction: {x: 0, y: 0}
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0.31781948
+        outSlope: 0.31781948
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.49504957
+      - serializedVersion: 3
+        time: 0.03
+        value: 1
+        inSlope: 0.009563138
+        outSlope: 0.009563138
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.10891085
+        outWeight: 0.2560506
+      - serializedVersion: 3
+        time: 0.3
+        value: 0
+        inSlope: -0.0691007
+        outSlope: -0.0691007
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.13201325
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  airDashesLeft: 1
 --- !u!114 &1651003492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3680,7 +3737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shield: {fileID: 502530326}
   player: {fileID: 576396708}
-  distanceFromPlayer: 1
+  distanceFromPlayer: 0.6
   shieldNonIntersecting:
     serializedVersion: 2
     m_Bits: 64

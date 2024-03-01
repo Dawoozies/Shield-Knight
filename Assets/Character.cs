@@ -56,18 +56,25 @@ public class Character : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 finalVelocity = Vector2.zero;
+        List<string> nullificationList = new();
         foreach (MovementComponent movementComponent in movementComponents.Values)
         {
             if(movementComponent.curveData.nullifyWhileActive != null && movementComponent.curveData.state == MovementData.State.InProgress)
             {
                 foreach (string componentToNullify in movementComponent.curveData.nullifyWhileActive)
                 {
-                    if (movementComponents.ContainsKey(componentToNullify))
-                    {
-                        finalVelocity += -movementComponents[componentToNullify].componentOutput;
-                    }
+                    if(!nullificationList.Contains(componentToNullify))
+                        nullificationList.Add(componentToNullify);
                 }
             }
+        }
+        foreach (MovementComponent movementComponent in movementComponents.Values)
+        {
+            if(nullificationList.Contains(movementComponent.curveData.movementName))
+            {
+                continue;
+            }
+
             finalVelocity += movementComponent.componentOutput;
         }
         lastVelocity = currentVelocity;
