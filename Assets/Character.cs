@@ -12,7 +12,6 @@ public class Character : MonoBehaviour
     public Vector2 originalScale;
     public VectorCurve groundMoveScale;
     public VectorCurve landScale;
-    public VectorCurve waveDashScale;
     Vector2 lastVelocity;
     Vector2 currentVelocity;
     Vector2 velocityDelta;
