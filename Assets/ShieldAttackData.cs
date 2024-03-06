@@ -13,6 +13,7 @@ public class ShieldAttackData
     public AnimationCurve circleRotationCurve;
     public float shieldRotationMultiplier;
     public AnimationCurve shieldRotationCurve;
+
     public Vector3 output =>
         new Vector3(
                 radiusMultiplier * radiusCurve.Evaluate(currentTime),
@@ -30,6 +31,11 @@ public class ShieldAttackData
     public List<Action> onStartActions = new();
     public List<Action> onCompletedActions = new();
     float cooldownTimer;
+
+    public float hitForceMultiplier;
+    [Tooltip("This is just for shield reading force magnitude for when shield hits enemies")]
+    public AnimationCurve hitForceCurve;
+    public float hitForce => hitForceMultiplier*hitForceCurve.Evaluate(currentTime);
     public enum State
     {
         Ready, Firing, Completed

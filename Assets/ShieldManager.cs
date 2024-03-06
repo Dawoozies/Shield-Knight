@@ -13,17 +13,13 @@ public class ShieldManager : MonoBehaviour
     float leftClickHeld, rightClickHeld, middleClickHeld;
     bool leftClickDown, rightClickDown, middleClickDown;
     public int selectedAttack;
-    List<ShieldAttackData> leftClickAttacks = new();
-    public ShieldAttackData shieldBash;
-    public ShieldAttackData shieldSlam;
+    public List<ShieldAttackData> leftClickAttacks = new();
     void Start()
     {
         InputManager.RegisterMouseInputCallback(HandleMouseInput);
         InputManager.RegisterMouseClickCallback(HandleMouseClick);
         InputManager.RegisterMouseDownCallback(HandleMouseDown);
         shieldParent.position = player.transform.position;
-        leftClickAttacks.Add(shieldBash);
-        leftClickAttacks.Add(shieldSlam);
     }
     void Update()
     {
@@ -36,7 +32,7 @@ public class ShieldManager : MonoBehaviour
         //for now directly do the shield movement here to test
         //then offset it to the shield itself when ShieldAttackData is good enough
 
-        if(leftClickDown)
+        if (leftClickHeld > 0)
         {
             if (leftClickAttacks[selectedAttack].state == ShieldAttackData.State.Completed)
             {
@@ -57,6 +53,9 @@ public class ShieldManager : MonoBehaviour
 
         float shieldRotationAngle = leftClickAttacks[selectedAttack].output.z;
         shield.transform.rotation *= Quaternion.AngleAxis(shieldRotationAngle, Vector3.forward);
+
+        shield.hitForceMultiplier = leftClickAttacks[selectedAttack].hitForceMultiplier;
+        shield.hitForce = leftClickAttacks[selectedAttack].hitForce;
     }
     void HandleMouseInput(Vector2 mouseWorldPos)
     {
