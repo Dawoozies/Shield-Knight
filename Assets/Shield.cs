@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class Shield : MonoBehaviour
     public Color highForceColor;
     public Color defaultColor;
     public LayerMask enemyLayers;
+    public Vector3 hitPoint;
+    public Vector3 colliderPoint;
     void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -31,16 +34,31 @@ public class Shield : MonoBehaviour
         }
         //Raycast from shield parent
         //raycast out from local zero forward a distance
-        Vector2 raycastOrigin = shieldParent.transform.position;
-        Vector2 raycastEnd = col.transform.position + col.bounds.max;
-        float dist = Vector2.Distance(raycastOrigin, raycastEnd);
-        RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, shieldParent.transform.right, dist, enemyLayers);
-        Vector2 force = (shieldParent.right + shieldParent.up) * hitForce;
-        if (hit.collider != null)
+        Vector2 dir = col.ClosestPoint((Vector2)shieldParent.position) - (Vector2)shieldParent.position;
+        RaycastHit2D hit = Physics2D.BoxCast(shieldParent.position, boxCollider.size, Vector2.SignedAngle(Vector2.right, transform.right), dir, 100f, enemyLayers);
+        if(hit.collider != null)
         {
-            Debug.LogError("Hit");
-            var enemy = hit.collider.GetComponent<Enemy>();
-            enemy.ApplyHit(force, 3f);
+            hitPoint = hit.point;
+            colliderPoint = hit.collider.transform.position;
+            Vector2 force = (dir + Vector2.Perpendicular(dir)*0.5f)*hitForce;
+            var enemy = col.GetComponent<Enemy>();
+            enemy.ApplyHit(force);
         }
+    }
+    void OnDrawGizmos()
+    {
+        if(!Application.isPlaying)
+        {
+            return;
+        }
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(shieldParent.position, hitPoint);
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawLine(shieldParent.position, colliderPoint);
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + transform.right);
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, transform.position + transform.up);
+
     }
 }

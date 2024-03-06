@@ -6,8 +6,8 @@ public class Enemy : MonoBehaviour
 {
     Character character;
     public MovementData gravity;
+    public MovementData hitStun;
     bool grounded;
-    float hitStunTime;
     Rigidbody2D rb;
     Vector2 force;
     void Start()
@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
         character = GetComponent<Character>();
         rb = GetComponent<Rigidbody2D>();
         character.TryAddComponent(gravity);
+        character.TryAddComponent(hitStun);
         gravity.Start(() => Time.fixedDeltaTime);
     }
     void Update()
@@ -24,11 +25,14 @@ public class Enemy : MonoBehaviour
     }
     void FixedUpdate()
     {
+        hitStun.Update();
         gravity.Update();
     }
-    public void ApplyHit(Vector2 force, float hitStunTime)
+    public void ApplyHit(Vector2 force)
     {
-        this.hitStunTime = hitStunTime;
         this.force = force;
+        hitStun.maxOutput = force.magnitude;
+        hitStun.direction = force.normalized;
+        hitStun.Start(() => Time.fixedDeltaTime);
     }
 }
