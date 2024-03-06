@@ -34,16 +34,24 @@ public class Shield : MonoBehaviour
         }
         //Raycast from shield parent
         //raycast out from local zero forward a distance
-        Vector2 dir = col.ClosestPoint((Vector2)shieldParent.position) - (Vector2)shieldParent.position;
-        RaycastHit2D hit = Physics2D.BoxCast(shieldParent.position, boxCollider.size, Vector2.SignedAngle(Vector2.right, transform.right), dir, 100f, enemyLayers);
+        RaycastHit2D hit = OldRaycast(col);
         if(hit.collider != null)
         {
             hitPoint = hit.point;
             colliderPoint = hit.collider.transform.position;
-            Vector2 force = (dir + Vector2.Perpendicular(dir)*0.5f)*hitForce;
+            //Vector2 force = (dir + Vector2.Perpendicular(dir)*0.5f)*hitForce;
             var enemy = col.GetComponent<Enemy>();
-            enemy.ApplyHit(force);
+            //enemy.ApplyHit(force);
         }
+    }
+    RaycastHit2D OldRaycast(Collider2D col)
+    {
+        Vector2 dir = col.ClosestPoint((Vector2)shieldParent.position) - (Vector2)shieldParent.position;
+        return Physics2D.BoxCast(shieldParent.position, boxCollider.size, Vector2.SignedAngle(Vector2.right, transform.right), dir, 100f, enemyLayers);
+    }
+    RaycastHit2D NewRaycast(Collider2D col)
+    {
+        return OldRaycast(col);
     }
     void OnDrawGizmos()
     {
@@ -60,5 +68,7 @@ public class Shield : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position, transform.position + transform.up);
 
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.DrawCube(Vector3.zero, boxCollider.size);
     }
 }
