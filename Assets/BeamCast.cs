@@ -2,23 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoxCaster : MonoBehaviour
+public class BeamCast : MonoBehaviour
 {
     BoxCollider2D boxCollider;
     public float angle;
-    public float boxAngle;
     public Vector2 direction;
     public float distance;
     public LayerMask layerMask;
-    Collider2D result;
+    RaycastHit2D result;
 
     public Vector2 hitPoint;
     public Vector2 colliderPos;
     public Vector2 sizeClamp;
-    Vector2 size;
+    public LineRenderer lineRenderer;
     void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.startWidth = boxCollider.size.y;
+        lineRenderer.endWidth = boxCollider.size.y;
     }
     void Update()
     {
@@ -28,42 +30,35 @@ public class BoxCaster : MonoBehaviour
 
         //transform.Rotate(Vector3.forward, angle);
         angle = Vector2.Angle(Vector2.right, transform.right);
-
-        Vector2 clamp = boxCollider.size;
-        if(sizeClamp.x != 0)
-        {
-            clamp.x = sizeClamp.x;
-        }
-        if (sizeClamp.y != 0)
-        {
-            clamp.y = sizeClamp.y;
-        }
-        size = new Vector2(Mathf.Clamp(boxCollider.size.x, 0f, clamp.x), Mathf.Clamp(boxCollider.size.y, 0f, clamp.y));
-
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, size, angle, transform.right, distance, layerMask);
-        result = hit.collider;
-        if(result == null)
+        result = Physics2D.BoxCast(transform.position, boxCollider.size, angle, transform.right, distance, layerMask);
+        if (result.collider == null)
         {
             hitPoint = transform.position;
             colliderPos = transform.position;
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, transform.position + transform.right*distance);
         }
         else
         {
-            hitPoint = hit.point;
-            colliderPos = hit.collider.transform.position;
+            hitPoint = result.point;
+            colliderPos = result.collider.transform.position;
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, transform.position + transform.right * (result.distance + boxCollider.size.x));
         }
     }
     void OnDrawGizmos()
     {
-        if(!Application.isPlaying)
+        if (!Application.isPlaying)
         {
             return;
         }
         Gizmos.matrix = transform.localToWorldMatrix;
 
-        if(result != null)
+        float hitDistance = distance; 
+        if (result.collider != null)
         {
             Gizmos.color = Color.green;
+            hitDistance = result.distance;
         }
         else
         {
@@ -72,18 +67,18 @@ public class BoxCaster : MonoBehaviour
 
         float castLength = 0;
         int loopBreaker = 0;
-        while(castLength < distance)
+        while (castLength < hitDistance)
         {
             Vector2 pos = Vector2.zero + Vector2.right * castLength;
-            Gizmos.DrawCube(pos, size);
-            castLength += size.x;
+            Gizmos.DrawCube(pos, boxCollider.size);
+            castLength += boxCollider.size.x;
             loopBreaker++;
             if (loopBreaker >= 1000)
                 break;
         }
 
         Gizmos.matrix = Matrix4x4.identity;
-        if (result != null)
+        if (result.collider != null)
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(transform.position, hitPoint);
