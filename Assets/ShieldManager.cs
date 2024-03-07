@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShieldManager : MonoBehaviour
 {
+    public Transform shieldGizmoTransform;
     public Transform shieldParent;
     public Shield shield;
     public Character player;
@@ -12,8 +13,16 @@ public class ShieldManager : MonoBehaviour
     public LayerMask shieldNonIntersecting;
     float leftClickHeld, rightClickHeld, middleClickHeld;
     bool leftClickDown, rightClickDown, middleClickDown;
+
+    float angle;
+    float distance;
+    public LayerMask enemyLayerMask;
+    RaycastHit2D[] enemyHitResults;
+
     public int selectedAttack;
     public List<ShieldAttackData> leftClickAttacks = new();
+
+
     void Start()
     {
         InputManager.RegisterMouseInputCallback(HandleMouseInput);
@@ -29,6 +38,9 @@ public class ShieldManager : MonoBehaviour
         shieldParent.rotation = Quaternion.identity;
         shield.transform.localPosition = (Vector3)pointOnCircle;
         shield.transform.right = pointOnCircle;
+
+        shieldGizmoTransform.position = player.transform.position;
+        shieldGizmoTransform.rotation = shield.transform.rotation;
         //for now directly do the shield movement here to test
         //then offset it to the shield itself when ShieldAttackData is good enough
 
@@ -46,16 +58,36 @@ public class ShieldManager : MonoBehaviour
             attackData.Update();
         }
 
-        shield.transform.localPosition += leftClickAttacks[selectedAttack].output.x * shield.transform.right;
+        shield.transform.localPosition += leftClickAttacks[selectedAttack].output * shield.transform.right;
 
-        float parentRotationAngle = leftClickAttacks[selectedAttack].output.y;
-        shieldParent.rotation *= Quaternion.AngleAxis(parentRotationAngle, Vector3.forward);
-
-        float shieldRotationAngle = leftClickAttacks[selectedAttack].output.z;
-        shield.transform.rotation *= Quaternion.AngleAxis(shieldRotationAngle, Vector3.forward);
 
         shield.hitForceMultiplier = leftClickAttacks[selectedAttack].hitForceMultiplier;
         shield.hitForce = leftClickAttacks[selectedAttack].hitForce;
+
+        if(shield.hitForce > 0.1f)
+        {
+            angle = Vector2.Angle(Vector2.right, shield.transform.right);
+            distance = Vector2.Distance(player.transform.position, shield.transform.position) + shield.boxCollider.size.x;
+            enemyHitResults = Physics2D.BoxCastAll(player.transform.position, shield.boxCollider.size, angle, shield.transform.right, distance, enemyLayerMask);
+
+            if(enemyHitResults != null && enemyHitResults.Length > 0)
+            {
+                foreach (RaycastHit2D hit in enemyHitResults)
+                {
+                    Vector2 shiftedHit = hit.point;
+                    shiftedHit.y = Mathf.Max(shiftedHit.y, hit.collider.transform.position.y);
+                    
+                    Vector2 force = (shiftedHit - (Vector2)player.transform.position)*shield.hitForce;
+
+                    Enemy enemy = hit.collider.GetComponent<Enemy>();
+                    enemy.ApplyHit(force);
+                }
+            }
+        }
+        else
+        {
+            enemyHitResults = null;
+        }
     }
     void HandleMouseInput(Vector2 mouseWorldPos)
     {
@@ -72,5 +104,51 @@ public class ShieldManager : MonoBehaviour
         leftClickDown = mouseDownInput.x > 0;
         rightClickDown = mouseDownInput.y > 0;
         middleClickDown = mouseDownInput.z > 0;
+    }
+
+    void OnDrawGizmos()
+    {
+        if (!Application.isPlaying)
+        {
+            return;
+        }
+        Gizmos.matrix = shieldGizmoTransform.localToWorldMatrix;
+
+        if (enemyHitResults != null && enemyHitResults.Length > 0)
+        {
+            Gizmos.color = Color.green * 0.75f;
+        }
+        else
+        {
+            Gizmos.color = Color.clear;
+        }
+
+        float castLength = 0;
+        int loopBreaker = 0;
+        while (castLength < distance)
+        {
+            Vector2 pos = Vector2.zero + Vector2.right * castLength;
+            Gizmos.DrawCube(pos, shield.boxCollider.size);
+            castLength += shield.boxCollider.size.x;
+            loopBreaker++;
+            if (loopBreaker >= 1000)
+                break;
+        }
+
+        Gizmos.matrix = Matrix4x4.identity;
+        if (enemyHitResults != null && enemyHitResults.Length > 0)
+        {
+            foreach (RaycastHit2D hit in enemyHitResults)
+            {
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawLine(shieldGizmoTransform.position, hit.point);
+                Gizmos.color = Color.blue;
+                Gizmos.DrawLine(shieldGizmoTransform.position, hit.collider.transform.position);
+                Gizmos.color = Color.magenta;
+                Vector2 shiftedHit = hit.point;
+                shiftedHit.y = Mathf.Max(shiftedHit.y, hit.collider.transform.position.y);
+                Gizmos.DrawLine(shieldGizmoTransform.position, shiftedHit);
+            }
+        }
     }
 }

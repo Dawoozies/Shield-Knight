@@ -9,24 +9,10 @@ public class ShieldAttackData
     public float cooldown;
     public float radiusMultiplier;
     public AnimationCurve radiusCurve;
-    public float circleRotationMultiplier;
-    public AnimationCurve circleRotationCurve;
-    public float shieldRotationMultiplier;
-    public AnimationCurve shieldRotationCurve;
 
-    public Vector3 output =>
-        new Vector3(
-                radiusMultiplier * radiusCurve.Evaluate(currentTime),
-                circleRotationMultiplier * circleRotationCurve.Evaluate(currentTime),
-                shieldRotationMultiplier * shieldRotationCurve.Evaluate(currentTime)
-            );
+    public float output => radiusMultiplier * radiusCurve.Evaluate(currentTime);
     public float currentTime { get; set; }
-    public float maxCurveTime =>
-        Mathf.Max(
-            radiusCurve.keys[radiusCurve.keys.Length - 1].time,
-            Mathf.Max(circleRotationCurve.keys[circleRotationCurve.keys.Length - 1].time,
-                shieldRotationCurve.keys[shieldRotationCurve.keys.Length - 1].time)
-            );
+    public float maxCurveTime => radiusCurve.keys[radiusCurve.keys.Length - 1].time;
     Func<float> TimeDelta;
     public List<Action> onStartActions = new();
     public List<Action> onCompletedActions = new();

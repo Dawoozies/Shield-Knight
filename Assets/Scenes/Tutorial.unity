@@ -987,6 +987,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &481049750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 481049751}
+  m_Layer: 0
+  m_Name: ShieldGizmoTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &481049751
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481049750}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1651003488}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &490953876
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,9 +1244,9 @@ MonoBehaviour:
   hitForce: 0
   highForceColor: {r: 1, g: 1, b: 0, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  enemyLayers:
+  layerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   hitPoint: {x: 0, y: 0, z: 0}
   colliderPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
@@ -4107,7 +4138,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 481049751}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1651003490
@@ -4311,6 +4343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30da9fca3b20678458e8d42f8b9cd2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shieldGizmoTransform: {fileID: 481049751}
   shieldParent: {fileID: 1527874551}
   shield: {fileID: 502530326}
   player: {fileID: 576396708}
@@ -4318,6 +4351,9 @@ MonoBehaviour:
   shieldNonIntersecting:
     serializedVersion: 2
     m_Bits: 64
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
   selectedAttack: 1
   leftClickAttacks:
   - name: ShieldBash
@@ -4442,56 +4478,6 @@ MonoBehaviour:
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.3336552
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    circleRotationMultiplier: 0
-    circleRotationCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    shieldRotationMultiplier: 0
-    shieldRotationCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -4661,92 +4647,6 @@ MonoBehaviour:
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.3336552
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    circleRotationMultiplier: 0
-    circleRotationCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0.09844198
-        outSlope: 0.09844198
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.2503193
-      - serializedVersion: 3
-        time: 0.05
-        value: 0.5
-        inSlope: 0.17984834
-        outSlope: 0.17984834
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.05747117
-        outWeight: 0.1622108
-      - serializedVersion: 3
-        time: 0.231
-        value: 0.5
-        inSlope: 0.07518718
-        outSlope: 0.07518718
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.10594602
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.35
-        value: 0
-        inSlope: -16.305557
-        outSlope: -16.305557
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.024961075
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    shieldRotationMultiplier: 180
-    shieldRotationCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0.09844198
-        outSlope: 0.09844198
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.2503193
-      - serializedVersion: 3
-        time: 0.05
-        value: 0.5
-        inSlope: 0.17984834
-        outSlope: 0.17984834
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.05747117
-        outWeight: 0.1622108
-      - serializedVersion: 3
-        time: 0.231
-        value: 0.5
-        inSlope: 0.07518718
-        outSlope: 0.07518718
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.10594602
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.35
-        value: 0
-        inSlope: -16.305557
-        outSlope: -16.305557
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.024961075
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -5184,6 +5084,105 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1865634978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1865634981}
+  - component: {fileID: 1865634979}
+  - component: {fileID: 1865634982}
+  m_Layer: 0
+  m_Name: BoxCastTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1865634979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865634978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680e821ad3251524a8c3e449a5363441, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angle: 0
+  boxAngle: 0
+  direction: {x: 1, y: 0}
+  distance: 2.5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 704
+  hitPoint: {x: 0, y: 0}
+  colliderPos: {x: 0, y: 0}
+--- !u!4 &1865634981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865634978}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.074, y: 1.103, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1865634982
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865634978}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.25, y: 1}
+  m_EdgeRadius: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5217,3 +5216,4 @@ SceneRoots:
   - {fileID: 576396707}
   - {fileID: 1527874551}
   - {fileID: 762362288}
+  - {fileID: 1865634981}
