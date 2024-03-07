@@ -41,6 +41,11 @@ public class PlayerManager : MonoBehaviour
     {
         (bool, RaycastHit2D) groundCheckData = player.GroundedCheck();
         grounded = groundCheckData.Item1;
+
+        if(grounded && airDashesLeft != 1)
+        {
+            airDashesLeft = 1;
+        }
     }
     void FixedUpdate()
     {
@@ -102,10 +107,11 @@ public class PlayerManager : MonoBehaviour
         bool rightClickDown = mouseDownInput.y > 0;
         bool middleClickDown = mouseDownInput.z > 0;
 
-        if(rightClickDown)
+        if(rightClickDown && airDashesLeft > 0)
         {
             airDash.direction = ((Vector3)mouseWorldPos - player.transform.position).normalized;
             airDash.Start(() => Time.fixedDeltaTime);
+            airDashesLeft--;
         }
     }
 }
