@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class BoxCastDetection : MonoBehaviour, IDetect
     [Serializable]
     public class BoxCastData
     {
+        public bool castAll;
         public Vector2 size;
         public float castAngle;
         public Vector2 castDirection;
@@ -38,7 +40,15 @@ public class BoxCastDetection : MonoBehaviour, IDetect
     {
         castTransform.right = boxCastData.castDirection;
         boxCastData.castAngle = Vector2.Angle(Vector2.right, castTransform.right);
-        hits = Physics2D.BoxCastAll(transform.position, boxCastData.size, boxCastData.castAngle, castTransform.right, boxCastData.castDistance, boxCastData.castLayerMask);
+        if(boxCastData.castAll)
+        {
+            hits = Physics2D.BoxCastAll(transform.position, boxCastData.size, boxCastData.castAngle, castTransform.right, boxCastData.castDistance, boxCastData.castLayerMask);
+        }
+        else
+        {
+            hits = new RaycastHit2D[1];
+            hits[0] = Physics2D.BoxCast(transform.position, boxCastData.size, boxCastData.castAngle, castTransform.right, boxCastData.castDistance, boxCastData.castLayerMask);
+        }
     }
     void OnDrawGizmos()
     {
@@ -48,23 +58,35 @@ public class BoxCastDetection : MonoBehaviour, IDetect
         }
 
         Gizmos.matrix = castTransform.localToWorldMatrix;
-        if(hits == null)
+        Gizmos.color = Color.red * 0.75f;
+        float hitDistance = boxCastData.castDistance;
+        if (hits == null)
         {
             return;
         }
-        Gizmos.color = Color.red * 0.75f;
-        foreach (RaycastHit2D hit in hits)
+        if (boxCastData.castAll)
         {
-            if (hit.collider != null)
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.collider != null)
+                {
+                    Gizmos.color = Color.green * 0.75f;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            if (hits[0].collider != null)
             {
                 Gizmos.color = Color.green * 0.75f;
-                break;
+                hitDistance = hits[0].distance;
             }
         }
 
         float castLength = 0;
         int loopBreaker = 0;
-        while (castLength < boxCastData.castDistance)
+        while (castLength < hitDistance)
         {
             Vector2 pos = Vector2.zero + Vector2.right * castLength;
             Gizmos.DrawCube(pos, boxCastData.size);
@@ -85,20 +107,37 @@ public class BoxCastDetection : MonoBehaviour, IDetect
         return hits;
     }
 
-    public (bool, Vector2) FirstResultPosition()
+    public (bool, Vector2) FirstResultPosition(string tag)
     {
-        if(hits == null)
+        if (hits == null)
         {
             return (false, Vector2.zero);
         }
-
-        foreach (RaycastHit2D hit in hits)
+        if (tag.Length == 0)
         {
-            if(hit.collider != null)
+            foreach (RaycastHit2D hit in hits)
             {
-                return (true, hit.collider.transform.position);
+                if (hit.collider != null)
+                {
+                    return (true, hit.collider.transform.position);
+                }
             }
         }
+        else
+        {
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.collider != null)
+                {
+                    if(hit.collider.tag != tag)
+                    {
+                        return (false, Vector2.zero);
+                    }
+                    return (true, hit.collider.transform.position);
+                }
+            }
+        }
+
 
         return (false, Vector2.zero);
     }

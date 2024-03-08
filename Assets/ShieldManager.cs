@@ -82,6 +82,7 @@ public class ShieldManager : MonoBehaviour
                     Enemy enemy = hit.collider.GetComponent<Enemy>();
                     enemy.ApplyHit(force);
                 }
+                shield.ScaleLerp(Vector2.one * 1.45f, 3f);
             }
         }
         else

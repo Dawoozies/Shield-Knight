@@ -9,6 +9,10 @@ public class Enemy : MonoBehaviour
     public MovementData hitStun;
     public MovementData death;
     public MovementData mainAttack;
+    [Tooltip("Defines X basis axis for attack directions to be transformed into, ignored if 0")]
+    public Vector2 attackBasisX;
+    [Tooltip("Defines Y basis axis for attack directions to be transformed into, ignored if 0")]
+    public Vector2 attackBasisY;
     public float attackCooldown;
     float cooldownTimer;
     bool grounded;
@@ -44,12 +48,21 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            (bool, Vector2) firstResult = detectionInterface.FirstResultPosition();
+            (bool, Vector2) firstResult = detectionInterface.FirstResultPosition("Player");
             if(firstResult.Item1)
             {
                 if(mainAttack.state != MovementData.State.InProgress)
                 {
-                    mainAttack.direction = ((Vector3)firstResult.Item2 - transform.position).normalized;
+                    Vector2 finalDirection = ((Vector3)firstResult.Item2 - transform.position).normalized;
+                    if (attackBasisX != Vector2.zero || attackBasisY != Vector2.zero)
+                    {
+                        float xOriginal = finalDirection.x;
+                        float yOriginal = finalDirection.y;
+                        finalDirection.x = attackBasisX.x * xOriginal + attackBasisY.x * yOriginal;
+                        finalDirection.y = attackBasisX.y * xOriginal + attackBasisY.y * yOriginal;
+                    }
+                    mainAttack.direction = finalDirection;
+                    mainAttack.maxOutput = 30f;
                     mainAttack.Start(() => Time.fixedDeltaTime);
                     cooldownTimer = attackCooldown;
                 }

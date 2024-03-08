@@ -388,17 +388,17 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0.41533288
       - serializedVersion: 3
-        time: 0.06097252
-        value: -0.3958385
-        inSlope: 33.440025
-        outSlope: 33.440025
+        time: 0.15151614
+        value: -0.42122406
+        inSlope: 3.9804828
+        outSlope: 3.9804828
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.96479654
-        outWeight: 0.0077749626
+        outWeight: 0.91919214
       - serializedVersion: 3
-        time: 0.1004641
-        value: 0.99747413
+        time: 0.18816426
+        value: 0.9915594
         inSlope: -0.0058050775
         outSlope: -0.0058050775
         tangentMode: 0
@@ -406,26 +406,26 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.17887598
       - serializedVersion: 3
-        time: 0.26353008
-        value: 0.99398625
-        inSlope: -0.16305324
-        outSlope: -0.16305324
-        tangentMode: 0
+        time: 0.3501276
+        value: 0.9922101
+        inSlope: 0.0040176
+        outSlope: -0.16709705
+        tangentMode: 5
         weightedMode: 0
         inWeight: 0.1906942
-        outWeight: 0.33333334
+        outWeight: 0.6339116
       - serializedVersion: 3
-        time: 1.7607744
-        value: 0.007289037
-        inSlope: -7.174481
-        outSlope: -7.174481
+        time: 0.57045364
+        value: 0.04460527
+        inSlope: -0.4168271
+        outSlope: -0.4168271
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.36812308
-        outWeight: 0.09123336
+        inWeight: 0.84034014
+        outWeight: 0.17087717
       - serializedVersion: 3
-        time: 2
-        value: 0
+        time: 0.7991159
+        value: 0.022337083
         inSlope: -0.20934437
         outSlope: -0.20934437
         tangentMode: 0
@@ -435,6 +435,8 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+  attackBasisX: {x: 1, y: 0}
+  attackBasisY: {x: 0, y: 0}
   attackCooldown: 2.2
   health: 1
   spawn: {fileID: 0}
@@ -627,6 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCastData:
+    castAll: 0
     size: {x: 0, y: 0}
     castAngle: 0
     castDirection: {x: 0, y: 0}
@@ -635,19 +638,21 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 0
   castTransform: {fileID: 0}
-  nextCastTime: 1
+  nextCastTime: 0.1
   castData:
-  - size: {x: 1, y: 1}
+  - castAll: 0
+    size: {x: 0.2, y: 0.6}
     castAngle: 0
     castDirection: {x: 1, y: 0}
     castDistance: 8
     castLayerMask:
       serializedVersion: 2
-      m_Bits: 128
-  - size: {x: 1, y: 1}
+      m_Bits: 192
+  - castAll: 0
+    size: {x: 0.2, y: 0.6}
     castAngle: 0
     castDirection: {x: -1, y: 0}
     castDistance: 8
     castLayerMask:
       serializedVersion: 2
-      m_Bits: 128
+      m_Bits: 192
