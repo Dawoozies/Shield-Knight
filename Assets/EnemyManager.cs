@@ -12,6 +12,7 @@ public class EnemyManager : MonoBehaviour
     List<Enemy> alive = new();
     List<Enemy> dead = new();
     Camera mainCamera;
+    public GameObject castTransformPrefab;
     void Start()
     {
         int spawns = enemySpawnParent.childCount;
@@ -26,6 +27,14 @@ public class EnemyManager : MonoBehaviour
             newEnemy.health = 1;
             newEnemy.onDeathActions.Add(EnemyDeathHandler);
             newEnemy.spawn = spawn;
+            newEnemy.player = player;
+
+            GameObject newCastTransformObject = Instantiate(castTransformPrefab);
+            CastTransform castTransform = newCastTransformObject.GetComponent<CastTransform>();
+            castTransform.character = newEnemy.GetComponent<Character>();
+            IDetect detectionInterface = newEnemy.GetComponent<IDetect>();
+            detectionInterface.castTransform = castTransform;
+
             alive.Add(newEnemy);
         }
         mainCamera = Camera.main;

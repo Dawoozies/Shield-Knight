@@ -8,6 +8,9 @@ public class Enemy : MonoBehaviour
     public MovementData gravity;
     public MovementData hitStun;
     public MovementData death;
+    public MovementData mainAttack;
+    public float attackCooldown;
+    float cooldownTimer;
     bool grounded;
     Rigidbody2D rb;
     Vector2 force;
@@ -15,20 +18,43 @@ public class Enemy : MonoBehaviour
     BoxCollider2D boxCollider;
     public List<Action<Enemy, Vector2>> onDeathActions = new();
     public Transform spawn;
+
+    public Character player;
+    IDetect detectionInterface;
     void Start()
     {
+        detectionInterface = GetComponent<IDetect>();
         character = GetComponent<Character>();
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         character.TryAddComponent(gravity);
         character.TryAddComponent(hitStun);
         character.TryAddComponent(death);
+        character.TryAddComponent(mainAttack);
         gravity.Start(() => Time.fixedDeltaTime);
     }
     void Update()
     {
         (bool, RaycastHit2D) groundCheckData = character.GroundedCheck();
         grounded = groundCheckData.Item1;
+
+        if (cooldownTimer > 0)
+        {
+            cooldownTimer -= Time.deltaTime;
+        }
+        else
+        {
+            (bool, Vector2) firstResult = detectionInterface.FirstResultPosition();
+            if(firstResult.Item1)
+            {
+                if(mainAttack.state != MovementData.State.InProgress)
+                {
+                    mainAttack.direction = ((Vector3)firstResult.Item2 - transform.position).normalized;
+                    mainAttack.Start(() => Time.fixedDeltaTime);
+                    cooldownTimer = attackCooldown;
+                }
+            }
+        }
     }
     void FixedUpdate()
     {
@@ -36,6 +62,7 @@ public class Enemy : MonoBehaviour
         {
             hitStun.Update();
             gravity.Update();
+            mainAttack.Update();
 
             boxCollider.isTrigger = false;
         }
@@ -80,6 +107,7 @@ public class Enemy : MonoBehaviour
         gravity.ForceEnd();
         hitStun.ForceEnd();
         death.ForceEnd();
+        mainAttack.ForceEnd();
         death.maxOutput = 0;
         death.keepAtMax = false;
         health = 1;
