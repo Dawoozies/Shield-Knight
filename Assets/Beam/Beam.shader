@@ -57,9 +57,7 @@ Shader "Unlit/Beam"
             {
                 // sample the texture
                 float2 uv = i.uv;
-                int integerTime;
-                float timeFrac = modf(_Time.x, integerTime);
-                float shift = (ceil(_Time.x) * _Speed);
+                float shift = (_Time.x * _Speed) % 1;
                 uv = float2(i.uv.x - shift, i.uv.y);
                 float distFromMiddle = length(uv - float2(uv.x, 0.5))*_WhiteCutoffFactor;
                 float distFromBottom = length(uv - float2(uv.x, 1))*2;

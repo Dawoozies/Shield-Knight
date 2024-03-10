@@ -74,14 +74,14 @@ Material:
     - _NoFadeDistance: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Resolution: 1
+    - _Resolution: 2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 1
+    - _Speed: 25
     - _SrcBlend: 1
-    - _TextureCutoff: 1
+    - _TextureCutoff: 0.02
     - _UVSec: 0
-    - _WhiteCutoffFactor: 15
+    - _WhiteCutoffFactor: 12
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
