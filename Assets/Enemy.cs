@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public MovementData hitStun;
     public MovementData death;
     public MovementData mainAttack;
+    public MovementData knockback;
     [Tooltip("Defines X basis axis for attack directions to be transformed into, ignored if 0")]
     public Vector2 attackBasisX;
     [Tooltip("Defines Y basis axis for attack directions to be transformed into, ignored if 0")]
