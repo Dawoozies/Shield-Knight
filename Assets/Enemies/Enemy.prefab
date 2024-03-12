@@ -435,10 +435,51 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+  knockback:
+    movementName: Knockback
+    nullifyWhileActive:
+    - Gravity
+    - MainAttack
+    keepAtMax: 0
+    maxOutput: 0
+    direction: {x: 0, y: 0}
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 100
+        outSlope: 100
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.01
+        value: 1
+        inSlope: 50
+        outSlope: 0
+        tangentMode: 65
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   attackBasisX: {x: 1, y: 0}
   attackBasisY: {x: 0, y: 0}
   attackCooldown: 2.2
-  health: 1
+  health: 2
   spawn: {fileID: 0}
   player: {fileID: 0}
 --- !u!114 &7519102955320350953

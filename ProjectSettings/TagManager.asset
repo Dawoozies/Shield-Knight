@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Shield
   - Enemy
+  - HardSurface
   layers:
   - Default
   - TransparentFX

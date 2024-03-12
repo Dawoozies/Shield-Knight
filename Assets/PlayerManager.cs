@@ -20,6 +20,8 @@ public class PlayerManager : MonoBehaviour
     public MovementData run;
     public MovementData airDash;
     public int airDashesLeft;
+
+
     void Start()
     {
         if (mainCamera == null)

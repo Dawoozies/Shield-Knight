@@ -12,6 +12,8 @@ public class InputManager : MonoBehaviour
     public static List<Action<float>> jumpInputActions = new();
     float jumpHeldTime = 0f;
     public static List<Action<Vector3Int>> mouseDownActions = new();
+    public static List<Action> jumpDownActions = new();
+    public static List<Action> jumpUpActions = new();
     void Update()
     {
         Vector2 mouseScreenPos = Input.mousePosition;
@@ -83,6 +85,8 @@ public class InputManager : MonoBehaviour
             action(mouseDownInput);
         }
         bool jumpInput = Input.GetButton("Jump");
+        bool jumpDownInput = Input.GetButtonDown("Jump");
+        bool jumpUpInput = Input.GetButtonUp("Jump");
         if (jumpInput)
         {
             jumpHeldTime += Time.deltaTime;
@@ -94,6 +98,20 @@ public class InputManager : MonoBehaviour
         foreach (Action<float> action in jumpInputActions)
         {
             action(jumpHeldTime);
+        }
+        if(jumpDownInput)
+        {
+            foreach (Action action in jumpDownActions)
+            {
+                action();
+            }
+        }
+        if(jumpUpInput)
+        {
+            foreach (Action action in jumpUpActions)
+            {
+                action();
+            }
         }
     }
     public static void RegisterMouseInputCallback(Action<Vector2> action)
@@ -115,5 +133,13 @@ public class InputManager : MonoBehaviour
     public static void RegisterMouseDownCallback(Action<Vector3Int> action)
     {
         mouseDownActions.Add(action);
+    }
+    public static void RegisterJumpDownInputCallback(Action action)
+    {
+        jumpDownActions.Add(action);
+    }
+    public static void RegisterJumpUpInputCallback(Action action)
+    {
+        jumpUpActions.Add(action);
     }
 }

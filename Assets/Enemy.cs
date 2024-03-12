@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     float cooldownTimer;
     bool grounded;
     Rigidbody2D rb;
-    Vector2 force;
+    public Vector2 knockbackForce;
     public int health;
     BoxCollider2D boxCollider;
     public List<Action<Enemy, Vector2>> onDeathActions = new();
@@ -33,7 +33,8 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         character.TryAddComponent(gravity);
-        character.TryAddComponent(hitStun);
+        //character.TryAddComponent(hitStun);
+        character.TryAddComponent(knockback);
         character.TryAddComponent(death);
         character.TryAddComponent(mainAttack);
         gravity.Start(() => Time.fixedDeltaTime);
@@ -72,9 +73,15 @@ public class Enemy : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if(knockbackForce.magnitude >= 0.1f)
+        {
+            knockback.Update();
+            return;
+        }
+
         if(health > 0)
         {
-            hitStun.Update();
+            //hitStun.Update();
             gravity.Update();
             mainAttack.Update();
 
@@ -96,12 +103,19 @@ public class Enemy : MonoBehaviour
     }
     public void ApplyHit(Vector2 force)
     {
-        this.force = force;
-        hitStun.maxOutput = force.magnitude;
-        hitStun.direction = force.normalized;
-        hitStun.Start(() => Time.fixedDeltaTime);
-
+        if(knockbackForce.magnitude >= 0.1f)
+        {
+            return;
+        }
+        knockbackForce = force;
+        knockback.maxOutput = force.magnitude;
+        knockback.direction = force.normalized;
+        knockback.Start(() => Time.fixedDeltaTime);
+        //hitStun.maxOutput = force.magnitude;
+        //hitStun.direction = force.normalized;
+        //hitStun.Start(() => Time.fixedDeltaTime);
         health--;
+        Debug.Log("Health Lost");
         if(health <= 0)
         {
             foreach (var action in onDeathActions)
@@ -109,7 +123,8 @@ public class Enemy : MonoBehaviour
                 action(this, force);
             }
             gravity.ForceEnd();
-            hitStun.ForceEnd();
+            //hitStun.ForceEnd();
+            knockback.ForceEnd();
             death.maxOutput = force.magnitude;
             death.direction = (force + 4*Vector2.up).normalized;
             death.keepAtMax = true;
@@ -119,12 +134,13 @@ public class Enemy : MonoBehaviour
     public void Reset()
     {
         gravity.ForceEnd();
-        hitStun.ForceEnd();
+        //hitStun.ForceEnd();
+        knockback.ForceEnd();
         death.ForceEnd();
         mainAttack.ForceEnd();
         death.maxOutput = 0;
         death.keepAtMax = false;
-        health = 1;
+        health = 2;
         boxCollider.isTrigger = false;
         Revive();
     }
@@ -132,5 +148,15 @@ public class Enemy : MonoBehaviour
     {
         transform.position = spawn.position;
         gravity.Start(() => Time.fixedDeltaTime);
+    }
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.tag == "HardSurface")
+        {
+            //Then we check how fast we are going + damage percentage
+            //If high enough we straight up kill the enemy
+            //If not high enough we add how fast we are going to damage percentage
+            //and stop the enemy from being a trigger and remove velocity
+        }
     }
 }

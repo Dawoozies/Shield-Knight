@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f12025d4bc8d03e46b64968c43d47420, type: 3}
+  m_Name: JumpAscent
+  m_EditorClassIdentifier: 
+  dataName: JumpAscent
+  applicationType: 0
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.021443976
+      outSlope: 0.021443976
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 1
+    - serializedVersion: 3
+      time: 0.01
+      value: 0
+      inSlope: -Infinity
+      outSlope: -Infinity
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.02
+      value: 1
+      inSlope: 0.027737584
+      outSlope: 0.027737584
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.7712618
+    - serializedVersion: 3
+      time: 0.2
+      value: 1
+      inSlope: -0.015056831
+      outSlope: -0.015056831
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.41820508
+      outWeight: 0.015037571
+    - serializedVersion: 3
+      time: 0.41088837
+      value: 0.0014545661
+      inSlope: 16.617548
+      outSlope: 16.617548
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.05422603
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  magnitude: 20
+  direction: {x: 0, y: 1}
+  ignoreList:
+  - Gravity
