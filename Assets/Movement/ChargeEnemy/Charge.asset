@@ -44,9 +44,18 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 0.6
+      value: 0
+      inSlope: 23.497587
+      outSlope: 23.497587
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.03994583
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  magnitude: 10
+  magnitude: 25
   direction: {x: 0, y: 0}
   ignoreList: []

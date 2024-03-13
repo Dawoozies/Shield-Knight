@@ -69,7 +69,9 @@ public class ChargeEnemy : MonoBehaviour
             {
                 if(hit.collider != null)
                 {
-                    Vector2 chargeDirection = (hit.collider.transform.position - transform.position).normalized;
+                    Vector2 chargeDirection = hit.collider.transform.position - transform.position;
+                    chargeDirection.y = 0;
+                    chargeDirection.Normalize();
                     readyChargeComponent.SetDirection(chargeDirection);
                     chargeComponent.SetDirection(chargeDirection);
                     break;

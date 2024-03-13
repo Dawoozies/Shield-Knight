@@ -19,6 +19,7 @@ public class PlayerBoxCheck : MonoBehaviour, IPlayerCheck
     }
     void DoBoxCasts()
     {
+        hitResults.Clear();
         RaycastHit2D leftHitResult = Physics2D.BoxCast(transform.position, size, 0f, Vector2.left, checkDistance, layerMask);
         RaycastHit2D rightHitResult = Physics2D.BoxCast(transform.position, size, 0f, Vector2.right, checkDistance, layerMask);
         hitResults.Add(leftHitResult);
