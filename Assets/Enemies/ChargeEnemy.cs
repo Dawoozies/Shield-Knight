@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChargeEnemy : MonoBehaviour
+public class ChargeEnemy : MonoBehaviour, IEnemy
 {
     VelocitySystem velocitySystem;
     public VelocityData gravity, readyCharge, charge;
@@ -86,5 +86,10 @@ public class ChargeEnemy : MonoBehaviour
         {
             transform.localEulerAngles = Vector3.zero;
         }
+    }
+
+    public void ApplyForce(Vector2 force)
+    {
+        Debug.LogError("Apply Force");
     }
 }
