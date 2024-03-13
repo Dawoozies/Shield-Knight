@@ -27,18 +27,35 @@ public class Player : MonoBehaviour
         jumpAscentComponent.endTimeExceededActions.Add(
                 () => gravityComponent.PlayFromStart()
             );
-        InputManager.RegisterJumpDownInputCallback(
-                () => 
+        //InputManager.RegisterJumpDownInputCallback(
+        //        () => 
+        //        {
+        //            //If grounded we can jump
+        //            if (grounded)
+        //            {
+        //                gravityComponent.Stop();
+        //                jumpAscentComponent.PlayFromStart();a
+        //            }
+        //        }
+        //    );
+
+        InputManager.RegisterJumpInputCallback(
+                (float heldTime) =>
                 {
-                    //If grounded we can jump
-                    if (grounded)
+                    if(grounded && heldTime > 0)
                     {
-                        gravityComponent.Stop();
-                        jumpAscentComponent.PlayFromStart();
+                        if(!jumpAscentComponent.isPlaying)
+                        {
+                            if(gravityComponent.isPlaying)
+                            {
+                                gravityComponent.Stop();
+                            }
+                            jumpAscentComponent.PlayFromStart();
+                        }
                     }
                 }
             );
-        
+
         InputManager.RegisterJumpUpInputCallback(
                 () =>
                 {

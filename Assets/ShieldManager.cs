@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using OldSystems;
 public class ShieldManager : MonoBehaviour
 {
     public Transform shieldGizmoTransform;
     public Transform shieldParent;
     public Shield shield;
-    public Character player;
+    public Player player;
     public float distanceFromPlayer;
     Vector2 pointOnCircle;
     public LayerMask shieldNonIntersecting;
@@ -25,6 +25,10 @@ public class ShieldManager : MonoBehaviour
 
     void Start()
     {
+        if (player == null)
+        {
+            player = FindAnyObjectByType<Player>();
+        }
         InputManager.RegisterMouseInputCallback(HandleMouseInput);
         InputManager.RegisterMouseClickCallback(HandleMouseClick);
         InputManager.RegisterMouseDownCallback(HandleMouseDown);

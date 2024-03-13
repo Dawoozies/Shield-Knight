@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using OldSystems;
 public class EnemyManager : MonoBehaviour
 {
-    public Character player;
+    public Player player;
     public Transform enemySpawnParent;
     List<Transform> enemySpawns = new();
     public GameObject enemyPrefab;
@@ -15,6 +15,10 @@ public class EnemyManager : MonoBehaviour
     public GameObject castTransformPrefab;
     void Start()
     {
+        if(player == null)
+        {
+            player = FindAnyObjectByType<Player>();
+        }
         int spawns = enemySpawnParent.childCount;
         for (int i = 0; i < spawns; i++)
         {
