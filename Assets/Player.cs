@@ -5,19 +5,24 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     VelocitySystem velocitySystem;
-    public VelocityData gravity;
-    public VelocityData jumpAscent;
-    public VelocityData run;
-    public VelocityData airDash;
+    public VelocityData gravity, jumpAscent, run, airDash;
+    public VelocityComponent gravityComponent, jumpAscentComponent, runComponent, airDashComponent;
     Vector2 mousePos;
-    void Start()
+    GroundCheck groundCheck;
+    public bool grounded;
+    void Awake()
     {
-        velocitySystem = GetComponent<VelocitySystem>();
-        VelocityComponent gravityComponent;
-        velocitySystem.SetupData(gravity, out gravityComponent);
-        gravityComponent.Play();
+        #region Ground Action Setup
+        groundCheck = GetComponent<GroundCheck>();
+        groundCheck.onGroundEnter.Add(GroundEnterHandler);
+        groundCheck.onGroundExit.Add(GroundExitHandler);
+        #endregion
 
-        VelocityComponent jumpAscentComponent;
+        velocitySystem = GetComponent<VelocitySystem>();
+        #region Gravity Setup
+        velocitySystem.SetupData(gravity, out gravityComponent);
+        #endregion
+        #region Jump Setup
         velocitySystem.SetupData(jumpAscent, out jumpAscentComponent);
         jumpAscentComponent.endTimeExceededActions.Add(
                 () => gravityComponent.PlayFromStart()
@@ -25,13 +30,19 @@ public class Player : MonoBehaviour
         InputManager.RegisterJumpDownInputCallback(
                 () => 
                 {
-                    gravityComponent.Stop();
-                    jumpAscentComponent.PlayFromStart();
+                    //If grounded we can jump
+                    if (grounded)
+                    {
+                        gravityComponent.Stop();
+                        jumpAscentComponent.PlayFromStart();
+                    }
                 }
             );
+        
         InputManager.RegisterJumpUpInputCallback(
                 () =>
                 {
+                    //If jump ascent is playing then we can do this when we let go of space
                     if(jumpAscentComponent.isPlaying)
                     {
                         jumpAscentComponent.Stop();
@@ -39,8 +50,8 @@ public class Player : MonoBehaviour
                     }
                 }
             );
-
-        VelocityComponent runComponent;
+        #endregion
+        #region Run Setup
         velocitySystem.SetupData(run, out runComponent);
         runComponent.Play();
         InputManager.RegisterMoveInputCallback(
@@ -49,8 +60,8 @@ public class Player : MonoBehaviour
                     runComponent.SetDirection(Vector2.right * moveInput.x);
                 }
             );
-
-        VelocityComponent airDashComponent;
+        #endregion
+        #region AirDash Setup
         velocitySystem.SetupData(airDash, out airDashComponent);
         airDashComponent.endTimeExceededActions.Add(
                 () =>
@@ -74,5 +85,31 @@ public class Player : MonoBehaviour
                     }
                 }
             );
+        #endregion
+
+    }
+    void GroundEnterHandler()
+    {
+        //If Enter Ground Stop Gravity
+        if (gravityComponent.isPlaying)
+        {
+            gravityComponent.Stop();
+        }
+        grounded = true;
+    }
+    void GroundExitHandler()
+    {
+        if(!jumpAscentComponent.isPlaying && !airDashComponent.isPlaying && !gravityComponent.isPlaying)
+        {
+            gravityComponent.Play();
+        }
+        grounded = false;
+    }
+    void Update()
+    {
+        if(grounded)
+        {
+            transform.localEulerAngles = Vector3.zero;
+        }
     }
 }

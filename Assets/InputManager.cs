@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    //List definition
+    //int[] arrayOfInts = int[4];
+    //List<int> listOfInts = new();
+    public static bool jumpPressed;
     public static List<Action<Vector2>> mouseInputActions = new();
     public static List<Action<Vector2>> moveInputActions = new();
     public static List<Action<Vector3>> mouseClickActions = new();

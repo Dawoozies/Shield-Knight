@@ -4916,7 +4916,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1651003488}
   - component: {fileID: 1651003490}
-  - component: {fileID: 1651003491}
+  - component: {fileID: 1651003494}
   - component: {fileID: 1651003492}
   - component: {fileID: 1651003493}
   m_Layer: 0
@@ -4954,183 +4954,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac1547f0a4684e4884ce8978b5105f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1651003491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651003487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9c857a4e072237478c921d59acad8a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 576396708}
-  mainCamera: {fileID: 519420031}
-  cameraSmoothTime: 0.3
-  cameraOffset: {x: 0, y: 0}
-  gravity:
-    movementName: Gravity
-    nullifyWhileActive: []
-    keepAtMax: 1
-    maxOutput: -20
-    direction: {x: 0, y: 1}
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 1.3924378
-        outSlope: 1.3924378
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.11235957
-      - serializedVersion: 3
-        time: 0.4
-        value: 1
-        inSlope: 2.8667896
-        outSlope: 2.8667896
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.04775271
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  jumpAscent:
-    movementName: JumpAscent
-    nullifyWhileActive:
-    - Gravity
-    keepAtMax: 0
-    maxOutput: 20
-    direction: {x: 0, y: 1}
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0.021443976
-        outSlope: 0.021443976
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 1
-      - serializedVersion: 3
-        time: 0.01
-        value: 0
-        inSlope: -Infinity
-        outSlope: -Infinity
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.02
-        value: 1
-        inSlope: 0.027737584
-        outSlope: 0.027737584
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.7712618
-      - serializedVersion: 3
-        time: 0.2
-        value: 1
-        inSlope: -0.015056831
-        outSlope: -0.015056831
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.41820508
-        outWeight: 0.015037571
-      - serializedVersion: 3
-        time: 0.41088837
-        value: 0.0014545661
-        inSlope: 16.617548
-        outSlope: 16.617548
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.05422603
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  run:
-    movementName: Run
-    nullifyWhileActive: []
-    keepAtMax: 1
-    maxOutput: 10
-    direction: {x: 0, y: 0}
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 5
-        outSlope: 5
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.2
-        value: 1
-        inSlope: 5
-        outSlope: 5
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  airDash:
-    movementName: AirDash
-    nullifyWhileActive:
-    - Gravity
-    - JumpAscent
-    - Run
-    keepAtMax: 0
-    maxOutput: 40
-    direction: {x: 0, y: 0}
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0.31781948
-        outSlope: 0.31781948
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.49504957
-      - serializedVersion: 3
-        time: 0.03
-        value: 1
-        inSlope: 0.009563138
-        outSlope: 0.009563138
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.10891085
-        outWeight: 0.2560506
-      - serializedVersion: 3
-        time: 0.3
-        value: 0
-        inSlope: -0.0691007
-        outSlope: -0.0691007
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.13201325
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  airDashesLeft: 1
 --- !u!114 &1651003492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5350,6 +5173,21 @@ MonoBehaviour:
   enemySpawnParent: {fileID: 1090122816}
   enemyPrefab: {fileID: 5220809958196806112, guid: 2d197ca83f39ac3429b09896a4e28c1f, type: 3}
   castTransformPrefab: {fileID: 576988120687186977, guid: e62ed2bdb7f5e2046ad0bbe9fa15dc58, type: 3}
+--- !u!114 &1651003494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651003487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb41a6ae5b5d7864384ae2db3cadbdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 519420031}
+  cameraSmoothTime: 0.3
+  cameraOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &1681725877
 GameObject:
   m_ObjectHideFlags: 0
@@ -5480,6 +5318,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1833228887}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1777455606
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2364307283112482766, guid: 08a6cfd737555f3499c721f933ce0e34, type: 3}
+      propertyPath: m_Name
+      value: Player (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540044850530147315, guid: 08a6cfd737555f3499c721f933ce0e34, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.1997237
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540044850530147315, guid: 08a6cfd737555f3499c721f933ce0e34, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0917809
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540044850530147315, guid: 08a6cfd737555f3499c721f933ce0e34, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540044850530147315, guid: 08a6cfd737555f3499c721f933ce0e34, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540044850530147315, guid: 08a6cfd737555f3499c721f933ce0e34, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540044850530147315, guid: 08a6cfd737555f3499c721f933ce0e34, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540044850530147315, guid: 08a6cfd737555f3499c721f933ce0e34, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540044850530147315, guid: 08a6cfd737555f3499c721f933ce0e34, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540044850530147315, guid: 08a6cfd737555f3499c721f933ce0e34, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540044850530147315, guid: 08a6cfd737555f3499c721f933ce0e34, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 08a6cfd737555f3499c721f933ce0e34, type: 3}
 --- !u!1 &1801763924
 GameObject:
   m_ObjectHideFlags: 0
@@ -6257,3 +6152,4 @@ SceneRoots:
   - {fileID: 148599681}
   - {fileID: 1587360529}
   - {fileID: 2031334842}
+  - {fileID: 1777455606}
