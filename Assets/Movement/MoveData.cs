@@ -64,14 +64,14 @@ public abstract class MoveComponent
     }
     public virtual void Update(float timeDelta, ref Vector3 moveVector, Vector3 currentVector, Transform target)
     {
-        SetDirection(target.position - currentVector);
-        moveVector += curve.Evaluate(time) * magnitude * direction;
-        time += timeDelta;
+        Vector3 dv = Vector3.LerpUnclamped(Vector3.zero, target.position-currentVector, Mathf.Clamp(curve.Evaluate(time), -1f, 1f));
+        moveVector += dv;
+        time += timeDelta*magnitude;
     }
     public virtual void Update(float timeDelta, ref Vector3 moveVector, Vector3 currentVector, Vector3 targetPoint)
     {
-        SetDirection(targetPoint - currentVector);
-        moveVector += curve.Evaluate(time) * magnitude * direction;
+        SetDirection((targetPoint - currentVector).normalized);
+        moveVector += curve.Evaluate(time) * magnitude * direction * timeDelta;
         time += timeDelta;
     }
     public void Play()

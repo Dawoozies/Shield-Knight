@@ -18,17 +18,42 @@ public class MoveSystem : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    void Update()
+    void FixedUpdate()
     {
-        finalVector = Vector3.zero;
-
+        Vector3 currentVector = Vector3.zero;
         switch (mode)
         {
             case SystemMode.Position:
-                rb.transform.position = finalVector;
+                finalVector = transform.position;
+                currentVector = transform.position;
+                break;
+            case SystemMode.Velocity:
+                finalVector = Vector3.zero;
+                currentVector = rb.velocity;
+                break;
+            case SystemMode.LocalPosition:
+                finalVector = transform.localPosition;
+                currentVector = transform.localPosition;
+                break;
+        }
+        foreach (OneShotMove component in oneShotComponents)
+        {
+            component.Update(Time.fixedDeltaTime, ref finalVector, currentVector);
+        }
+        foreach (ContinuousMove component in continuousComponents)
+        {
+            component.Update(Time.fixedDeltaTime, ref finalVector, currentVector);
+        }
+        switch (mode)
+        {
+            case SystemMode.Position:
+                transform.position = finalVector;
                 break;
             case SystemMode.Velocity:
                 rb.velocity = finalVector;
+                break;
+            case SystemMode.LocalPosition:
+                transform.localPosition = finalVector;
                 break;
         }
     }
@@ -50,5 +75,9 @@ public class MoveSystem : MonoBehaviour
                 component = null;
                 break;
         }
+    }
+    public void SetSystemAnchor(Transform systemAnchor)
+    {
+        this.systemAnchor = systemAnchor;
     }
 }
