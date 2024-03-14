@@ -493,6 +493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equip: {fileID: 11400000, guid: 44081950f853aba4d812f6476349d357, type: 2}
+  idle: {fileID: 11400000, guid: 4be51083961e7a3448850ee7042c6e0d, type: 2}
 --- !u!114 &1104369836
 MonoBehaviour:
   m_ObjectHideFlags: 0

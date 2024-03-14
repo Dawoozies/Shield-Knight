@@ -6,12 +6,24 @@ public class Shield : HeldWeapon
 {
     MoveSystem moveSystem;
     bool equipped;
-    public MoveData equip;
-    MoveComponent equipComponent;
+    public MoveData equip, idle;
+    MoveComponent equipComponent, idleComponent;
+    Vector3 mouseWorldPos;
+
     protected override void Start()
     {
         moveSystem = GetComponent<MoveSystem>();
         moveSystem.SetupData(equip, out equipComponent);
+        moveSystem.SetupData(idle, out idleComponent);
+        InputManager.RegisterMouseInputCallback((Vector2 mouseWorldPos) => this.mouseWorldPos = mouseWorldPos);
+    }
+    protected override void Update()
+    {
+        if(owner != null)
+        {
+            idleComponent.SetEndPoint(mouseWorldPos);
+            transform.right = (mouseWorldPos - transform.position).normalized;
+        }
     }
     public void OnTriggerEnter2D(Collider2D col)
     {
@@ -19,14 +31,15 @@ public class Shield : HeldWeapon
         {
             if (!equipComponent.isPlaying && col.tag == "Player")
             {
-                equipComponent.SetTarget(col.transform);
+                equipComponent.SetEndTransform(col.transform);
                 equipComponent.PlayFromStart();
                 equipComponent.endActions.Add(
                     (MoveEndType endType) =>
                     {
                         equipped = true;
-                        moveSystem.SetSystemAnchor(col.transform);
-                        Debug.Log("Player equipped shield");
+                        idleComponent.SetOriginTransform(col.transform);
+                        idleComponent.Play();
+                        SetOwner(col.transform);
                     }
                 );
             }

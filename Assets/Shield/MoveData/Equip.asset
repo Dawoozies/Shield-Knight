@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Equip
   m_EditorClassIdentifier: 
   dataName: Equip
-  applicationType: 0
   curve:
     serializedVersion: 2
     m_Curve:
@@ -42,4 +41,5 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   moveType: 1
   moveEndType: 3
-  targetDistanceThreshold: 0.1
+  stopOnEnd: 1
+  endDistanceThreshold: 0.1

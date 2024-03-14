@@ -5,11 +5,15 @@ using UnityEngine;
 
 public abstract class HeldWeapon : Weapon, IEquip
 {
-    Transform owner;
+    protected Transform owner;
     List<Action> onEquipEndActions = new();
-    public void Equip(Transform owner)
+    public void SetOwner(Transform owner)
     {
-        throw new NotImplementedException();
+        this.owner = owner;
+        foreach (var action in onEquipEndActions)
+        {
+            action();
+        }
     }
 
     public void RegisterEquipEndCallback(Action a)
@@ -28,6 +32,6 @@ public abstract class HeldWeapon : Weapon, IEquip
 }
 public interface IEquip
 {
-    public void Equip(Transform owner);
+    public void SetOwner(Transform owner);
     public void RegisterEquipEndCallback(Action a);
 }

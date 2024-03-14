@@ -8,11 +8,13 @@ public enum SystemMode
 public class MoveSystem : MonoBehaviour
 {
     public SystemMode mode;
-    public List<OneShotMove> oneShotComponents = new();
-    public List<ContinuousMove> continuousComponents = new();
+    public List<FreeMove> freeMoveComponents = new();
+    public List<MoveToEnd> moveToEndComponents = new();
+    public List<MoveBetweenOriginEnd> moveBetweenOriginEndComponents = new();
 
     Rigidbody2D rb;
     Transform systemAnchor;
+    Rigidbody systemAnchorRigidbody;
     public Vector3 finalVector;
     void Start()
     {
@@ -20,6 +22,16 @@ public class MoveSystem : MonoBehaviour
     }
     void FixedUpdate()
     {
+        Vector3 systemOrigin = Vector3.zero;
+        Vector3 systemVelocity = Vector3.zero;
+        if(systemAnchor != null)
+        {
+            systemOrigin = systemAnchor.position;
+            if(systemAnchorRigidbody != null)
+            {
+                systemVelocity = systemAnchorRigidbody.velocity;
+            }
+        }
         Vector3 currentVector = Vector3.zero;
         switch (mode)
         {
@@ -36,48 +48,59 @@ public class MoveSystem : MonoBehaviour
                 currentVector = transform.localPosition;
                 break;
         }
-        foreach (OneShotMove component in oneShotComponents)
+        foreach (var component in freeMoveComponents)
         {
             component.Update(Time.fixedDeltaTime, ref finalVector, currentVector);
         }
-        foreach (ContinuousMove component in continuousComponents)
+        foreach (var component in moveToEndComponents)
+        {
+            component.Update(Time.fixedDeltaTime, ref finalVector, currentVector);
+        }
+        foreach (var component in moveBetweenOriginEndComponents)
         {
             component.Update(Time.fixedDeltaTime, ref finalVector, currentVector);
         }
         switch (mode)
         {
             case SystemMode.Position:
-                transform.position = finalVector;
+                transform.position = systemOrigin + finalVector;
                 break;
             case SystemMode.Velocity:
-                rb.velocity = finalVector;
+                rb.velocity = systemVelocity + finalVector;
                 break;
             case SystemMode.LocalPosition:
-                transform.localPosition = finalVector;
+                //this may give incorrect results since i havent tested it
+                transform.localPosition = transform.worldToLocalMatrix.MultiplyPoint(systemOrigin) + finalVector;
                 break;
         }
     }
-    public void SetupData(MoveData data, out MoveComponent component)
+    public void SetupData(MoveData data, out MoveComponent baseComponent)
     {
-        switch (data.applicationType)
+        switch (data.moveType)
         {
-            case ApplicationType.OneShot:
-                OneShotMove oneShotMove = new OneShotMove(data);
-                component = oneShotMove;
-                oneShotComponents.Add(oneShotMove);
+            case MoveType.Free:
+                FreeMove freeMoveComponent = new FreeMove(data);
+                baseComponent = freeMoveComponent;
+                freeMoveComponents.Add(freeMoveComponent);
                 break;
-            case ApplicationType.Continuous:
-                ContinuousMove continuousMove = new ContinuousMove(data);
-                component = continuousMove;
-                continuousComponents.Add(continuousMove);
+            case MoveType.MoveToEnd:
+                MoveToEnd moveToEndComponent = new MoveToEnd(data);
+                baseComponent = moveToEndComponent;
+                moveToEndComponents.Add(moveToEndComponent);
+                break;
+            case MoveType.MoveBetweenOriginEnd:
+                MoveBetweenOriginEnd moveBetweenOriginEndComponent = new MoveBetweenOriginEnd(data);
+                baseComponent = moveBetweenOriginEndComponent;
+                moveBetweenOriginEndComponents.Add(moveBetweenOriginEndComponent);
                 break;
             default:
-                component = null;
+                baseComponent = null;
                 break;
         }
     }
     public void SetSystemAnchor(Transform systemAnchor)
     {
         this.systemAnchor = systemAnchor;
+        systemAnchorRigidbody = systemAnchor.GetComponent<Rigidbody>();
     }
 }
