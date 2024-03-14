@@ -207,9 +207,6 @@ public class MoveBetweenOriginEnd : MoveComponent
         float endMaxPercentage = 1 - Mathf.InverseLerp(0, originToEndLength, endDistanceBounds.y);
 
         //since this component doesn't use direction at all
-        if(moveBoundsFlags.HasFlag(MoveBoundsFlags.OriginMin))
-        {
-        }
         if (moveBoundsFlags.HasFlag(MoveBoundsFlags.OriginMax))
         {
             if(percentageAlong > originMaxPercentage)
@@ -227,16 +224,15 @@ public class MoveBetweenOriginEnd : MoveComponent
         }
 
         Vector3 targetPos = Vector3.LerpUnclamped(finalOriginPoint, finalEndPoint, percentageAlong);
-
-        if (Vector3.Distance(originPoint, targetPos) < originDistanceBounds.x)
+        if(moveBoundsFlags.HasFlag(MoveBoundsFlags.OriginMin))
         {
-
+            if(originToEndLength < originDistanceBounds.x)
+            {
+                return;
+            }
         }
 
         moveVector += targetPos - currentVector;
-
-        //if currentVector
-
         time += Time.deltaTime;
         CheckEnd(currentVector);
     }

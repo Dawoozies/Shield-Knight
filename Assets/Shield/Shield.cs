@@ -22,7 +22,7 @@ public class Shield : HeldWeapon
         if(owner != null)
         {
             idleComponent.SetEndPoint(mouseWorldPos);
-            transform.right = (mouseWorldPos - transform.position).normalized;
+            transform.right = (mouseWorldPos - owner.transform.position).normalized;
         }
     }
     public void OnTriggerEnter2D(Collider2D col)
