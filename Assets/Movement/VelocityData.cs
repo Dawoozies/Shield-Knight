@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Android;
 [CreateAssetMenu]
 public class VelocityData : ScriptableObject
 {

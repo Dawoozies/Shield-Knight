@@ -383,7 +383,8 @@ GameObject:
   - component: {fileID: 1104369832}
   - component: {fileID: 1104369831}
   - component: {fileID: 1104369833}
-  - component: {fileID: 1104369834}
+  - component: {fileID: 1104369835}
+  - component: {fileID: 1104369836}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -478,7 +479,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1104369834
+--- !u!114 &1104369835
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -487,9 +488,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1104369830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b81dfaae5fd1d346944c473196c874f, type: 3}
+  m_Script: {fileID: 11500000, guid: 29c3ff1721795f54299fd6766173329b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1104369836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104369830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648d77f6b78db0d4c97d53a2f89fa2da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 2
+  finalVector: {x: 0, y: 0, z: 0}
 --- !u!1 &1318510151
 GameObject:
   m_ObjectHideFlags: 0
