@@ -71,6 +71,10 @@ public abstract class VelocityComponent
     {
         this.direction = direction;
     }
+    public Vector3 GetDirection()
+    {
+        return direction;
+    }
 }
 public class OneShotVelocity : VelocityComponent
 {

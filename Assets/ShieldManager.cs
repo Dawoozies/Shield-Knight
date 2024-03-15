@@ -147,10 +147,11 @@ namespace OldSystems
                 {
                     foreach (RaycastHit2D hit in enemyHitResults)
                     {
-                        Vector2 shiftedHit = hit.point;
-                        shiftedHit.y = Mathf.Max(shiftedHit.y, hit.collider.transform.position.y);
+                        //Vector2 shiftedHit = hit.point;
+                        //shiftedHit.y = Mathf.Max(shiftedHit.y, hit.collider.transform.position.y);
 
-                        Vector2 force = (shiftedHit - (Vector2)player.transform.position) * shield.hitForce;
+                        //Vector2 force = (shiftedHit - (Vector2)player.transform.position) * shield.hitForce;
+                        Vector2 force = (hit.point - (Vector2)player.transform.position).normalized * shield.hitForce;
 
                         IEnemy enemy = hit.collider.GetComponent<IEnemy>();
                         enemy.ApplyDamage(force);

@@ -131,7 +131,9 @@ MonoBehaviour:
   hitStun: {fileID: 11400000, guid: 87a50d2f9ef190340816e66644e775b9, type: 2}
   grounded: 0
   damagePercentage: 0
-  hitStunTime: 2
+  canBounceOff:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &1562243907795481416
 MonoBehaviour:
   m_ObjectHideFlags: 0

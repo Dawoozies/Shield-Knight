@@ -16,6 +16,7 @@ public class ChargeEnemy : MonoBehaviour, IEnemy
     BoxCollider2D boxCollider2D;
     List<Action<IEnemy>> onDeathActions = new();
     List<Action<IEnemy>> onRespawnActions = new();
+    public LayerMask canBounceOff;
     void Awake()
     {
         boxCollider2D = GetComponent<BoxCollider2D>();
@@ -106,16 +107,7 @@ public class ChargeEnemy : MonoBehaviour, IEnemy
             transform.localEulerAngles = Vector3.zero;
         }
     }
-    public void ApplyDamage(Vector2 force)
-    {
-        if(!knockbackComponent.isPlaying)
-        {
-            readyChargeComponent.Stop();
-            chargeComponent.Stop();
-            knockbackComponent.SetDirection(force.normalized);
-            knockbackComponent.Play();
-        }
-    }
+
 
     public void SetSpawn(Vector3 spawn)
     {
@@ -155,7 +147,10 @@ public class ChargeEnemy : MonoBehaviour, IEnemy
             }
         }
     }
-
+    public void Kill()
+    {
+        gameObject.SetActive(false);
+    }
     public void RegisterEnemyDeathCallback(Action<IEnemy> action)
     {
         onDeathActions.Add(action);
@@ -163,6 +158,8 @@ public class ChargeEnemy : MonoBehaviour, IEnemy
 
     public void Respawn()
     {
+        gameObject.SetActive(true);
+        transform.position = spawn;
         foreach (var action in onRespawnActions)
         {
             action(this);
@@ -172,5 +169,26 @@ public class ChargeEnemy : MonoBehaviour, IEnemy
     public void RegisterEnemyRespawnCallback(Action<IEnemy> action)
     {
         onRespawnActions.Add(action);
+    }
+    public void ApplyDamage(Vector2 force)
+    {
+        Vector2 originalForce = force;
+        Vector2 projectedSum = Vector2.zero;
+        Collider2D[] nearbyCol = Physics2D.OverlapBoxAll(transform.position, boxCollider2D.size + Vector2.one * 0.02f, 0f, canBounceOff);
+        foreach (var col in nearbyCol)
+        {
+            Vector2 normal = ((Vector2)transform.position - col.ClosestPoint(transform.position)).normalized;
+            Vector2 projectedForce = (Vector2.Dot(force, normal) / normal.magnitude)*normal;
+            projectedSum += projectedForce;
+        }
+        Debug.LogError($"[ Original {originalForce} norm = {originalForce.magnitude} ] [ ProjectedSum = {projectedSum} norm = {projectedSum.magnitude} ]");
+
+        if (!knockbackComponent.isPlaying)
+        {
+            readyChargeComponent.Stop();
+            chargeComponent.Stop();
+            knockbackComponent.SetDirection(force.normalized);
+            knockbackComponent.Play();
+        }
     }
 }

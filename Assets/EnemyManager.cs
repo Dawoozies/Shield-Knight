@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using OldSystems;
 public class EnemyManager : MonoBehaviour
@@ -41,7 +40,7 @@ public class EnemyManager : MonoBehaviour
             foreach (IEnemy deadEnemy in dead)
             {
                 deadEnemy.Respawn();
-            }
+             }
             respawnDeadEnemies = false;
         }
     }
@@ -50,6 +49,7 @@ public class EnemyManager : MonoBehaviour
         if(alive.Contains(deadEnemy))
         {
             alive.Remove(deadEnemy);
+            deadEnemy.Kill();
         }
         if(!dead.Contains(deadEnemy))
         {

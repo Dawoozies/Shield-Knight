@@ -4,6 +4,7 @@ public interface IEnemy
 {
     public void ApplyDamage(Vector2 force);
     public void SetSpawn(Vector3 spawn);
+    public void Kill();
     public void RegisterEnemyDeathCallback(Action<IEnemy> action);
     public void Respawn();
     public void RegisterEnemyRespawnCallback(Action<IEnemy> action);
