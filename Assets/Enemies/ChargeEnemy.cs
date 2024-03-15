@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class ChargeEnemy : MonoBehaviour, IEnemy
     Vector3 spawn;
     public float damagePercentage;
     BoxCollider2D boxCollider2D;
+    List<Action<IEnemy>> onDeathActions = new();
+    List<Action<IEnemy>> onRespawnActions = new();
     void Awake()
     {
         boxCollider2D = GetComponent<BoxCollider2D>();
@@ -131,16 +134,43 @@ public class ChargeEnemy : MonoBehaviour, IEnemy
                     if(Vector2.Dot(velocitySystem.finalVelocity, posToCol) > 0)
                     {
                         Debug.LogError($"Hit hard surface with velocity {velocitySystem.finalVelocity} + damage percentage {damagePercentage}%");
-                        damagePercentage += velocitySystem.finalVelocity.magnitude / 10f;
+                        damagePercentage += velocitySystem.finalVelocity.magnitude;
                         gravityComponent.Stop();
                         readyChargeComponent.Stop();
                         chargeComponent.Stop();
                         knockbackComponent.Stop();
+
+                        if(damagePercentage >= 100)
+                        {
+                            foreach (var action in onDeathActions)
+                            {
+                                action(this);
+                            }
+                            return;
+                        }
 
                         hitStunComponent.PlayFromStart();
                     }
                 }
             }
         }
+    }
+
+    public void RegisterEnemyDeathCallback(Action<IEnemy> action)
+    {
+        onDeathActions.Add(action);
+    }
+
+    public void Respawn()
+    {
+        foreach (var action in onRespawnActions)
+        {
+            action(this);
+        }
+    }
+
+    public void RegisterEnemyRespawnCallback(Action<IEnemy> action)
+    {
+        onRespawnActions.Add(action);
     }
 }

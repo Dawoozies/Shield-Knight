@@ -12,6 +12,7 @@ public class EnemyManager : MonoBehaviour
     List<IEnemy> alive = new();
     List<IEnemy> dead = new();
     Camera mainCamera;
+    public bool respawnDeadEnemies;
     void Start()
     {
         if(player == null)
@@ -28,12 +29,31 @@ public class EnemyManager : MonoBehaviour
             GameObject newEnemyObject = Instantiate(enemyPrefab, spawn.position, spawn.rotation, transform);
             IEnemy newEnemy = newEnemyObject.GetComponent<IEnemy>();
             newEnemy.SetSpawn(spawn.position);
+            newEnemy.RegisterEnemyDeathCallback(EnemyDeathHandler);
             alive.Add(newEnemy);
         }
         mainCamera = Camera.main;
     }
     void Update()
     {
-
+        if(respawnDeadEnemies)
+        {
+            foreach (IEnemy deadEnemy in dead)
+            {
+                deadEnemy.Respawn();
+            }
+            respawnDeadEnemies = false;
+        }
+    }
+    void EnemyDeathHandler(IEnemy deadEnemy)
+    {
+        if(alive.Contains(deadEnemy))
+        {
+            alive.Remove(deadEnemy);
+        }
+        if(!dead.Contains(deadEnemy))
+        {
+            dead.Add(deadEnemy);
+        }
     }
 }
