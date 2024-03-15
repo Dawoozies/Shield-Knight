@@ -85,8 +85,8 @@ namespace OldSystems
 
                         Vector2 force = (shiftedHit - (Vector2)player.transform.position) * shield.hitForce;
 
-                        Enemy enemy = hit.collider.GetComponent<Enemy>();
-                        enemy.ApplyHit(force);
+                        IEnemy enemy = hit.collider.GetComponent<IEnemy>();
+                        enemy.ApplyDamage(force);
                     }
                     shield.ScaleLerp(Vector2.one * 1.45f, 3f);
                 }

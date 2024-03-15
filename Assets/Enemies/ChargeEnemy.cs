@@ -5,13 +5,18 @@ using UnityEngine;
 public class ChargeEnemy : MonoBehaviour, IEnemy
 {
     VelocitySystem velocitySystem;
-    public VelocityData gravity, readyCharge, charge;
-    public VelocityComponent gravityComponent, readyChargeComponent, chargeComponent;
+    public VelocityData gravity, readyCharge, charge, knockback, hitStun;
+    public VelocityComponent gravityComponent, readyChargeComponent, chargeComponent, knockbackComponent, hitStunComponent;
     GroundCheck groundCheck;
     public bool grounded;
     IPlayerCheck playerCheckInterface;
+    Vector3 spawn;
+    public float damagePercentage;
+    BoxCollider2D boxCollider2D;
     void Awake()
     {
+        boxCollider2D = GetComponent<BoxCollider2D>();
+
         groundCheck = GetComponent<GroundCheck>();
         groundCheck.onGroundEnter.Add(OnGroundEnterHandler);
         groundCheck.onGroundExit.Add(OnGroundExitHandler);
@@ -23,6 +28,8 @@ public class ChargeEnemy : MonoBehaviour, IEnemy
         velocitySystem.SetupData(gravity, out gravityComponent);
         velocitySystem.SetupData(readyCharge, out readyChargeComponent);
         velocitySystem.SetupData(charge, out chargeComponent);
+        velocitySystem.SetupData(knockback, out knockbackComponent);
+        velocitySystem.SetupData(hitStun, out hitStunComponent);
 
         readyChargeComponent.endTimeExceededActions.Add(
                 () => 
@@ -44,10 +51,19 @@ public class ChargeEnemy : MonoBehaviour, IEnemy
                     }
                 }
             );
+        hitStunComponent.endTimeExceededActions.Add(
+                () =>
+                {
+                    if(!gravityComponent.isPlaying)
+                    {
+                        gravityComponent.Play();
+                    }
+                }
+            );
     }
     void OnGroundEnterHandler()
     {
-        if(gravityComponent.isPlaying)
+        if (gravityComponent.isPlaying)
         {
             gravityComponent.Stop();
         }
@@ -55,7 +71,7 @@ public class ChargeEnemy : MonoBehaviour, IEnemy
     }
     void OnGroundExitHandler()
     {
-        if(!chargeComponent.isPlaying && !gravityComponent.isPlaying)
+        if (!chargeComponent.isPlaying && !gravityComponent.isPlaying && !hitStunComponent.isPlaying)
         {
             gravityComponent.Play();
         }
@@ -63,7 +79,7 @@ public class ChargeEnemy : MonoBehaviour, IEnemy
     }
     void OnHitHandler(List<RaycastHit2D> results)
     {
-        if(grounded && !readyChargeComponent.isPlaying && !chargeComponent.isPlaying)
+        if(grounded && !readyChargeComponent.isPlaying && !chargeComponent.isPlaying && !knockbackComponent.isPlaying && !hitStunComponent.isPlaying)
         {
             foreach (var hit in results)
             {
@@ -87,9 +103,44 @@ public class ChargeEnemy : MonoBehaviour, IEnemy
             transform.localEulerAngles = Vector3.zero;
         }
     }
-
-    public void ApplyForce(Vector2 force)
+    public void ApplyDamage(Vector2 force)
     {
-        Debug.LogError("Apply Force");
+        if(!knockbackComponent.isPlaying)
+        {
+            readyChargeComponent.Stop();
+            chargeComponent.Stop();
+            knockbackComponent.SetDirection(force.normalized);
+            knockbackComponent.Play();
+        }
+    }
+
+    public void SetSpawn(Vector3 spawn)
+    {
+        this.spawn = spawn;
+    }
+    public void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.collider.tag == "HardSurface")
+        {
+            if(knockbackComponent.isPlaying)
+            {
+                if(!hitStunComponent.isPlaying)
+                {
+                    Vector2 posToCol = col.transform.position - transform.position;
+                    //If force is going into a collider
+                    if(Vector2.Dot(velocitySystem.finalVelocity, posToCol) > 0)
+                    {
+                        Debug.LogError($"Hit hard surface with velocity {velocitySystem.finalVelocity} + damage percentage {damagePercentage}%");
+                        damagePercentage += velocitySystem.finalVelocity.magnitude / 10f;
+                        gravityComponent.Stop();
+                        readyChargeComponent.Stop();
+                        chargeComponent.Stop();
+                        knockbackComponent.Stop();
+
+                        hitStunComponent.PlayFromStart();
+                    }
+                }
+            }
+        }
     }
 }

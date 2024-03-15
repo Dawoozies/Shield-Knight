@@ -199,39 +199,7 @@ public class MoveBetweenOriginEnd : MoveComponent
         float percentageAlong = Mathf.Clamp(curve.Evaluate(time), -1f, 1f);
         Vector3 finalOriginPoint = originTransform != null ? originTransform.position : originPoint;
         Vector3 finalEndPoint = endTransform != null ? endTransform.position : endPoint;
-
-        float originToEndLength = Vector3.Distance(finalEndPoint, finalOriginPoint);
-        float originMinPercentage = Mathf.InverseLerp(0, originToEndLength, originDistanceBounds.x);
-        float originMaxPercentage = Mathf.InverseLerp(0, originToEndLength, originDistanceBounds.y);
-        float endMinPercentage = 1 - Mathf.InverseLerp(0, originToEndLength, endDistanceBounds.x);
-        float endMaxPercentage = 1 - Mathf.InverseLerp(0, originToEndLength, endDistanceBounds.y);
-
-        //since this component doesn't use direction at all
-        if (moveBoundsFlags.HasFlag(MoveBoundsFlags.OriginMax))
-        {
-            if(percentageAlong > originMaxPercentage)
-            {
-                percentageAlong = originMaxPercentage;
-            }
-        }
-        if (moveBoundsFlags.HasFlag(MoveBoundsFlags.EndMin))
-        {
-            percentageAlong = Mathf.Clamp(percentageAlong, 0f, endMinPercentage);
-        }
-        if (moveBoundsFlags.HasFlag(MoveBoundsFlags.EndMax))
-        {
-            percentageAlong = Mathf.Clamp(percentageAlong, endMaxPercentage, 1f);
-        }
-
         Vector3 targetPos = Vector3.LerpUnclamped(finalOriginPoint, finalEndPoint, percentageAlong);
-        if(moveBoundsFlags.HasFlag(MoveBoundsFlags.OriginMin))
-        {
-            if(originToEndLength < originDistanceBounds.x)
-            {
-                return;
-            }
-        }
-
         moveVector += targetPos - currentVector;
         time += Time.deltaTime;
         CheckEnd(currentVector);
