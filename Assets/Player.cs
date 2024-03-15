@@ -5,11 +5,15 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     VelocitySystem velocitySystem;
-    public VelocityData gravity, jumpAscent, run, airDash;
-    public VelocityComponent gravityComponent, jumpAscentComponent, runComponent, airDashComponent;
+    public VelocityData gravity, jumpAscent, run, airDash, aimGravity, aimMove;
+    public VelocityComponent gravityComponent, jumpAscentComponent, runComponent, airDashComponent, aimGravityComponent, aimMoveComponent;
     Vector2 mousePos;
     GroundCheck groundCheck;
     public bool grounded;
+    public bool aiming;
+    public float runMagnitude;
+    public float aimMoveMagnitude;
+    float aimMoveMagnitudeLeft;
     void Awake()
     {
         #region Ground Action Setup
@@ -21,24 +25,16 @@ public class Player : MonoBehaviour
         velocitySystem = GetComponent<VelocitySystem>();
         #region Gravity Setup
         velocitySystem.SetupData(gravity, out gravityComponent);
+        velocitySystem.SetupData(aimGravity, out aimGravityComponent);
         #endregion
         #region Jump Setup
         velocitySystem.SetupData(jumpAscent, out jumpAscentComponent);
         jumpAscentComponent.endTimeExceededActions.Add(
-                () => gravityComponent.PlayFromStart()
+                () => 
+                {
+                    TurnOnGravity(true);
+                }
             );
-        //InputManager.RegisterJumpDownInputCallback(
-        //        () => 
-        //        {
-        //            //If grounded we can jump
-        //            if (grounded)
-        //            {
-        //                gravityComponent.Stop();
-        //                jumpAscentComponent.PlayFromStart();a
-        //            }
-        //        }
-        //    );
-
         InputManager.RegisterJumpInputCallback(
                 (float heldTime) =>
                 {
@@ -46,10 +42,7 @@ public class Player : MonoBehaviour
                     {
                         if(!jumpAscentComponent.isPlaying)
                         {
-                            if(gravityComponent.isPlaying)
-                            {
-                                gravityComponent.Stop();
-                            }
+                            TurnOffGravity();
                             jumpAscentComponent.PlayFromStart();
                         }
                     }
@@ -63,7 +56,7 @@ public class Player : MonoBehaviour
                     if(jumpAscentComponent.isPlaying)
                     {
                         jumpAscentComponent.Stop();
-                        gravityComponent.PlayFromStart();
+                        TurnOnGravity(true);
                     }
                 }
             );
@@ -71,10 +64,29 @@ public class Player : MonoBehaviour
         #region Run Setup
         velocitySystem.SetupData(run, out runComponent);
         runComponent.Play();
+        velocitySystem.SetupData(aimMove, out aimMoveComponent);
+        aimMoveComponent.Play();
         InputManager.RegisterMoveInputCallback(
                 (Vector2 moveInput) =>
                 {
+                    if(aiming)
+                    {
+                        aimMoveComponent.SetMagnitude(aimMoveMagnitudeLeft);
+                        aimMoveMagnitudeLeft -= Time.deltaTime * aimMoveMagnitude;
+                        if(aimMoveMagnitudeLeft <= 0)
+                        {
+                            aimMoveMagnitudeLeft = 0;
+                        }
+                        runComponent.SetMagnitude(0);
+                    }
+                    else
+                    {
+                        runComponent.SetMagnitude(runMagnitude);
+                        aimMoveComponent.SetMagnitude(0);
+                    }
+
                     runComponent.SetDirection(Vector2.right * moveInput.x);
+                    aimMoveComponent.SetDirection(moveInput);
                 }
             );
         #endregion
@@ -83,7 +95,7 @@ public class Player : MonoBehaviour
         airDashComponent.endTimeExceededActions.Add(
                 () =>
                 {
-                    gravityComponent.Play();
+                    TurnOnGravity(true);
                     runComponent.Play();
                 }
             );
@@ -92,9 +104,9 @@ public class Player : MonoBehaviour
         InputManager.RegisterMouseDownCallback(
                 (Vector3Int mouseDownInput) =>
                 {
-                    if(mouseDownInput.y > 0)
+                    if(mouseDownInput.z > 0)
                     {
-                        gravityComponent.Stop();
+                        TurnOffGravity();
                         jumpAscentComponent.Stop();
                         runComponent.Stop();
                         airDashComponent.SetDirection((mousePos - (Vector2)transform.position).normalized);
@@ -104,29 +116,81 @@ public class Player : MonoBehaviour
             );
         #endregion
 
+        InputManager.RegisterMouseClickCallback(
+                (Vector3 mouseClickInput) =>
+                {
+                    aiming = mouseClickInput.y > 0;
+                }
+            );
     }
     void GroundEnterHandler()
     {
         //If Enter Ground Stop Gravity
-        if (gravityComponent.isPlaying)
-        {
-            gravityComponent.Stop();
-        }
+        TurnOffGravity();
         grounded = true;
+        aimMoveMagnitudeLeft = aimMoveMagnitude;
     }
     void GroundExitHandler()
     {
-        if(!jumpAscentComponent.isPlaying && !airDashComponent.isPlaying && !gravityComponent.isPlaying)
+        if(!jumpAscentComponent.isPlaying && !airDashComponent.isPlaying)
         {
-            gravityComponent.Play();
+            if (aiming)
+            {
+                if (!aimGravityComponent.isPlaying)
+                {
+                    aimGravityComponent.Play();
+                }
+            }
+            else
+            {
+                if (!gravityComponent.isPlaying)
+                {
+                    gravityComponent.Play();
+                }
+            }
         }
         grounded = false;
     }
     void Update()
     {
+        if(aiming && gravityComponent.isPlaying)
+        {
+            gravityComponent.Stop();
+            aimGravityComponent.PlayFromStart();
+        }
         if(grounded)
         {
             transform.localEulerAngles = Vector3.zero;
         }
+    }
+    void TurnOnGravity(bool playFromStart)
+    {
+        if(aiming)
+        {
+            if (playFromStart)
+            {
+                aimGravityComponent.PlayFromStart();
+            }
+            else
+            {
+                aimGravityComponent.Play();
+            }
+        }
+        else
+        {
+            if(playFromStart)
+            {
+                gravityComponent.PlayFromStart();
+            }
+            else
+            {
+                gravityComponent.Play();
+            }
+        }
+    }
+    void TurnOffGravity()
+    {
+        gravityComponent.Stop();
+        aimGravityComponent.Stop();
     }
 }

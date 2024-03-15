@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeamCast
       objectReference: {fileID: 0}
+    - target: {fileID: 7822886610378500064, guid: 1bef62bc570a8194b9251130019d4b8d, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 1984
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

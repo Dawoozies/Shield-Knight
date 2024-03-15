@@ -7,9 +7,19 @@ namespace OldSystems
     public class ShieldManager : MonoBehaviour
     {
         public Transform shieldGizmoTransform;
-        public Transform shieldParent;
-        public Shield shield;
-        public Player player;
+        Transform shieldParent;
+        public GameObject shieldBasePrefab;
+        public Color shieldHighForceColor;
+        public Color shieldDefaultColor;
+        public LayerMask shieldLayerMask;
+        Shield shield;
+        [Header("Shield Throw Data")]
+        public VelocityData shieldThrown;
+        public VelocityData shieldRecall;
+        public LayerMask shieldThrowLayerMask;
+        ShieldThrow shieldThrow;
+        public float shieldThrowForce;
+        Player player;
         public float distanceFromPlayer;
         Vector2 pointOnCircle;
         public LayerMask shieldNonIntersecting;
@@ -24,13 +34,52 @@ namespace OldSystems
         public int selectedAttack;
         public List<ShieldAttackData> leftClickAttacks = new();
 
-
         void Start()
         {
             if (player == null)
             {
                 player = FindAnyObjectByType<Player>();
             }
+
+            GameObject shieldParentObject = new GameObject("ShieldParent");
+            shieldParent = shieldParentObject.transform;
+
+            GameObject shieldObject = Instantiate(shieldBasePrefab, shieldParent);
+            shield = shieldObject.AddComponent<Shield>();
+            shield.highForceColor = shieldHighForceColor;
+            shield.defaultColor = shieldDefaultColor;
+            shield.layerMask = shieldLayerMask;
+
+            GameObject shieldThrowObject = Instantiate(shieldBasePrefab);
+            Rigidbody2D shieldThrowRb = shieldThrowObject.AddComponent<Rigidbody2D>();
+            shieldThrowRb.angularDrag = 0f;
+            shieldThrowRb.drag = 0f;
+            shieldThrowRb.gravityScale = 0f;
+            shieldThrowObject.AddComponent<VelocitySystem>();
+            shieldThrow = shieldThrowObject.AddComponent<ShieldThrow>();
+            shieldThrow.shieldThrown = shieldThrown;
+            shieldThrow.shieldRecall = shieldRecall;
+            shieldThrow.highForceColor = shieldHighForceColor;
+            shieldThrow.defaultColor = shieldDefaultColor;
+            shieldThrow.hittableLayers = shieldThrowLayerMask;
+
+            InputManager.RegisterMouseDownCallback(
+                    (Vector3Int mouseDownInput) =>
+                    {
+                        if(mouseDownInput.x > 0)
+                        {
+                            if(!shieldThrow.thrown && player.aiming)
+                            {
+                                shieldThrow.Throw(shieldThrowForce);
+                            }
+                            else if(shieldThrow.thrown)
+                            {
+                                shieldThrow.Recall(player.transform);
+                            }
+                        }
+                    }
+                );
+
             InputManager.RegisterMouseInputCallback(HandleMouseInput);
             InputManager.RegisterMouseClickCallback(HandleMouseClick);
             InputManager.RegisterMouseDownCallback(HandleMouseDown);
@@ -38,6 +87,24 @@ namespace OldSystems
         }
         void Update()
         {
+            if (shieldThrow.thrown)
+            {
+                shieldParent.gameObject.SetActive(false);
+                return;
+            }
+
+            if (player.aiming)
+            {
+                shieldParent.gameObject.SetActive(false);
+                shieldThrow.gameObject.SetActive(true);
+                shieldThrow.WhileNotThrown(player.transform.position, pointOnCircle);
+                return;
+            }
+            else
+            {
+                shieldParent.gameObject.SetActive(true);
+                shieldThrow.gameObject.SetActive(false);
+            }
             //Go to point on circle which intersects
             //Do raycast to push shield closer to player if pointing at walls
             shieldParent.position = player.transform.position;

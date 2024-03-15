@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f12025d4bc8d03e46b64968c43d47420, type: 3}
-  m_Name: Run
+  m_Name: AimGravity
   m_EditorClassIdentifier: 
-  dataName: Run
+  dataName: AimGravity
   applicationType: 1
   curve:
     serializedVersion: 2
@@ -20,24 +20,42 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 5
-      outSlope: 5
-      tangentMode: 34
+      inSlope: 0.023584904
+      outSlope: 0.023584904
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0.25000003
     - serializedVersion: 3
-      time: 0.2
-      value: 1
-      inSlope: 5
-      outSlope: 5
-      tangentMode: 34
+      time: 0.10019587
+      value: -0.001931157
+      inSlope: -0.004507541
+      outSlope: -0.004507541
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
+      outWeight: 0.31622028
+    - serializedVersion: 3
+      time: 0.2
+      value: 0.00032967143
+      inSlope: 0.02210588
+      outSlope: 0.02210588
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.91675776
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 10.743315
+      outSlope: 10.743315
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.042450525
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  magnitude: 1
-  direction: {x: 0, y: 0}
+  magnitude: -20
+  direction: {x: 0, y: 1}
   ignoreList: []
