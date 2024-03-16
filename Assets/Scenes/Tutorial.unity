@@ -5050,6 +5050,7 @@ MonoBehaviour:
   player: {fileID: 0}
   enemySpawnParent: {fileID: 1090122816}
   enemyPrefab: {fileID: 5391803828278866219, guid: 9ffd768be2495e24aae2284ba297a068, type: 3}
+  respawnDeadEnemies: 0
 --- !u!114 &1651003494
 MonoBehaviour:
   m_ObjectHideFlags: 0

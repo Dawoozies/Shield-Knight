@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChargeEnemy : MonoBehaviour, IEnemy
+public class ChargeEnemy : MonoBehaviour, IEnemy, IHitReceiver
 {
     VelocitySystem velocitySystem;
     public VelocityData gravity, readyCharge, charge, knockback, hitStun;
@@ -16,7 +16,8 @@ public class ChargeEnemy : MonoBehaviour, IEnemy
     BoxCollider2D boxCollider2D;
     List<Action<IEnemy>> onDeathActions = new();
     List<Action<IEnemy>> onRespawnActions = new();
-    public LayerMask canBounceOff;
+    public PhysicsMaterial2D noBounceMaterial;
+    public PhysicsMaterial2D bounceMaterial;
     void Awake()
     {
         boxCollider2D = GetComponent<BoxCollider2D>();
@@ -170,24 +171,14 @@ public class ChargeEnemy : MonoBehaviour, IEnemy
     {
         onRespawnActions.Add(action);
     }
-    public void ApplyDamage(Vector2 force)
+    public void ApplyForce(Vector2 force)
     {
-        Vector2 originalForce = force;
-        Vector2 projectedSum = Vector2.zero;
-        Collider2D[] nearbyCol = Physics2D.OverlapBoxAll(transform.position, boxCollider2D.size + Vector2.one * 0.02f, 0f, canBounceOff);
-        foreach (var col in nearbyCol)
-        {
-            Vector2 normal = ((Vector2)transform.position - col.ClosestPoint(transform.position)).normalized;
-            Vector2 projectedForce = (Vector2.Dot(force, normal) / normal.magnitude)*normal;
-            projectedSum += projectedForce;
-        }
-        Debug.LogError($"[ Original {originalForce} norm = {originalForce.magnitude} ] [ ProjectedSum = {projectedSum} norm = {projectedSum.magnitude} ]");
-
         if (!knockbackComponent.isPlaying)
         {
             readyChargeComponent.Stop();
             chargeComponent.Stop();
-            knockbackComponent.SetDirection(force.normalized);
+            knockbackComponent.SetMagnitude(force.magnitude);
+            knockbackComponent.SetDirection(force);
             knockbackComponent.Play();
         }
     }

@@ -33,7 +33,7 @@ namespace OldSystems
 
         public int selectedAttack;
         public List<ShieldAttackData> leftClickAttacks = new();
-
+        Vector3 mouseWorldPos;
         void Start()
         {
             if (player == null)
@@ -151,10 +151,11 @@ namespace OldSystems
                         //shiftedHit.y = Mathf.Max(shiftedHit.y, hit.collider.transform.position.y);
 
                         //Vector2 force = (shiftedHit - (Vector2)player.transform.position) * shield.hitForce;
-                        Vector2 force = (hit.point - (Vector2)player.transform.position).normalized * shield.hitForce;
+                        //Vector2 force = (hit.point - (Vector2)player.transform.position).normalized * shield.hitForce;
+                        Vector2 force = (mouseWorldPos - player.transform.position).normalized * shield.hitForce;
 
-                        IEnemy enemy = hit.collider.GetComponent<IEnemy>();
-                        enemy.ApplyDamage(force);
+                        IHitReceiver hitReceiver = hit.collider.GetComponent<IHitReceiver>();
+                        hitReceiver.ApplyForce(force);
                     }
                     shield.ScaleLerp(Vector2.one * 1.45f, 3f);
                 }
@@ -166,6 +167,7 @@ namespace OldSystems
         }
         void HandleMouseInput(Vector2 mouseWorldPos)
         {
+            this.mouseWorldPos = mouseWorldPos;
             pointOnCircle = distanceFromPlayer * ((Vector3)mouseWorldPos - player.transform.position).normalized;
         }
         void HandleMouseClick(Vector3 mouseClickInput)
