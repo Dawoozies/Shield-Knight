@@ -242,6 +242,8 @@ MonoBehaviour:
   aiming: 0
   runMagnitude: 10
   aimMoveMagnitude: 5
+  damageTaken: 0
+  damageResistance: 0
 --- !u!114 &81932804023196490
 MonoBehaviour:
   m_ObjectHideFlags: 0

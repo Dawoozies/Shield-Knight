@@ -88,8 +88,8 @@ public class ShieldThrow : MonoBehaviour
         if(col.tag == "Enemy")
         {
             //Hit enemy and bounce back
-            IEnemy enemy = col.GetComponent<IEnemy>();
-            enemy.ApplyDamage(velocitySystem.finalVelocity);
+            IHitReceiver enemy = col.GetComponent<IHitReceiver>();
+            enemy.ApplyForce(velocitySystem.finalVelocity);
         }
         if (col.tag == "HardSurface")
         {
@@ -97,7 +97,7 @@ public class ShieldThrow : MonoBehaviour
             {
                 Embed();
             }
-            if(!shieldRecallComponent.isPlaying)
+            else
             {
                 if(leftClickHeld == 0)
                 {

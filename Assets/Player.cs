@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IHitReceiver
 {
     VelocitySystem velocitySystem;
     public VelocityData gravity, jumpAscent, run, airDash, aimGravity, aimMove;
@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     public float runMagnitude;
     public float aimMoveMagnitude;
     float aimMoveMagnitudeLeft;
+    public int damageTaken;
+    [Range(0f,1f)]
+    public float damageResistance;
     void Awake()
     {
         #region Ground Action Setup
@@ -192,5 +195,10 @@ public class Player : MonoBehaviour
     {
         gravityComponent.Stop();
         aimGravityComponent.Stop();
+    }
+
+    public void ApplyForce(Vector2 force)
+    {
+        damageTaken += Mathf.FloorToInt(force.magnitude * (1-damageResistance));
     }
 }
