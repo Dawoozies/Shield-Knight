@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using OldSystems;
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : MonoBehaviour, Manager
 {
     public Player player;
     public Transform enemySpawnParent;
@@ -12,12 +12,8 @@ public class EnemyManager : MonoBehaviour
     List<IEnemy> dead = new();
     Camera mainCamera;
     public bool respawnDeadEnemies;
-    void Start()
+    public void ManagedStart()
     {
-        if(player == null)
-        {
-            player = FindAnyObjectByType<Player>();
-        }
         int spawns = enemySpawnParent.childCount;
         for (int i = 0; i < spawns; i++)
         {
@@ -32,6 +28,10 @@ public class EnemyManager : MonoBehaviour
             alive.Add(newEnemy);
         }
         mainCamera = Camera.main;
+    }
+    public void RegisterPlayer(Player player)
+    {
+        this.player = player;
     }
     void Update()
     {
@@ -56,4 +56,6 @@ public class EnemyManager : MonoBehaviour
             dead.Add(deadEnemy);
         }
     }
+
+
 }

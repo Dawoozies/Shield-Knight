@@ -4,7 +4,7 @@ using UnityEngine;
 using OldSystems;
 namespace OldSystems
 {
-    public class ShieldManager : MonoBehaviour
+    public class ShieldManager : MonoBehaviour, Manager
     {
         public Transform shieldGizmoTransform;
         Transform shieldParent;
@@ -34,13 +34,8 @@ namespace OldSystems
         public int selectedAttack;
         public List<ShieldAttackData> leftClickAttacks = new();
         Vector3 mouseWorldPos;
-        void Start()
+        public void ManagedStart()
         {
-            if (player == null)
-            {
-                player = FindAnyObjectByType<Player>();
-            }
-
             GameObject shieldParentObject = new GameObject("ShieldParent");
             shieldParent = shieldParentObject.transform;
 
@@ -66,13 +61,13 @@ namespace OldSystems
             InputManager.RegisterMouseDownCallback(
                     (Vector3Int mouseDownInput) =>
                     {
-                        if(mouseDownInput.x > 0)
+                        if (mouseDownInput.x > 0)
                         {
-                            if(!shieldThrow.thrown && player.aiming)
+                            if (!shieldThrow.thrown && player.aiming)
                             {
                                 shieldThrow.Throw(shieldThrowForce);
                             }
-                            else if(shieldThrow.thrown)
+                            else if (shieldThrow.thrown)
                             {
                                 shieldThrow.Recall(player.transform);
                             }
@@ -84,6 +79,11 @@ namespace OldSystems
             InputManager.RegisterMouseClickCallback(HandleMouseClick);
             InputManager.RegisterMouseDownCallback(HandleMouseDown);
             shieldParent.position = player.transform.position;
+        }
+
+        public void RegisterPlayer(Player player)
+        {
+            this.player = player;
         }
         void Update()
         {
@@ -228,5 +228,7 @@ namespace OldSystems
                 }
             }
         }
+
+
     }
 }

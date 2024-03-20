@@ -17,6 +17,7 @@ public class Player : MonoBehaviour, IHitReceiver
     public int damageTaken;
     [Range(0f,1f)]
     public float damageResistance;
+    public Vector2 checkpoint;
     void Awake()
     {
         #region Ground Action Setup
