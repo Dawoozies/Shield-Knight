@@ -14,6 +14,7 @@ public class EnemyManager : MonoBehaviour, Manager
     public bool respawnDeadEnemies;
     public void ManagedStart()
     {
+        mainCamera = Camera.main;
         int spawns = enemySpawnParent.childCount;
         for (int i = 0; i < spawns; i++)
         {
@@ -25,22 +26,19 @@ public class EnemyManager : MonoBehaviour, Manager
             IEnemy newEnemy = newEnemyObject.GetComponent<IEnemy>();
             newEnemy.SetSpawn(spawn.position);
             newEnemy.RegisterEnemyDeathCallback(EnemyDeathHandler);
+            newEnemy.RegisterMainCamera(mainCamera);
             alive.Add(newEnemy);
         }
-        mainCamera = Camera.main;
     }
     public void RegisterPlayer(Player player)
     {
         this.player = player;
     }
-    void Update()
+    public void ManagedUpdate()
     {
         if(respawnDeadEnemies)
         {
-            foreach (IEnemy deadEnemy in dead)
-            {
-                deadEnemy.Respawn();
-             }
+            RespawnAllEnemies();
             respawnDeadEnemies = false;
         }
     }
@@ -49,13 +47,29 @@ public class EnemyManager : MonoBehaviour, Manager
         if(alive.Contains(deadEnemy))
         {
             alive.Remove(deadEnemy);
-            deadEnemy.Kill();
         }
         if(!dead.Contains(deadEnemy))
         {
             dead.Add(deadEnemy);
         }
     }
-
-
+    void ResetAllEnemies()
+    {
+        foreach (IEnemy aliveEnemy in alive)
+        {
+            aliveEnemy.Reset();
+        }
+        RespawnAllEnemies();
+    }
+    void RespawnAllEnemies()
+    {
+        foreach (IEnemy deadEnemy in dead)
+        {
+            deadEnemy.Respawn();
+        }
+    }
+    public void PlayerDied()
+    {
+        ResetAllEnemies();
+    }
 }

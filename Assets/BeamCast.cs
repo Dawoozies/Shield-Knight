@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,12 +10,13 @@ public class BeamCast : MonoBehaviour
     public Vector2 direction;
     public float distance;
     public LayerMask layerMask;
-    RaycastHit2D result;
+    public RaycastHit2D result;
 
     public Vector2 hitPoint;
     public Vector2 colliderPos;
     public Vector2 sizeClamp;
     public LineRenderer lineRenderer;
+    List<Action<Vector2, Collider2D>> onCastColliderHitActions = new();
     void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -44,6 +46,10 @@ public class BeamCast : MonoBehaviour
             colliderPos = result.collider.transform.position;
             lineRenderer.SetPosition(0, transform.position);
             lineRenderer.SetPosition(1, transform.position + transform.right * (result.distance + boxCollider.size.x));
+            foreach (var action in onCastColliderHitActions)
+            {
+                action(direction, result.collider);
+            }
         }
     }
     void OnDrawGizmos()
@@ -85,5 +91,9 @@ public class BeamCast : MonoBehaviour
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(transform.position, colliderPos);
         }
+    }
+    public void RegisterCastColliderHitCallback(Action<Vector2, Collider2D> a)
+    {
+        onCastColliderHitActions.Add(a);
     }
 }

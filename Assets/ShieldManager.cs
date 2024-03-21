@@ -85,7 +85,7 @@ namespace OldSystems
         {
             this.player = player;
         }
-        void Update()
+        public void ManagedUpdate()
         {
             if (shieldThrow.thrown)
             {
@@ -229,6 +229,8 @@ namespace OldSystems
             }
         }
 
-
+        public void PlayerDied()
+        {
+        }
     }
 }

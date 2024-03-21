@@ -9,7 +9,7 @@ public class CameraManager : MonoBehaviour, Manager
     public float cameraSmoothTime;
     public Vector3 cameraOffset;
     Vector3 cameraVelocity;
-    void Update()
+    public void ManagedUpdate()
     {
         Vector3 cameraTarget = player.transform.position + cameraOffset;
         Vector3 cameraPosition = mainCamera.transform.position;
@@ -30,5 +30,8 @@ public class CameraManager : MonoBehaviour, Manager
     public void RegisterPlayer(Player player)
     {
         this.player = player;
+    }
+    public void PlayerDied()
+    {
     }
 }

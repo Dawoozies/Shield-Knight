@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class Player : MonoBehaviour, IHitReceiver
 {
     VelocitySystem velocitySystem;
@@ -14,10 +14,12 @@ public class Player : MonoBehaviour, IHitReceiver
     public float runMagnitude;
     public float aimMoveMagnitude;
     float aimMoveMagnitudeLeft;
+    public int deathDamage;
     public int damageTaken;
     [Range(0f,1f)]
     public float damageResistance;
     public Vector2 checkpoint;
+    List<Action> onDeathActions = new();
     void Awake()
     {
         #region Ground Action Setup
@@ -157,6 +159,15 @@ public class Player : MonoBehaviour, IHitReceiver
     }
     void Update()
     {
+        if(damageTaken >= deathDamage)
+        {
+            foreach(Action action in onDeathActions)
+            {
+                action();
+            }
+            transform.localPosition = Vector3.zero;
+            damageTaken = 0;
+        }
         if(aiming && gravityComponent.isPlaying)
         {
             gravityComponent.Stop();
@@ -201,5 +212,9 @@ public class Player : MonoBehaviour, IHitReceiver
     public void ApplyForce(Vector2 force)
     {
         damageTaken += Mathf.FloorToInt(force.magnitude * (1-damageResistance));
+    }
+    public void RegisterOnDeathCallback(Action a)
+    {
+        onDeathActions.Add(a);
     }
 }

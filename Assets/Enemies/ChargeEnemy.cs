@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ChargeEnemy : MonoBehaviour, IEnemy, IHitReceiver
 {
@@ -18,6 +19,7 @@ public class ChargeEnemy : MonoBehaviour, IEnemy, IHitReceiver
     List<Action<IEnemy>> onRespawnActions = new();
     public PhysicsMaterial2D noBounceMaterial;
     public PhysicsMaterial2D bounceMaterial;
+    Camera mainCamera;
     void Awake()
     {
         boxCollider2D = GetComponent<BoxCollider2D>();
@@ -107,6 +109,16 @@ public class ChargeEnemy : MonoBehaviour, IEnemy, IHitReceiver
         {
             transform.localEulerAngles = Vector3.zero;
         }
+        if(Vector3.Distance(transform.position, mainCamera.transform.position) > 100f)
+        {
+            Kill();
+            return;
+        }
+        if (damagePercentage >= 100)
+        {
+            Kill();
+            return;
+        }
     }
 
 
@@ -132,25 +144,28 @@ public class ChargeEnemy : MonoBehaviour, IEnemy, IHitReceiver
                         readyChargeComponent.Stop();
                         chargeComponent.Stop();
                         knockbackComponent.Stop();
-
-                        if(damagePercentage >= 100)
-                        {
-                            foreach (var action in onDeathActions)
-                            {
-                                action(this);
-                            }
-                            return;
-                        }
-
                         hitStunComponent.PlayFromStart();
                     }
                 }
+            }
+        }
+        if(col.collider.tag == "Player")
+        {
+            if(chargeComponent.isPlaying)
+            {
+                //must be charging to damage
+                IHitReceiver hitReceiver = col.collider.GetComponent<IHitReceiver>();
+                hitReceiver.ApplyForce(velocitySystem.finalVelocity);
             }
         }
     }
     public void Kill()
     {
         gameObject.SetActive(false);
+        foreach (var action in onDeathActions)
+        {
+            action(this);
+        }
     }
     public void RegisterEnemyDeathCallback(Action<IEnemy> action)
     {
@@ -160,11 +175,33 @@ public class ChargeEnemy : MonoBehaviour, IEnemy, IHitReceiver
     public void Respawn()
     {
         gameObject.SetActive(true);
-        transform.position = spawn;
         foreach (var action in onRespawnActions)
         {
             action(this);
         }
+        Reset();
+    }
+    public void Reset()
+    {
+        transform.position = spawn;
+        damagePercentage = 0;
+        if(readyChargeComponent.isPlaying)
+        {
+            readyChargeComponent.Stop();
+        }
+        if(chargeComponent.isPlaying)
+        {
+            chargeComponent.Stop();
+        }
+        if(knockbackComponent.isPlaying)
+        {
+            knockbackComponent.Stop();
+        }
+        if(hitStunComponent.isPlaying)
+        {
+            hitStunComponent.Stop();
+        }
+        gravityComponent.PlayFromStart();
     }
 
     public void RegisterEnemyRespawnCallback(Action<IEnemy> action)
@@ -181,5 +218,10 @@ public class ChargeEnemy : MonoBehaviour, IEnemy, IHitReceiver
             knockbackComponent.SetDirection(force);
             knockbackComponent.Play();
         }
+    }
+
+    public void RegisterMainCamera(Camera mainCamera)
+    {
+        this.mainCamera = mainCamera;
     }
 }
