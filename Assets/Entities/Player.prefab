@@ -276,7 +276,7 @@ MonoBehaviour:
   checkDistance: 0.02
   layerMask:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 3136
 --- !u!114 &2913761394233116544
 MonoBehaviour:
   m_ObjectHideFlags: 0

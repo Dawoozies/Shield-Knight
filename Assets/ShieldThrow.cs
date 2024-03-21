@@ -81,15 +81,34 @@ public class ShieldThrow : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (shieldRecallComponent == null || shieldRecallComponent == null)
+            return;
         if (!shieldThrownComponent.isPlaying && !shieldRecallComponent.isPlaying)
         {
             return;
         }
-        if(col.tag == "Enemy")
+        IEmbeddable embeddableInterface = col.GetComponent<IEmbeddable>();
+        if (embeddableInterface != null)
         {
-            //Hit enemy and bounce back
-            IHitReceiver enemy = col.GetComponent<IHitReceiver>();
-            enemy.ApplyForce(velocitySystem.finalVelocity);
+            if (shieldThrownComponent.isPlaying)
+            {
+                embeddableInterface.TryEmbed(this, velocitySystem.finalVelocity);
+                Embed();
+            }
+            else
+            {
+                if (leftClickHeld == 0)
+                {
+                    embeddableInterface.TryEmbed(this, velocitySystem.finalVelocity);
+                    Embed();
+                }
+            }
+        }
+
+        if (col.tag == "Enemy")
+        {
+            IHitReceiver hitReceiver = col.GetComponent<IHitReceiver>();
+            hitReceiver.ApplyForce(velocitySystem.finalVelocity);
         }
         if (col.tag == "HardSurface")
         {
@@ -114,7 +133,15 @@ public class ShieldThrow : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D col)
     {
-        if(col.tag == "HardSurface")
+        IEmbeddable embeddableInterface = col.GetComponent<IEmbeddable>();
+        if (embeddableInterface != null)
+        {
+            if(shieldRecallComponent.isPlaying)
+            {
+                embeddableInterface.TryRemoveEmbed(this);
+            }
+        }
+        if (col.tag == "HardSurface")
         {
             if(embedded)
             {
