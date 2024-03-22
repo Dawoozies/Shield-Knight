@@ -32,7 +32,8 @@ public class BeamCast : MonoBehaviour
 
         //transform.Rotate(Vector3.forward, angle);
         angle = Vector2.Angle(Vector2.right, transform.right);
-        result = Physics2D.BoxCast(transform.position, boxCollider.size, angle, transform.right, distance, layerMask);
+        Vector2 smallCastSize = new Vector2(boxCollider.size.x*0.01f, boxCollider.size.y);
+        result = Physics2D.BoxCast(transform.position, smallCastSize, angle, transform.right, distance, layerMask);
         if (result.collider == null)
         {
             hitPoint = transform.position;

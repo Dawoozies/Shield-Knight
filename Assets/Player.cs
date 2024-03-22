@@ -18,8 +18,11 @@ public class Player : MonoBehaviour, IHitReceiver
     public int damageTaken;
     [Range(0f,1f)]
     public float damageResistance;
-    public Vector2 checkpoint;
+    public Vector2 checkpointWorldPos;
+    public int currentCheckpointNumber; // 0 when its player spawn
     List<Action> onDeathActions = new();
+    public int maxAirDashes;
+    int airDashesLeft;
     void Awake()
     {
         #region Ground Action Setup
@@ -110,8 +113,12 @@ public class Player : MonoBehaviour, IHitReceiver
         InputManager.RegisterMouseDownCallback(
                 (Vector3Int mouseDownInput) =>
                 {
-                    if(mouseDownInput.z > 0)
+                    if(mouseDownInput.z > 0 && airDashesLeft > 0)
                     {
+                        if(!grounded)
+                        {
+                            airDashesLeft--;
+                        }
                         TurnOffGravity();
                         jumpAscentComponent.Stop();
                         runComponent.Stop();
@@ -128,6 +135,7 @@ public class Player : MonoBehaviour, IHitReceiver
                     aiming = mouseClickInput.y > 0;
                 }
             );
+        airDashesLeft = maxAirDashes;
     }
     void GroundEnterHandler()
     {
@@ -135,9 +143,18 @@ public class Player : MonoBehaviour, IHitReceiver
         TurnOffGravity();
         grounded = true;
         aimMoveMagnitudeLeft = aimMoveMagnitude;
+        airDashesLeft = maxAirDashes;
     }
     void GroundExitHandler()
     {
+        //if we exit ground and it was by air dashing
+        if(airDashComponent.isPlaying)
+        {
+            if(airDashesLeft == maxAirDashes)
+            {
+                airDashesLeft--;
+            }
+        }
         if(!jumpAscentComponent.isPlaying && !airDashComponent.isPlaying)
         {
             if (aiming)
@@ -165,7 +182,14 @@ public class Player : MonoBehaviour, IHitReceiver
             {
                 action();
             }
-            transform.localPosition = Vector3.zero;
+            if (currentCheckpointNumber > 0)
+            {
+                transform.position = checkpointWorldPos;
+            }
+            else
+            {
+                transform.localPosition = Vector3.zero;
+            }
             damageTaken = 0;
         }
         if(aiming && gravityComponent.isPlaying)

@@ -245,7 +245,9 @@ MonoBehaviour:
   deathDamage: 25
   damageTaken: 0
   damageResistance: 0
-  checkpoint: {x: 0, y: 0}
+  checkpointWorldPos: {x: 0, y: 0}
+  currentCheckpointNumber: 0
+  maxAirDashes: 1
 --- !u!114 &81932804023196490
 MonoBehaviour:
   m_ObjectHideFlags: 0

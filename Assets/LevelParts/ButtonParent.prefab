@@ -233,7 +233,7 @@ MonoBehaviour:
   pressedColor: {r: 0, g: 1, b: 0, a: 1}
   canPressButtonLayer:
     serializedVersion: 2
-    m_Bits: 960
+    m_Bits: 1984
 --- !u!1 &7429283006065603859
 GameObject:
   m_ObjectHideFlags: 0
