@@ -28,8 +28,8 @@ namespace OldSystems
 
         float angle;
         float distance;
-        public LayerMask enemyLayerMask;
-        RaycastHit2D[] enemyHitResults;
+        public LayerMask shieldBashLayer;
+        RaycastHit2D[] shieldBashResults;
 
         public int selectedAttack;
         public List<ShieldAttackData> leftClickAttacks = new();
@@ -141,11 +141,11 @@ namespace OldSystems
             {
                 angle = Vector2.Angle(Vector2.right, shield.transform.right);
                 distance = Vector2.Distance(player.transform.position, shield.transform.position) + shield.boxCollider.size.x;
-                enemyHitResults = Physics2D.BoxCastAll(player.transform.position, shield.boxCollider.size, angle, shield.transform.right, distance, enemyLayerMask);
+                shieldBashResults = Physics2D.BoxCastAll(player.transform.position, shield.boxCollider.size, angle, shield.transform.right, distance, shieldBashLayer);
 
-                if (enemyHitResults != null && enemyHitResults.Length > 0)
+                if (shieldBashResults != null && shieldBashResults.Length > 0)
                 {
-                    foreach (RaycastHit2D hit in enemyHitResults)
+                    foreach (RaycastHit2D hit in shieldBashResults)
                     {
                         //Vector2 shiftedHit = hit.point;
                         //shiftedHit.y = Mathf.Max(shiftedHit.y, hit.collider.transform.position.y);
@@ -162,7 +162,7 @@ namespace OldSystems
             }
             else
             {
-                enemyHitResults = null;
+                shieldBashResults = null;
             }
         }
         void HandleMouseInput(Vector2 mouseWorldPos)
@@ -191,7 +191,7 @@ namespace OldSystems
             }
             Gizmos.matrix = shieldGizmoTransform.localToWorldMatrix;
 
-            if (enemyHitResults != null && enemyHitResults.Length > 0)
+            if (shieldBashResults != null && shieldBashResults.Length > 0)
             {
                 Gizmos.color = Color.green * 0.75f;
             }
@@ -213,9 +213,9 @@ namespace OldSystems
             }
 
             Gizmos.matrix = Matrix4x4.identity;
-            if (enemyHitResults != null && enemyHitResults.Length > 0)
+            if (shieldBashResults != null && shieldBashResults.Length > 0)
             {
-                foreach (RaycastHit2D hit in enemyHitResults)
+                foreach (RaycastHit2D hit in shieldBashResults)
                 {
                     Gizmos.color = Color.yellow;
                     Gizmos.DrawLine(shieldGizmoTransform.position, hit.point);

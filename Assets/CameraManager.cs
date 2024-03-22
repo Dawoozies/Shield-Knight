@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,20 @@ public class CameraManager : MonoBehaviour, Manager
     public float cameraSmoothTime;
     public Vector3 cameraOffset;
     Vector3 cameraVelocity;
+    static BoxCollider2D activeZone;
+    Vector3 cameraTarget;
     public void ManagedUpdate()
     {
-        Vector3 cameraTarget = player.transform.position + cameraOffset;
+        if(activeZone != null)
+        {
+            //Do this and return
+            Vector2 zonePos = activeZone.transform.position;
+            cameraTarget = zonePos;
+        }
+        else
+        {
+            cameraTarget = player.transform.position + cameraOffset;
+        }
         Vector3 cameraPosition = mainCamera.transform.position;
         cameraTarget.z = cameraPosition.z;
         Vector3 newCameraPosition = Vector3.SmoothDamp(
@@ -33,5 +45,16 @@ public class CameraManager : MonoBehaviour, Manager
     }
     public void PlayerDied()
     {
+    }
+    public static void CameraEnterLockedZone(BoxCollider2D zoneCollider)
+    {
+        activeZone = zoneCollider;
+    }
+    public static void CameraExitLockedZone(BoxCollider2D zoneCollider)
+    {
+        if(activeZone == zoneCollider)
+        {
+            activeZone = null;
+        }
     }
 }

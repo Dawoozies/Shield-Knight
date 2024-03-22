@@ -87,6 +87,7 @@ public class ShieldThrow : MonoBehaviour
         {
             return;
         }
+
         IEmbeddable embeddableInterface = col.GetComponent<IEmbeddable>();
         if (embeddableInterface != null)
         {
@@ -108,7 +109,10 @@ public class ShieldThrow : MonoBehaviour
         if (col.tag == "Enemy")
         {
             IHitReceiver hitReceiver = col.GetComponent<IHitReceiver>();
-            hitReceiver.ApplyForce(velocitySystem.finalVelocity);
+            if(!shieldRecallComponent.isPlaying)
+            {
+                hitReceiver.ApplyForce(velocitySystem.finalVelocity);
+            }
         }
         if (col.tag == "HardSurface")
         {
@@ -138,7 +142,7 @@ public class ShieldThrow : MonoBehaviour
         {
             if(shieldRecallComponent.isPlaying)
             {
-                embeddableInterface.TryRemoveEmbed(this);
+                embeddableInterface.TryRemoveEmbed(this, velocitySystem.finalVelocity);
             }
         }
         if (col.tag == "HardSurface")

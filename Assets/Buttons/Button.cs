@@ -22,19 +22,19 @@ public class Button : MonoBehaviour, IEmbeddable
     }
     public void TryEmbed(ShieldThrow shieldThrow, Vector3 embeddingVelocity)
     {
-        float dotResult = Vector3.Dot(embeddingVelocity, transform.right);
-        if(dotResult < 0)
-        {
-            //Debug.LogError($"Button hit with dotResult = {dotResult}");
-            shieldRef = shieldThrow;
-        }
+        //float dotResult = Vector3.Dot(embeddingVelocity, transform.right);
+        //if(dotResult < 0)
+        //{
+        //    //Debug.LogError($"Button hit with dotResult = {dotResult}");
+        //    shieldRef = shieldThrow;
+        //}
     }
-    public void TryRemoveEmbed(ShieldThrow shieldThrow)
+    public void TryRemoveEmbed(ShieldThrow shieldThrow, Vector3 recallVelocity)
     {
-        if(shieldRef == shieldThrow)
-        {
-            shieldRef = null;
-        }
+        //if(shieldRef == shieldThrow)
+        //{
+        //    shieldRef = null;
+        //}
     }
     void Update()
     {
