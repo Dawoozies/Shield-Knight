@@ -3163,6 +3163,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 6831457012038900456, guid: 1a67fe7638d1fac4bbf4ad74d85628aa, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6831457012038900456, guid: 1a67fe7638d1fac4bbf4ad74d85628aa, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7429283006065603859, guid: 1a67fe7638d1fac4bbf4ad74d85628aa, type: 3}
       propertyPath: m_Name
       value: ButtonParent (2)

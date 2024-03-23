@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour
     public static List<Action<float>> jumpInputActions = new();
     float jumpHeldTime = 0f;
     public static List<Action<Vector3Int>> mouseDownActions = new();
+    public static List<Action<Vector3Int>> mouseUpActions = new();
     public static List<Action> jumpDownActions = new();
     public static List<Action> jumpUpActions = new();
     void Update()
@@ -88,6 +89,36 @@ public class InputManager : MonoBehaviour
         {
             action(mouseDownInput);
         }
+
+        Vector3Int mouseUpInput = Vector3Int.zero;
+        if (Input.GetMouseButtonUp(0))
+        {
+            mouseUpInput.x = 1;
+        }
+        else
+        {
+            mouseUpInput.x = 0;
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            mouseUpInput.y = 1;
+        }
+        else
+        {
+            mouseUpInput.y = 0;
+        }
+        if (Input.GetMouseButtonUp(2))
+        {
+            mouseUpInput.z = 1;
+        }
+        else
+        {
+            mouseUpInput.z = 0;
+        }
+        foreach (Action<Vector3Int> action in mouseUpActions)
+        {
+            action(mouseUpInput);
+        }
         bool jumpInput = Input.GetButton("Jump");
         bool jumpDownInput = Input.GetButtonDown("Jump");
         bool jumpUpInput = Input.GetButtonUp("Jump");
@@ -137,6 +168,10 @@ public class InputManager : MonoBehaviour
     public static void RegisterMouseDownCallback(Action<Vector3Int> action)
     {
         mouseDownActions.Add(action);
+    }
+    public static void RegisterMouseUpCallback(Action<Vector3Int> action)
+    {
+        mouseUpActions.Add(action);
     }
     public static void RegisterJumpDownInputCallback(Action action)
     {

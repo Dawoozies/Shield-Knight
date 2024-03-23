@@ -21,9 +21,9 @@ TagManager:
   - ShieldThrow
   - Button
   - PhysicsObject
-  - 
-  - 
-  - 
+  - EmbeddedWeapon
+  - ThrownWeapon
+  - RecalledWeapon
   - 
   - 
   - 
