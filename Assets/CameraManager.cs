@@ -9,16 +9,28 @@ public class CameraManager : MonoBehaviour, Manager
     public Camera mainCamera;
     public float cameraSmoothTime;
     public Vector3 cameraOffset;
+    public Vector2 xAxisClamp;
+    public Vector2 yAxisClamp;
     Vector3 cameraVelocity;
     static BoxCollider2D activeZone;
+    static CameraZone.ZoneType activeZoneType;
+    static Vector2 activeZoneOffset;
     Vector3 cameraTarget;
     public void ManagedUpdate()
     {
         if(activeZone != null)
         {
-            //Do this and return
-            Vector2 zonePos = activeZone.transform.position;
-            cameraTarget = zonePos;
+            switch (activeZoneType)
+            {
+                case CameraZone.ZoneType.Default:
+                    Vector2 zonePos = activeZone.transform.position;
+                    cameraTarget = zonePos;
+                    break;
+                case CameraZone.ZoneType.Offset:
+                    Vector2 zoneOffset = activeZoneOffset;
+                    cameraTarget = player.transform.position + (Vector3)zoneOffset;
+                    break;
+            }
         }
         else
         {
@@ -32,6 +44,14 @@ public class CameraManager : MonoBehaviour, Manager
                 ref cameraVelocity,
                 cameraSmoothTime
             );
+        if(xAxisClamp.x != xAxisClamp.y)
+        {
+            newCameraPosition.x = Mathf.Clamp(newCameraPosition.x, xAxisClamp.x, xAxisClamp.y);
+        }
+        if(yAxisClamp.x != yAxisClamp.y)
+        {
+            newCameraPosition.y = Mathf.Clamp(newCameraPosition.y, yAxisClamp.x, yAxisClamp.y);
+        }
         mainCamera.transform.position = newCameraPosition;
     }
     public void ManagedStart()
@@ -46,9 +66,11 @@ public class CameraManager : MonoBehaviour, Manager
     public void PlayerDied()
     {
     }
-    public static void CameraEnterLockedZone(BoxCollider2D zoneCollider)
+    public static void CameraEnterLockedZone(BoxCollider2D zoneCollider, CameraZone.ZoneType zoneType, Vector2 offset)
     {
         activeZone = zoneCollider;
+        activeZoneType = zoneType;
+        activeZoneOffset = offset;
     }
     public static void CameraExitLockedZone(BoxCollider2D zoneCollider)
     {

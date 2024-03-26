@@ -73,7 +73,7 @@ Shader "Unlit/PaletteSwap"
                 col = all(distance(col,_target2) <= _threshold) ? _replace2 : col;
                 }
                 //i mean any of these multipliers are either 0 or 1
-                return col;
+                return col * i.color;
             }
             ENDCG
         }
