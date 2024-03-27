@@ -74,7 +74,7 @@ public class OneShotScaleEffect : ScaleComponent
             {
                 action();
             }
-            Debug.Log("One Shot Scale Effect Stopping: " + dataName);
+            //Debug.Log("One Shot Scale Effect Stopping: " + dataName);
             Stop();
         }
     }

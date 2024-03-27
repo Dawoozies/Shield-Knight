@@ -10,15 +10,15 @@ public class GroundCheck : MonoBehaviour
     public float checkDistance;
     public LayerMask layerMask;
     RaycastHit2D hitResult;
-
+    
     public List<Action> onGroundEnter = new();
     public List<Action> onGroundExit = new();
     bool lastGroundedValue;
 
     void Start()
     {
-        onGroundEnter.Add(() => Debug.Log("Ground Enter Event"));
-        onGroundExit.Add(() => Debug.Log("Ground Exit Event"));
+        //onGroundEnter.Add(() => Debug.Log("Ground Enter Event"));
+        //onGroundExit.Add(() => Debug.Log("Ground Exit Event"));
         characterBoxCollider = GetComponent<BoxCollider2D>();
         checkOffset = new Vector3(0, -characterBoxCollider.size.y/2f, 0);
         DoBoxCast();
@@ -76,5 +76,10 @@ public class GroundCheck : MonoBehaviour
             lastGroundedValue = false;
             return;
         }
+    }
+
+    public Collider2D GetResultCollider()
+    {
+        return hitResult.collider;
     }
 }

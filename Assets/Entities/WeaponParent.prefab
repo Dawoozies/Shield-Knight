@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5510466883094302001}
   m_Layer: 8
   m_Name: Held
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -663,7 +663,7 @@ GameObject:
   - component: {fileID: 5675708681023975866}
   m_Layer: 8
   m_Name: Thrown
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

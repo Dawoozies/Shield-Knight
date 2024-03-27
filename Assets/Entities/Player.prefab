@@ -238,6 +238,7 @@ MonoBehaviour:
   airDash: {fileID: 11400000, guid: afda67240e3f4fb4b807450d8f828ab3, type: 2}
   aimGravity: {fileID: 11400000, guid: ada1bb7708e60174e8556ecda703f7bc, type: 2}
   aimMove: {fileID: 11400000, guid: 947f7f9da2d045f47b708bac233b9f23, type: 2}
+  parentFollow: {fileID: 11400000, guid: b4412eef6eb4a1e47a58b9620f4455ae, type: 2}
   grounded: 0
   aiming: 0
   runMagnitude: 10

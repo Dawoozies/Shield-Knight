@@ -13,6 +13,6 @@ public class MovingElement : MonoBehaviour
     }
     void Update()
     {
-        transform.position = origin + moveAxis * Mathf.Sin(frequency*Time.time);
+        transform.position = (origin + moveAxis * Mathf.Sin(frequency*Time.time));
     }
 }
