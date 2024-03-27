@@ -16,8 +16,17 @@ public class CameraManager : MonoBehaviour, Manager
     static CameraZone.ZoneType activeZoneType;
     static Vector2 activeZoneOffset;
     Vector3 cameraTarget;
+
+    public float worldSpaceWidth;
+    public float worldSpaceHeight;
+
     public void ManagedUpdate()
     {
+        Vector2 cornerA = mainCamera.ScreenToWorldPoint(Vector2.zero);
+        Vector2 cornerB = mainCamera.ScreenToWorldPoint(new Vector2(mainCamera.pixelWidth, mainCamera.pixelHeight));
+        worldSpaceWidth = Mathf.Abs(cornerA.x - cornerB.x);
+        worldSpaceHeight = Mathf.Abs(cornerA.y - cornerB.y);
+
         if(activeZone != null)
         {
             switch (activeZoneType)
@@ -34,7 +43,7 @@ public class CameraManager : MonoBehaviour, Manager
         }
         else
         {
-            cameraTarget = player.transform.position + cameraOffset;
+            cameraTarget = player.transform.position;
         }
         Vector3 cameraPosition = mainCamera.transform.position;
         cameraTarget.z = cameraPosition.z;
@@ -46,13 +55,13 @@ public class CameraManager : MonoBehaviour, Manager
             );
         if(xAxisClamp.x != xAxisClamp.y)
         {
-            newCameraPosition.x = Mathf.Clamp(newCameraPosition.x, xAxisClamp.x, xAxisClamp.y);
+            newCameraPosition.x = Mathf.Clamp(newCameraPosition.x, xAxisClamp.x + worldSpaceWidth, xAxisClamp.y - worldSpaceWidth);
         }
         if(yAxisClamp.x != yAxisClamp.y)
         {
-            newCameraPosition.y = Mathf.Clamp(newCameraPosition.y, yAxisClamp.x, yAxisClamp.y);
+            newCameraPosition.y = Mathf.Clamp(newCameraPosition.y, yAxisClamp.x + worldSpaceHeight, yAxisClamp.y - worldSpaceHeight);
         }
-        mainCamera.transform.position = newCameraPosition;
+        mainCamera.transform.position = newCameraPosition + cameraOffset;
     }
     public void ManagedStart()
     {

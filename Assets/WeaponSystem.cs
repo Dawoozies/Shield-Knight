@@ -121,6 +121,8 @@ public class WeaponSystem : MonoBehaviour
     Vector2 castPos;
     Vector2 throwPathEnd;
     public WeaponDriver recallDriver;
+
+    Collider2D embeddedCollider;
     void Start()
     {
         InputManager.RegisterMouseInputCallback((Vector2 mousePos) => lookAtPos = mousePos);
@@ -150,8 +152,11 @@ public class WeaponSystem : MonoBehaviour
                     {
                         Transform thrown = weaponTransforms[(int)ActiveTransform.Thrown];
                         //we have been tracking the 0th enemy
+                        EffectsManager.ins.RequestBloodFX(enemyHitsAlongThrowPath[0].point);
+                        EffectsManager.ins.RequestHitStunFX(enemyHitsAlongThrowPath[0].collider);
                         enemyHitsAlongThrowPath.RemoveAt(0);
-                        if(enemyHitsAlongThrowPath.Count > 0)
+                        EffectsManager.ins.RequestTimeStop(0.05f);
+                        if (enemyHitsAlongThrowPath.Count > 0)
                         {
                             Vector2 start = thrown.position;
                             Vector2 end = castPos + throwDirection * enemyHitsAlongThrowPath[0].distance;
@@ -189,8 +194,6 @@ public class WeaponSystem : MonoBehaviour
 
                             throwDriver.SetPositions(start, end);
                             throwDriver.StartDriver();
-
-                            EffectsManager.ins.RequestTimeStop(0.2f);
                         }
                     }
                     else
@@ -239,7 +242,10 @@ public class WeaponSystem : MonoBehaviour
                         embedded.transform.right = throwDirection;
                         throwPathEnd = castPos + throwDirection * (embeddingHit.distance);
                         firstPoint = throwPathEnd;
+
                         embedded.transform.position = throwPathEnd;
+
+                        embeddedCollider = embeddingHit.collider;
                     }
 
                     RaycastHit2D[] enemyHits = Physics2D.BoxCastAll(castPos, (Vector2)embedded.localScale, Vector2.Angle(Vector2.right, throwDirection), throwDirection, throwDistance, enemyLayerMask);

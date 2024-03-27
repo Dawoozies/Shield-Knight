@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4472131835955606937}
   - component: {fileID: 7121012693201061522}
+  - component: {fileID: 5510466883094302001}
   m_Layer: 8
   m_Name: Held
   m_TagString: Untagged
@@ -84,6 +85,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &5510466883094302001
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947499886152875606}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1556842058650849128
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +215,7 @@ MonoBehaviour:
     lerpCurveTime: 0
     inProgress: 0
     completed: 0
+    speedMul: 0
   heldAttackRange: 2
   attackDriver:
     pos: {x: 0, y: 0}
@@ -281,13 +328,14 @@ MonoBehaviour:
     lerpCurveTime: 0
     inProgress: 0
     completed: 0
+    speedMul: 0
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 512
   embeddableLayerMask:
     serializedVersion: 2
-    m_Bits: 6208
-  throwDistance: 40
+    m_Bits: 71744
+  throwDistance: 160
   throwDriver:
     pos: {x: 0, y: 0}
     t: 0
@@ -444,6 +492,7 @@ MonoBehaviour:
     lerpCurveTime: 0
     inProgress: 0
     completed: 0
+    speedMul: 0
   recallDriver:
     pos: {x: 0, y: 0}
     t: 0
@@ -600,6 +649,7 @@ MonoBehaviour:
     lerpCurveTime: 0
     inProgress: 0
     completed: 0
+    speedMul: 0
 --- !u!1 &4787463415009977060
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,6 +660,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8172290334831881655}
   - component: {fileID: 636763017156223339}
+  - component: {fileID: 5675708681023975866}
   m_Layer: 8
   m_Name: Thrown
   m_TagString: Untagged
@@ -684,6 +735,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &5675708681023975866
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4787463415009977060}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &6332941708771655345
 GameObject:
   m_ObjectHideFlags: 0
