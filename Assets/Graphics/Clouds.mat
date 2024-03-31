@@ -12,7 +12,8 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _RECOLORACTIVE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -72,22 +73,23 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RecolorActive: 0
+    - _RecolorActive: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
+    - _alphaThreshold: 0.2
     - _threshold: 0.1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _replace1: {r: 0.14901961, g: 0.15686275, b: 0.48235297, a: 1}
+    - _replace1: {r: 0.6556604, g: 0.6556604, b: 1, a: 1}
     - _replace2: {r: 0, g: 0, b: 0, a: 1}
     - _replace3: {r: 0, g: 0, b: 0, a: 1}
     - _replace4: {r: 0, g: 0, b: 0, a: 1}
     - _target1: {r: 0.93725497, g: 0.7686275, b: 0.3372549, a: 1}
     - _target2: {r: 1, g: 1, b: 1, a: 1}
-    - _target3: {r: 0, g: 0, b: 0, a: 1}
+    - _target3: {r: 1, g: 1, b: 1, a: 1}
     - _target4: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

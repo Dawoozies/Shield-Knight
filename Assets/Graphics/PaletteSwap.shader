@@ -4,6 +4,7 @@ Shader "Unlit/PaletteSwap"
     {
         _MainTex ("Texture", 2D) = "white" {}
         [MaterialToggle] _RecolorActive("Recolor Active", Float) = 0
+        _alphaThreshold("Alpha Threshold", Range(0.0,1.0)) = 0.2
         _threshold ("col dist threshold", Range(0.0, 1.0)) = 0.1
         _target1 ("target", Color) = (0.0,0.0,0.0,1.0)
         _target2 ("target", Color) = (0.0,0.0,0.0,1.0)
@@ -53,7 +54,7 @@ Shader "Unlit/PaletteSwap"
             float4 _replace3;
             float4 _replace4;
             float _RecolorActive;
-
+            float _alphaThreshold;
             v2f vert (appdata v)
             {
                 v2f o;
@@ -67,6 +68,11 @@ Shader "Unlit/PaletteSwap"
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
                 //if distance between texcol and target col less than threshold
+                if(col.a < _alphaThreshold)
+                {
+                    discard;
+                }
+                
                 if(_RecolorActive >= 0.5)
                 {
                 col = all(distance(col,_target1) <= _threshold) ? _replace1 : col;
