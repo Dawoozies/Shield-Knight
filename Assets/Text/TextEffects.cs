@@ -14,6 +14,7 @@ public class TextEffects : MonoBehaviour
     private Vector3 scaleA, scaleB;
     private Color colorA, colorB;
     public float indexTimeOffset;
+    private bool active;
     void Start()
     {
         textComponent = GetComponent<TMP_Text>();
@@ -55,7 +56,11 @@ public class TextEffects : MonoBehaviour
 
     void AnimateCharacter(TMP_CharacterInfo charInfo)
     {
-        float evaluatedTime = textEffect.lerpCurve.Evaluate(curveTime + charInfo.index*indexTimeOffset);
+        float evaluatedTime = 0;
+        if (active)
+        {
+            evaluatedTime = textEffect.lerpCurve.Evaluate(curveTime + charInfo.index*indexTimeOffset);
+        }
         int materialIndex = charInfo.materialReferenceIndex;
         int vertexIndex = charInfo.vertexIndex;
         Vector3[] sourceVertices = cachedMeshInfo[materialIndex].vertices;
@@ -89,7 +94,7 @@ public class TextEffects : MonoBehaviour
         if (textEffect.flags.HasFlag(TextEffectFlags.Color))
         {
             color = Color.LerpUnclamped(colorA, colorB, evaluatedTime);
-        }      
+        }
         Matrix4x4 matrixTRS = Matrix4x4.TRS(translation, rotation, scale);
         Color32[] newVertexColors = textInfo.meshInfo[materialIndex].colors32;
         for (int i = 0; i < 4; i++)
@@ -97,5 +102,15 @@ public class TextEffects : MonoBehaviour
             destinationVertices[vertexIndex + i] = matrixTRS.MultiplyPoint3x4(destinationVertices[vertexIndex + i]) + offset;
             newVertexColors[vertexIndex + i] = color;
         }
+    }
+
+    public void ToggleEffectOn()
+    {
+        active = true;
+    }
+    
+    public void ToggleEffectOff()
+    {
+        active = false;
     }
 }

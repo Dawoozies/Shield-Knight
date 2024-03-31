@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Moonlight
+  m_Shader: {fileID: 4800000, guid: a3c1ba1d7c0353d489762dda6f202fd9, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _DisplacementTex:
+        m_Texture: {fileID: 2800000, guid: 67018016e864bae44967b4e79b4df16f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _RecolorActive: 0
+    - _alphaThreshold: 0.2
+    - _displacement: 1.01
+    - _speed: 0.01
+    - _threshold: 0.1
+    m_Colors:
+    - _replace1: {r: 0, g: 0, b: 0, a: 0}
+    - _replace2: {r: 0, g: 0, b: 0, a: 0}
+    - _target1: {r: 0, g: 0, b: 0, a: 1}
+    - _target2: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
