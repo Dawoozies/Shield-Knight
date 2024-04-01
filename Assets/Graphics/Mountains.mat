@@ -60,6 +60,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SceneColor:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
@@ -73,12 +77,20 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RecolorActive: 1
+    - _RecolorActive: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
+    - _alphaThreshold: 0.2
+    - _aspectRatioX: 1
+    - _aspectRatioY: 1
+    - _pixelSize: 0.0094
+    - _pixelX: 0.0001
+    - _pixelY: 0.0001
+    - _screenHeight: 1440
+    - _screenWidth: 2560
     - _threshold: 0.025
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

@@ -7,13 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Clouds
-  m_Shader: {fileID: 4800000, guid: 1510cdf45c8776946bfa56b570a6bc0e, type: 3}
+  m_Name: CircleScreenEnterTransition
+  m_Shader: {fileID: 4800000, guid: 777e0dd5d41ee594d8f1b1ad3441ecfb, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _RECOLORACTIVE_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -45,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 64a0c02970e0dd0458696d46b938ff78, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -60,9 +59,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TransitionTex:
+        m_Texture: {fileID: 2800000, guid: 185f9f5d3b20d7c4db8c30b2fd8c1188, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
+    - _ColorMask: 15
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -73,28 +77,24 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RecolorActive: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SpeedX: 0.1
+    - _SpeedY: 0.1
     - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
     - _UVSec: 0
+    - _UseUIAlphaClip: 0
     - _ZWrite: 1
-    - _alphaThreshold: 0.2
-    - _aspectRatioX: 1
-    - _aspectRatioY: 1
-    - _pixelSize: 0.006
-    - _pixelX: 0.0001
-    - _pixelY: 0.0001
-    - _threshold: 0.1
+    - _power: 1
+    - _resolution: 1
+    - _transition: 2
+    - _transitionGradient: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _replace1: {r: 0.6556604, g: 0.6556604, b: 1, a: 1}
-    - _replace2: {r: 0, g: 0, b: 0, a: 1}
-    - _replace3: {r: 0, g: 0, b: 0, a: 1}
-    - _replace4: {r: 0, g: 0, b: 0, a: 1}
-    - _target1: {r: 0.93725497, g: 0.7686275, b: 0.3372549, a: 1}
-    - _target2: {r: 1, g: 1, b: 1, a: 1}
-    - _target3: {r: 1, g: 1, b: 1, a: 1}
-    - _target4: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

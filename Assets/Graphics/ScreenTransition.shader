@@ -7,7 +7,7 @@ Shader "Unlit/ScreenTransition"
         _SpeedX ("_Speed X", Range(-1, 1)) = 0.1
         _SpeedY ("_Speed Y", Range(-1, 1)) = 0.1
         _Color ("Tint", Color) = (1,1,1,1)
-        _transition("Transition", Range(0.99,2.0)) = 0.0
+        _transition("Transition", Range(0.99,2)) = 0.99
     }
  
         SubShader
@@ -15,7 +15,6 @@ Shader "Unlit/ScreenTransition"
         Tags
         {
             "Queue"="Transparent"
-            "IgnoreProjector"="True"
             "RenderType"="Transparent"
             "PreviewType"="Plane"
             "CanUseSpriteAtlas"="True"

@@ -14,10 +14,12 @@ Shader "Unlit/PaletteSwap"
         _replace2 ("replace", Color) = (0.0,0.0,0.0,0.0)
         _replace3 ("replace", Color) = (0.0,0.0,0.0,0.0)
         _replace4 ("replace", Color) = (0.0,0.0,0.0,0.0)
+        _pixelSize("PixelSize", Range(0.0,1.0)) = 1.0
     }
     SubShader
     {
         Tags { "RenderType"="Transparent" }
+        ZWrite Off
         LOD 100
         Blend SrcAlpha OneMinusSrcAlpha
         Pass
@@ -55,6 +57,7 @@ Shader "Unlit/PaletteSwap"
             float4 _replace4;
             float _RecolorActive;
             float _alphaThreshold;
+            float _pixelSize;
             v2f vert (appdata v)
             {
                 v2f o;
@@ -66,7 +69,11 @@ Shader "Unlit/PaletteSwap"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.uv);
+                float2 uv = i.uv;
+                //float2 pixelSize = _pixelSize/_ScreenParams.xy;
+                //uv = round(uv/_pixelSize);
+                //uv *= _pixelSize;
+                fixed4 col = tex2D(_MainTex, uv);
                 //if distance between texcol and target col less than threshold
                 if(col.a < _alphaThreshold)
                 {

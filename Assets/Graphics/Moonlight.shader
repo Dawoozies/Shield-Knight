@@ -18,6 +18,8 @@ Shader "Unlit/PaletteSwap"
     {
         Tags { "RenderType"="Transparent" }
         LOD 100
+        Cull Off
+        
         Blend SrcAlpha OneMinusSrcAlpha
         Pass
         {
@@ -71,7 +73,11 @@ Shader "Unlit/PaletteSwap"
                 fixed4 dispCol = tex2D(_DisplacementTex, i.uvDisplacement + frac(_Time.y*float2(_speed, 0)));
                 float2 uv = i.uv;
                 float cutoff = step(length(dispCol), _displacement);
-                fixed4 col = tex2D(_MainTex, uv)*cutoff;
+                fixed4 col = tex2D(_MainTex, uv);
+                if(cutoff > 0.5)
+                {
+                    col.a *= 0.55;
+                }
                 //if distance between texcol and target col less than threshold
                 if(col.a < _alphaThreshold)
                 {

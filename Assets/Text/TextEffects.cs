@@ -14,7 +14,7 @@ public class TextEffects : MonoBehaviour
     private Vector3 scaleA, scaleB;
     private Color colorA, colorB;
     public float indexTimeOffset;
-    private bool active;
+    public bool active;
     void Start()
     {
         textComponent = GetComponent<TMP_Text>();

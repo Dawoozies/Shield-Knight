@@ -37,8 +37,8 @@ MonoBehaviour:
     m_PostInfinity: 0
     m_RotationOrder: 4
   flags: 1
-  positionA: {x: 0, y: -2}
-  positionB: {x: 0, y: 2}
+  positionA: {x: 0, y: -10}
+  positionB: {x: 0, y: 10}
   eulerAnglesA: {x: 0, y: 0, z: 0}
   eulerAnglesB: {x: 0, y: 0, z: 0}
   scaleA: {x: 1, y: 1, z: 1}
