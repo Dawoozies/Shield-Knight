@@ -1491,6 +1491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622632660a517c34883e3c5ec84143a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imageMaterialEffect: {fileID: 8400000, guid: cf349bbea73bba1489c1e94e746978c2, type: 2}
 --- !u!1 &1451196493
 GameObject:
   m_ObjectHideFlags: 0
