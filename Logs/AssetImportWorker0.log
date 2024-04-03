@@ -1,23 +1,23 @@
 Using pre-set license
 Built from '2022.3/release' branch; Version is '2022.3.18f1 (d29bea25151d) revision 13802474'; Using compiler version '192829333'; Build Type 'Release'
-OS: 'Windows 10  (10.0.19045) 64bit Enterprise' Language: 'en' Physical Memory: 65224 MB
+OS: 'Windows 11  (10.0.22631) 64bit Core' Language: 'en' Physical Memory: 32653 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
 
 COMMAND LINE ARGUMENTS:
-C:\Program Files\Unity 2022.3.18f1\Editor\Unity.exe
+C:\Program Files\Unity\Hub\Editor\2022.3.18f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
-C:/Users/3dcc3f5365a4d11c/Documents/GitHub/Shield-Knight
+C:/Users/david/Documents/GitHub/Shield-Knight
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-52182
-Successfully changed project path to: C:/Users/3dcc3f5365a4d11c/Documents/GitHub/Shield-Knight
-C:/Users/3dcc3f5365a4d11c/Documents/GitHub/Shield-Knight
+60641
+Successfully changed project path to: C:/Users/david/Documents/GitHub/Shield-Knight
+C:/Users/david/Documents/GitHub/Shield-Knight
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -49,69 +49,65 @@ C:/Users/3dcc3f5365a4d11c/Documents/GitHub/Shield-Knight
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [29600] Host "[IP] 172.27.6.101 [Port] 0 [Flags] 2 [Guid] 337382907 [EditorId] 337382907 [Version] 1048832 [Id] WindowsEditor(7,NS00J004022DE10) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [23420] Host "[IP] 192.168.1.123 [Port] 0 [Flags] 2 [Guid] 2712037979 [EditorId] 2712037979 [Version] 1048832 [Id] WindowsEditor(7,Dogbert) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [29600] Host "[IP] 172.27.6.101 [Port] 0 [Flags] 2 [Guid] 337382907 [EditorId] 337382907 [Version] 1048832 [Id] WindowsEditor(7,NS00J004022DE10) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [23420] Host "[IP] 192.168.1.123 [Port] 0 [Flags] 2 [Guid] 2712037979 [EditorId] 2712037979 [Version] 1048832 [Id] WindowsEditor(7,Dogbert) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-[Physics::Module] Initialized MultithreadedJobDispatcher with 19 workers.
-Refreshing native plugins compatible for Editor in 13.65 ms, found 4 plugins.
+[Physics::Module] Initialized MultithreadedJobDispatcher with 15 workers.
+Refreshing native plugins compatible for Editor in 8.51 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.18f1 (d29bea25151d)
-[Subsystems] Discovering subsystems at path C:/Program Files/Unity 2022.3.18f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/3dcc3f5365a4d11c/Documents/GitHub/Shield-Knight/Assets
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.18f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/david/Documents/GitHub/Shield-Knight/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA RTX A4000 (ID=0x24b0)
+    Renderer: NVIDIA GeForce RTX 2070 (ID=0x1f02)
     Vendor:   NVIDIA
-    VRAM:     16183 MB
-    Driver:   31.0.15.3770
+    VRAM:     8006 MB
+    Driver:   31.0.15.5186
 Initialize mono
-Mono path[0] = 'C:/Program Files/Unity 2022.3.18f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Program Files/Unity 2022.3.18f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
-Mono config path = 'C:/Program Files/Unity 2022.3.18f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56432
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.18f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.18f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.18f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56108
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity 2022.3.18f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
-Register platform support module: C:/Program Files/Unity 2022.3.18f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
-Register platform support module: C:/Program Files/Unity 2022.3.18f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.009677 seconds.
-- Loaded All Assemblies, in  0.397 seconds
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.18f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.005341 seconds.
+- Loaded All Assemblies, in  0.256 seconds
 Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.394 seconds
-Domain Reload Profiling: 789ms
-	BeginReloadAssembly (119ms)
+- Finished resetting the current domain, in  0.203 seconds
+Domain Reload Profiling: 458ms
+	BeginReloadAssembly (80ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (35ms)
-	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (69ms)
-	LoadAllAssembliesAndSetupDomain (160ms)
-		LoadAssemblies (117ms)
+	RebuildCommonClasses (26ms)
+	RebuildNativeTypeToScriptingClass (7ms)
+	initialDomainReloadingComplete (44ms)
+	LoadAllAssembliesAndSetupDomain (98ms)
+		LoadAssemblies (79ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (157ms)
-			TypeCache.Refresh (156ms)
-				TypeCache.ScanAssembly (141ms)
+		AnalyzeDomain (96ms)
+			TypeCache.Refresh (95ms)
+				TypeCache.ScanAssembly (85ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (1ms)
-	FinalizeReload (394ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (204ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (326ms)
+		SetupLoadedEditorAssemblies (159ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (119ms)
+			InitializePlatformSupportModulesInManaged (7ms)
 			SetLoadedEditorAssemblies (5ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (3ms)
-			ProcessInitializeOnLoadAttributes (143ms)
-			ProcessInitializeOnLoadMethodAttributes (56ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (110ms)
+			ProcessInitializeOnLoadMethodAttributes (35ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -119,60 +115,59 @@ Domain Reload Profiling: 789ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.703 seconds
-Refreshing native plugins compatible for Editor in 5.54 ms, found 4 plugins.
+- Loaded All Assemblies, in  0.476 seconds
+Refreshing native plugins compatible for Editor in 3.38 ms, found 4 plugins.
 Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-Native extension for WebGL target not found
 Package Manager log level set to [2]
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.727 seconds
-Domain Reload Profiling: 1427ms
-	BeginReloadAssembly (158ms)
+- Finished resetting the current domain, in  0.465 seconds
+Domain Reload Profiling: 938ms
+	BeginReloadAssembly (113ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (7ms)
+		DisableScriptedObjects (4ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (20ms)
-	RebuildCommonClasses (36ms)
-	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (48ms)
-	LoadAllAssembliesAndSetupDomain (446ms)
-		LoadAssemblies (344ms)
+		CreateAndSetChildDomain (18ms)
+	RebuildCommonClasses (24ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (32ms)
+	LoadAllAssembliesAndSetupDomain (297ms)
+		LoadAssemblies (237ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (195ms)
-			TypeCache.Refresh (165ms)
-				TypeCache.ScanAssembly (146ms)
-			ScanForSourceGeneratedMonoScriptInfo (23ms)
-			ResolveRequiredComponents (6ms)
-	FinalizeReload (727ms)
+		AnalyzeDomain (125ms)
+			TypeCache.Refresh (104ms)
+				TypeCache.ScanAssembly (92ms)
+			ScanForSourceGeneratedMonoScriptInfo (15ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (465ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (522ms)
+		SetupLoadedEditorAssemblies (346ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (28ms)
+			InitializePlatformSupportModulesInManaged (5ms)
 			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (75ms)
-			ProcessInitializeOnLoadAttributes (365ms)
-			ProcessInitializeOnLoadMethodAttributes (43ms)
+			BeforeProcessingInitializeOnLoad (55ms)
+			ProcessInitializeOnLoadAttributes (248ms)
+			ProcessInitializeOnLoadMethodAttributes (29ms)
 			AfterProcessingInitializeOnLoad (6ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (7ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 2.76 ms, found 4 plugins.
+		AwakeInstancesAfterBackupRestoration (5ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 5.53 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 4111 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 64 unused Assets / (61.2 KB). Loaded Objects now: 4576.
-Memory consumption went from 158.6 MB to 158.5 MB.
-Total: 2.367300 ms (FindLiveObjects: 0.194200 ms CreateObjectMapping: 0.095400 ms MarkObjects: 1.981400 ms  DeleteObjects: 0.095400 ms)
+Unloading 64 unused Assets / (61.5 KB). Loaded Objects now: 4575.
+Memory consumption went from 153.0 MB to 153.0 MB.
+Total: 6.122900 ms (FindLiveObjects: 0.597800 ms CreateObjectMapping: 0.302300 ms MarkObjects: 5.040700 ms  DeleteObjects: 0.180900 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
   custom:CustomObjectIndexerAttribute: 6d391050e5a25f67b0a2c618074f2cd9 -> 
@@ -186,95 +181,1372 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 1177.348841 seconds.
-  path: Assets/Curves.asset
-  artifactKey: Guid(228c3904530258e42b4f9106558f27cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Curves.asset using Guid(228c3904530258e42b4f9106558f27cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '381e4bfe59dc567fc5767d1fd07dc304') in 0.009217 seconds
+  Time since last request: 262335.245357 seconds.
+  path: Assets/Scenes/CastleEnter
+  artifactKey: Guid(c64e265fd4cffb3428912f02a248b991) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter using Guid(c64e265fd4cffb3428912f02a248b991) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4b8d6d312050f57c3391d8a8a1b5ec81') in 0.002070 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Scenes/CastleEnter.unity
+  artifactKey: Guid(d3328308c64f08e45abe79c31d0fe5bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter.unity using Guid(d3328308c64f08e45abe79c31d0fe5bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62630c33f3c9b83c62a68bd6fd369953') in 0.000325 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 478.951230 seconds.
+  path: Assets/Scenes/CastleEnter/LightingData.asset
+  artifactKey: Guid(4266662e11d65d74d8c81be68e01bc7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/LightingData.asset using Guid(4266662e11d65d74d8c81be68e01bc7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '313d3e05d7e89c35914f8f1c32543737') in 0.011738 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 1
 ========================================================================
 Received Import Request.
+  Time since last request: 0.002894 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-1_comp_light.exr
+  artifactKey: Guid(1974757963eebed4ea16f45a681c5924) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-1_comp_light.exr using Guid(1974757963eebed4ea16f45a681c5924) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84226bea13e5eca2cb40c10d1142f30e') in 0.071323 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-7_comp_light.exr
+  artifactKey: Guid(92928ef9b6c28ad48aa16c29b711300d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-7_comp_light.exr using Guid(92928ef9b6c28ad48aa16c29b711300d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '276caaf7dc1a7119815ae5336f2edd1f') in 0.018579 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-19_comp_dir.png
+  artifactKey: Guid(95f7abab2bea21840b0419c8abb4c792) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-19_comp_dir.png using Guid(95f7abab2bea21840b0419c8abb4c792) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2881aed125926910ee31646133ed84ab') in 0.018348 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-5_comp_light.exr
+  artifactKey: Guid(88d2e950bb3de1c40b0139b9cba9e00e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-5_comp_light.exr using Guid(88d2e950bb3de1c40b0139b9cba9e00e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '925ed630a7533d4102d8fc8e55677aa0') in 0.017315 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-15_comp_light.exr
+  artifactKey: Guid(9fa7e4748967f84478a58fd85ff13b2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-15_comp_light.exr using Guid(9fa7e4748967f84478a58fd85ff13b2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d2de4630afd4a5df44415bb7902cd53') in 0.016789 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-9_comp_light.exr
+  artifactKey: Guid(2df9b08315a394d419423da2f2668bae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-9_comp_light.exr using Guid(2df9b08315a394d419423da2f2668bae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b340a186238bc5567bbb565457a7b9c') in 0.014526 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-7_comp_dir.png
+  artifactKey: Guid(c416f33da169b194dbf837bf3060275d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-7_comp_dir.png using Guid(c416f33da169b194dbf837bf3060275d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8078b1c900b1b4aeb235bbca41dc30a2') in 0.015157 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-12_comp_light.exr
+  artifactKey: Guid(dfad28de1c4c00942bc7ca228a57a832) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-12_comp_light.exr using Guid(dfad28de1c4c00942bc7ca228a57a832) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '80cf343167aed9524b6695f459f1399f') in 0.016794 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-5_comp_dir.png
+  artifactKey: Guid(57cca2c91fada254786f0ee9c34c5863) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-5_comp_dir.png using Guid(57cca2c91fada254786f0ee9c34c5863) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46967682656cc957f1cd28fe574da1b2') in 0.014813 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-22_comp_dir.png
+  artifactKey: Guid(f0ee91c7dcf0b2e429608ce6ac87360c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-22_comp_dir.png using Guid(f0ee91c7dcf0b2e429608ce6ac87360c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a0b49dae7d9fce2410a235be8fad67c') in 0.014828 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
   Time since last request: 0.000018 seconds.
-  path: Assets/NoFriction.physicsMaterial2D
-  artifactKey: Guid(19118fa2a6760c249b784b07c9eba0d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/NoFriction.physicsMaterial2D using Guid(19118fa2a6760c249b784b07c9eba0d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c155acde628d665bbf8bbc058ea92a3') in 0.000646 seconds
+  path: Assets/Scenes/CastleEnter/Lightmap-4_comp_dir.png
+  artifactKey: Guid(0f0645adf18291a43a18b152c6574294) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-4_comp_dir.png using Guid(0f0645adf18291a43a18b152c6574294) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '43cfe56b47551106c5d6418fee61e555') in 0.014540 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-15_comp_dir.png
+  artifactKey: Guid(2cf01f5aa9616cd4e848473c9662aea5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-15_comp_dir.png using Guid(2cf01f5aa9616cd4e848473c9662aea5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f378f0834c1763e853b334fa8e8a2f2f') in 0.014807 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-21_comp_dir.png
+  artifactKey: Guid(f9e1444e3bf8eb44696b7a18dc1ed36a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-21_comp_dir.png using Guid(f9e1444e3bf8eb44696b7a18dc1ed36a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2a37939b01dc7dc7b149a0125bbc33c') in 0.015766 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-9_comp_dir.png
+  artifactKey: Guid(76a801f139fbefe4e8dc2872f2752cbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-9_comp_dir.png using Guid(76a801f139fbefe4e8dc2872f2752cbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb93c5fbf19b76ce7efde18459f6674f') in 0.016139 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-3_comp_dir.png
+  artifactKey: Guid(438ea55f01918c34fb4370b8e5d60b11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-3_comp_dir.png using Guid(438ea55f01918c34fb4370b8e5d60b11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '521bb1afd03ad190665963a93f0a10c3') in 0.017359 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-10_comp_light.exr
+  artifactKey: Guid(0719cecd98830074e99ffe1ab2a76ab5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-10_comp_light.exr using Guid(0719cecd98830074e99ffe1ab2a76ab5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce5f9c4c7522251c4c3c003b83797980') in 0.015878 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-12_comp_dir.png
+  artifactKey: Guid(00881a4de995aa947a55abf2c2f8318f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-12_comp_dir.png using Guid(00881a4de995aa947a55abf2c2f8318f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6734228f02fdd9d0968896247d2b8d56') in 0.015752 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-17_comp_dir.png
+  artifactKey: Guid(5109cbad9f601a44ea9f7ac69edb0c01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-17_comp_dir.png using Guid(5109cbad9f601a44ea9f7ac69edb0c01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82bec976f6708729221249a3253b6832') in 0.015984 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-6_comp_dir.png
+  artifactKey: Guid(6185c9648731ce243967811cbe74de92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-6_comp_dir.png using Guid(6185c9648731ce243967811cbe74de92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47ca3c005bdfee532400c459a37e1929') in 0.016230 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-17_comp_light.exr
+  artifactKey: Guid(7799145f9ddc6e3409669a52579e5422) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-17_comp_light.exr using Guid(7799145f9ddc6e3409669a52579e5422) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e8d09f6d423cf21e0fdada5a1137b881') in 0.015835 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-18_comp_dir.png
+  artifactKey: Guid(7233385b6c8d98c4abdb07656dadcd15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-18_comp_dir.png using Guid(7233385b6c8d98c4abdb07656dadcd15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a24d271383bd768509f72302b4da0b9d') in 0.016059 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-8_comp_dir.png
+  artifactKey: Guid(f4cc4fc7b9454654ba2f06fa3ee033fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-8_comp_dir.png using Guid(f4cc4fc7b9454654ba2f06fa3ee033fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd568164c951fef26e64d55dc2b754560') in 0.015736 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 1.671138 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-22_comp_light.exr
+  artifactKey: Guid(c18c28ee0d9073a47b5a6965c585d950) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-22_comp_light.exr using Guid(c18c28ee0d9073a47b5a6965c585d950) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3c4447d52106f8701070421d116e94b5') in 0.015659 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-28_comp_dir.png
+  artifactKey: Guid(367200015bea9a9439e6c91b8578c7f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-28_comp_dir.png using Guid(367200015bea9a9439e6c91b8578c7f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36236ac953385474af3dd53e2dac4a39') in 0.017245 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-29_comp_light.exr
+  artifactKey: Guid(6d854d8bfb411f1459b58075066cb733) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-29_comp_light.exr using Guid(6d854d8bfb411f1459b58075066cb733) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd1a43ad76f116e59ecf02e3f9a2dcb30') in 0.015558 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-24_comp_dir.png
+  artifactKey: Guid(741fb2387290eb74994ad0dad6072c5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-24_comp_dir.png using Guid(741fb2387290eb74994ad0dad6072c5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df85f7c4709e917b844a4080228cdbb7') in 0.016299 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-28_comp_light.exr
+  artifactKey: Guid(623184b1bd895424ba5bd473ccdbb9f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-28_comp_light.exr using Guid(623184b1bd895424ba5bd473ccdbb9f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6e335ffa06262c115944aad2f0fd98c') in 0.015540 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-25_comp_dir.png
+  artifactKey: Guid(ad164ef2c8c533b43bdf5e8ae87b914d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-25_comp_dir.png using Guid(ad164ef2c8c533b43bdf5e8ae87b914d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '750dd91eb997bced91f989b24572e465') in 0.017043 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-29_comp_dir.png
+  artifactKey: Guid(4c5485f21975a5847a74a3bd88fca1b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-29_comp_dir.png using Guid(4c5485f21975a5847a74a3bd88fca1b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd899140641c1c9c0c978df196ad5ddf2') in 0.016254 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.260423 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-30_comp_dir.png
+  artifactKey: Guid(da7faac8eec80d040817a2ab0f5fcf26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-30_comp_dir.png using Guid(da7faac8eec80d040817a2ab0f5fcf26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'abb09bde690d8c52e81f660d9311799c') in 0.016160 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-32_comp_dir.png
+  artifactKey: Guid(c659023a0f0f9df46a3fcbf7ce40fbd1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-32_comp_dir.png using Guid(c659023a0f0f9df46a3fcbf7ce40fbd1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c1df8052190a42b693566239bf249a22') in 0.017301 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-33_comp_light.exr
+  artifactKey: Guid(16358dcdc29b19a40ad8ccd7bafa105e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-33_comp_light.exr using Guid(16358dcdc29b19a40ad8ccd7bafa105e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33df838bbaec68f1baeff8a938521d9b') in 0.017356 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-35_comp_light.exr
+  artifactKey: Guid(8e7a418f3b4166246928faee44afe972) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-35_comp_light.exr using Guid(8e7a418f3b4166246928faee44afe972) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'afe204c56849c29ce24c352ddc32b20f') in 0.014606 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-31_comp_light.exr
+  artifactKey: Guid(f3fc52bc2dcf89f459a033c1c4a5a66d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-31_comp_light.exr using Guid(f3fc52bc2dcf89f459a033c1c4a5a66d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7687b43fd7e3f2181ed232bd984181e2') in 0.016082 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-36_comp_light.exr
+  artifactKey: Guid(146d6e5f7b6d5084babe1592dd7bbef1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-36_comp_light.exr using Guid(146d6e5f7b6d5084babe1592dd7bbef1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '642812f79e9a20b78555631067964977') in 0.016097 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-35_comp_dir.png
+  artifactKey: Guid(533bc1bbc21aa4c4384a85c0109dce14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-35_comp_dir.png using Guid(533bc1bbc21aa4c4384a85c0109dce14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4417b541743e9eb3e6b7e2a07c0a7920') in 0.016543 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.582481 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-37_comp_light.exr
+  artifactKey: Guid(9985604239be1d0428606e1907f7eb88) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-37_comp_light.exr using Guid(9985604239be1d0428606e1907f7eb88) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ded42b6b46c3c01fbdb74945c80cba58') in 0.018457 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-40_comp_light.exr
+  artifactKey: Guid(806fd6df8db5cde49b29a6fb707b277b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-40_comp_light.exr using Guid(806fd6df8db5cde49b29a6fb707b277b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed1bd0d3693745769a99526e60c7b485') in 0.015615 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-44_comp_dir.png
+  artifactKey: Guid(1946bb034d8abf84093a5591a77098aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-44_comp_dir.png using Guid(1946bb034d8abf84093a5591a77098aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '318c02af4aa47b21732800c8f43a1f0b') in 0.016346 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-39_comp_light.exr
+  artifactKey: Guid(2f6bac06aa77c0d41873da54037290c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-39_comp_light.exr using Guid(2f6bac06aa77c0d41873da54037290c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aed7d4b6876f352f6078db263e566ce4') in 0.016061 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-41_comp_dir.png
+  artifactKey: Guid(31c94b0c0e3ea22458db5d9d059e7ed5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-41_comp_dir.png using Guid(31c94b0c0e3ea22458db5d9d059e7ed5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fea868a73b18d8ff50a514ee8278df14') in 0.018259 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-42_comp_dir.png
+  artifactKey: Guid(b16e2f262e1ef2549805fd7f5ee8d769) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-42_comp_dir.png using Guid(b16e2f262e1ef2549805fd7f5ee8d769) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '71fd977e9fb60e41710b68bb8497ca78') in 0.016560 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-43_comp_dir.png
+  artifactKey: Guid(eac44554b9f49064f89ca407c9024532) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-43_comp_dir.png using Guid(eac44554b9f49064f89ca407c9024532) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1899cbc70952cff712b9139d5f6e64c') in 0.015347 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.117393 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-45_comp_dir.png
+  artifactKey: Guid(9bfe1a7c84b041b46ac96617ea9e0dd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-45_comp_dir.png using Guid(9bfe1a7c84b041b46ac96617ea9e0dd6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9aadc5b095c00e708384238965db8971') in 0.016581 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-49_comp_dir.png
+  artifactKey: Guid(0b79508452cf07648903052a61bfa873) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-49_comp_dir.png using Guid(0b79508452cf07648903052a61bfa873) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7201201fcba2b6a605ec9186a02d127') in 0.015812 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-48_comp_dir.png
+  artifactKey: Guid(d4ea51c39b2908546a625b2144edf37a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-48_comp_dir.png using Guid(d4ea51c39b2908546a625b2144edf37a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e8d423642e4780ba31057bb3248d3d6d') in 0.015863 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-50_comp_dir.png
+  artifactKey: Guid(1ad30e90abc7a7845a96e9b8d6ef0ec7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-50_comp_dir.png using Guid(1ad30e90abc7a7845a96e9b8d6ef0ec7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '237609fabd091b55b6978ead8cfb562f') in 0.015520 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-50_comp_light.exr
+  artifactKey: Guid(8b6f44b797b5bdd499617163615856cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-50_comp_light.exr using Guid(8b6f44b797b5bdd499617163615856cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1657bb64224a268c7b9f981ce36e6f3') in 0.015348 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-48_comp_light.exr
+  artifactKey: Guid(1e7cbf4fb6cd6714d8dafb3bcfeda2b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-48_comp_light.exr using Guid(1e7cbf4fb6cd6714d8dafb3bcfeda2b3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f1aa6b341938dc3c4b2dd972b8c1d995') in 0.016429 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-58_comp_dir.png
+  artifactKey: Guid(86181702efa926e43b4650e996dfd9f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-58_comp_dir.png using Guid(86181702efa926e43b4650e996dfd9f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a6883129a5229c085758d7fdaf6c5dd') in 0.015344 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-64_comp_dir.png
+  artifactKey: Guid(f622f73e46ad5e849ab7f7592a7ef7d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-64_comp_dir.png using Guid(f622f73e46ad5e849ab7f7592a7ef7d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76b5d2c688eac8479e815551d9784933') in 0.015056 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-64_comp_light.exr
+  artifactKey: Guid(e4e51f421d5d5d44e9d096ec59b6bccb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-64_comp_light.exr using Guid(e4e51f421d5d5d44e9d096ec59b6bccb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c115de1b712c32bbae1963d8ebc5fe80') in 0.015864 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-60_comp_light.exr
+  artifactKey: Guid(3f85b0f40e6a3d44ead2e85a19528075) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-60_comp_light.exr using Guid(3f85b0f40e6a3d44ead2e85a19528075) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd25a40f9d89f00bb12a77afe2b306e4d') in 0.016223 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-49_comp_light.exr
+  artifactKey: Guid(7b7915fb3802a0046b1b390999fa58e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-49_comp_light.exr using Guid(7b7915fb3802a0046b1b390999fa58e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb7ba93c3c2af50b4e5f4c78f5a38193') in 0.044890 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-56_comp_dir.png
+  artifactKey: Guid(a43f50832766044419d8b88cb13dd50c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-56_comp_dir.png using Guid(a43f50832766044419d8b88cb13dd50c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd88c98d1e351c260af1055d80094507d') in 0.015509 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-66_comp_dir.png
+  artifactKey: Guid(bc80a9553c2b0964da8107af46ea19a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-66_comp_dir.png using Guid(bc80a9553c2b0964da8107af46ea19a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8538a06968d127eea70ee0535ce764f') in 0.014944 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-47_comp_dir.png
+  artifactKey: Guid(f69290f8f92ea0a46bb11f9bd64c6e7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-47_comp_dir.png using Guid(f69290f8f92ea0a46bb11f9bd64c6e7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd803baf911482af0895217429a05f83e') in 0.015850 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-46_comp_light.exr
+  artifactKey: Guid(8a192e41d442e2c499d4b7386a4fa208) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-46_comp_light.exr using Guid(8a192e41d442e2c499d4b7386a4fa208) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2aaaf133648ca354d5837c1e788433b9') in 0.015121 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-51_comp_dir.png
+  artifactKey: Guid(66df11ba2afce3b4c917405f8e83b014) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-51_comp_dir.png using Guid(66df11ba2afce3b4c917405f8e83b014) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca5816e51e19ae72dc7739f8f3774ccc') in 0.015603 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-63_comp_dir.png
+  artifactKey: Guid(dbcf7574b6f516b42abfa345def2acbd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-63_comp_dir.png using Guid(dbcf7574b6f516b42abfa345def2acbd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2dd15d58329f8b3a1c1d0b69548f7df') in 0.015657 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-56_comp_light.exr
+  artifactKey: Guid(3ebbacd7e57a6cf49b4b1830cd146b21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-56_comp_light.exr using Guid(3ebbacd7e57a6cf49b4b1830cd146b21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1bae513fcb3e69805145cb2ae7b4459') in 0.014758 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-73_comp_light.exr
+  artifactKey: Guid(1f613a026de605b48ab4ffed7a0f4d76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-73_comp_light.exr using Guid(1f613a026de605b48ab4ffed7a0f4d76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4639045b80cefc26d26d87f76a4da0d1') in 0.016077 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-80_comp_dir.png
+  artifactKey: Guid(f4cb2f78fceb80f4dad546b49e962193) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-80_comp_dir.png using Guid(f4cb2f78fceb80f4dad546b49e962193) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eec04045794028532019705c7f57b051') in 0.015974 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-78_comp_light.exr
+  artifactKey: Guid(60732cb3c94e37c4bbb2c21ab5f9bb07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-78_comp_light.exr using Guid(60732cb3c94e37c4bbb2c21ab5f9bb07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2c13e5c3a78d02039448fa7170429960') in 0.016133 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-68_comp_dir.png
+  artifactKey: Guid(5cadc2404baad2e4293bad410ce2680b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-68_comp_dir.png using Guid(5cadc2404baad2e4293bad410ce2680b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7aaa2ff5d2ab6ccb308bc41271c0d8d') in 0.016553 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-76_comp_dir.png
+  artifactKey: Guid(80d5d0c16b2507f42baebcc0e2407923) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-76_comp_dir.png using Guid(80d5d0c16b2507f42baebcc0e2407923) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dfef4d9993508a7417d23b0b1dc70582') in 0.015616 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-76_comp_light.exr
+  artifactKey: Guid(9f9ceb2a10eecdc4e9d4b4ef6c1a754c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-76_comp_light.exr using Guid(9f9ceb2a10eecdc4e9d4b4ef6c1a754c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b6408b0eaa8d58f8516d3e48fee1de7') in 0.015405 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-77_comp_dir.png
+  artifactKey: Guid(4bbd7816b3a97df418d5531f69cacc6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-77_comp_dir.png using Guid(4bbd7816b3a97df418d5531f69cacc6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87f419583554960dd6de73fdb702bcad') in 0.015619 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-82_comp_dir.png
+  artifactKey: Guid(b46dcb025eee86c40aa2542396694e77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-82_comp_dir.png using Guid(b46dcb025eee86c40aa2542396694e77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e3a96a30fd6c752552e0967143bb314') in 0.017241 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-79_comp_dir.png
+  artifactKey: Guid(c591790b09868844a89e5f4c4d666bdc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-79_comp_dir.png using Guid(c591790b09868844a89e5f4c4d666bdc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd16a7aca1dca85d13474d1b0f7b7fe24') in 0.015773 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-75_comp_light.exr
+  artifactKey: Guid(0caf9570130143640bf297e8e74e6b6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-75_comp_light.exr using Guid(0caf9570130143640bf297e8e74e6b6b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9e69e24b551e01035a2ebb65e532460f') in 0.015548 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-69_comp_dir.png
+  artifactKey: Guid(36de987facb075742b00d0741623308c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-69_comp_dir.png using Guid(36de987facb075742b00d0741623308c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f297a9069d90fbdd5756aeb2beb534f') in 0.015479 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-65_comp_light.exr
+  artifactKey: Guid(b9ea289a21da2d944b970e057491d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-65_comp_light.exr using Guid(b9ea289a21da2d944b970e057491d2be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '93ca0ddeb1cd5b628e4acc13e1c5c260') in 0.016301 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-55_comp_dir.png
+  artifactKey: Guid(f14d1f82bb76dc645a8bd5dc1dbc3acf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-55_comp_dir.png using Guid(f14d1f82bb76dc645a8bd5dc1dbc3acf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5e74eb3f1f772f3a82bfbb158a049e06') in 0.015599 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-52_comp_light.exr
+  artifactKey: Guid(69fb4f9cf5ef2ff44aba7a71c370b45b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-52_comp_light.exr using Guid(69fb4f9cf5ef2ff44aba7a71c370b45b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '467cab3923c0e6ae83112888bfe3cc82') in 0.016435 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-57_comp_dir.png
+  artifactKey: Guid(efd0e8d94b371144ea6539964d3a9c5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-57_comp_dir.png using Guid(efd0e8d94b371144ea6539964d3a9c5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5384d60bf0c62d3662a69a73ef18f99b') in 0.016449 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-54_comp_light.exr
+  artifactKey: Guid(81c7d7122367a8141a697241178aba7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-54_comp_light.exr using Guid(81c7d7122367a8141a697241178aba7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef38b229cc2fb634ec5e0e5fa2589e22') in 0.016286 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-82_comp_light.exr
+  artifactKey: Guid(8d0c1db081a87a74d90ae5272a8aa092) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-82_comp_light.exr using Guid(8d0c1db081a87a74d90ae5272a8aa092) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ae552f39d27dfa52ca67bc54a0d4b92') in 0.016295 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000056 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-96_comp_dir.png
+  artifactKey: Guid(c09361c3c9641414eb7913762ab83e82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-96_comp_dir.png using Guid(c09361c3c9641414eb7913762ab83e82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd67bb5de559de57e0c97b55ebac46b90') in 0.016082 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-100_comp_dir.png
+  artifactKey: Guid(1376ae4d53569f84888ea42a09d03cc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-100_comp_dir.png using Guid(1376ae4d53569f84888ea42a09d03cc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24992254693f9ed249f44ea2e8d05638') in 0.015603 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-89_comp_light.exr
+  artifactKey: Guid(9c5804446050d26468a5fe1e1cfb77ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-89_comp_light.exr using Guid(9c5804446050d26468a5fe1e1cfb77ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '737b1079919d6b5532184e5f28a1f400') in 0.016057 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-100_comp_light.exr
+  artifactKey: Guid(e8e7b26c328bd4448bbc1cbe4073db27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-100_comp_light.exr using Guid(e8e7b26c328bd4448bbc1cbe4073db27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '71cb9747ca9bf23eef02db3360a5c355') in 0.015762 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-102_comp_light.exr
+  artifactKey: Guid(1bff2880c249c1c4c8b23e3b8036b790) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-102_comp_light.exr using Guid(1bff2880c249c1c4c8b23e3b8036b790) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3599e26bd8d2d14dbc981ac727c96dc') in 0.015494 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-85_comp_light.exr
+  artifactKey: Guid(0343f4810fb44d243b2a577c975363fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-85_comp_light.exr using Guid(0343f4810fb44d243b2a577c975363fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb6fe54f0dacc598348c67ecc1aebd6f') in 0.015449 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-92_comp_light.exr
+  artifactKey: Guid(eff0ca95ffd15e24dae19a62245b4f18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-92_comp_light.exr using Guid(eff0ca95ffd15e24dae19a62245b4f18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4fedaa2df57cb5cd430e1cb9bb1c93de') in 0.018368 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-87_comp_light.exr
+  artifactKey: Guid(2a6c70a5945f0ea449869d0ed43a04fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-87_comp_light.exr using Guid(2a6c70a5945f0ea449869d0ed43a04fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '12fcec1759712d98682d177cd1f499b5') in 0.016581 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-99_comp_light.exr
+  artifactKey: Guid(9f686677e1e082b4ca3e4052e690c46e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-99_comp_light.exr using Guid(9f686677e1e082b4ca3e4052e690c46e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75f90c8bad9d052063c5feab2407e9e6') in 0.019604 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-94_comp_light.exr
+  artifactKey: Guid(de5b7493e40bca14985ff07a08c68538) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-94_comp_light.exr using Guid(de5b7493e40bca14985ff07a08c68538) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b8a2162136d5178d2a512126b3fd1bc') in 0.018379 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-102_comp_dir.png
+  artifactKey: Guid(426cae4cffc27ca4ebcd87cd17453b34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-102_comp_dir.png using Guid(426cae4cffc27ca4ebcd87cd17453b34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6a3c75bba7e8629de465475f82b573ed') in 0.016248 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-73_comp_dir.png
+  artifactKey: Guid(f5989a38557053b4593e755db7fe4013) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-73_comp_dir.png using Guid(f5989a38557053b4593e755db7fe4013) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b6bbbc172627459a812e2bdb7aad8c07') in 0.015022 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-101_comp_dir.png
+  artifactKey: Guid(5341204cd95b6bf4c88ce8a50ee2c020) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-101_comp_dir.png using Guid(5341204cd95b6bf4c88ce8a50ee2c020) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4b486e938de4d5530e9539dd0a4de140') in 0.015811 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-91_comp_light.exr
+  artifactKey: Guid(ce7a0d7c4de174b45a86ec24eeb02cb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-91_comp_light.exr using Guid(ce7a0d7c4de174b45a86ec24eeb02cb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc414717cba0b6386bcacb977673d2d4') in 0.015734 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-86_comp_dir.png
+  artifactKey: Guid(296680d781a460648aa262f21a626b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-86_comp_dir.png using Guid(296680d781a460648aa262f21a626b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'efe95fdb20c1752a3a6a6b593808b0c1') in 0.015990 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-93_comp_dir.png
+  artifactKey: Guid(a24fa44097cddb74da074275e0780af0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-93_comp_dir.png using Guid(a24fa44097cddb74da074275e0780af0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9bcd1c49a7838c950a7860124bdbd49') in 0.016222 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-84_comp_light.exr
+  artifactKey: Guid(dc2b2516109434645b7103d63fb45b14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-84_comp_light.exr using Guid(dc2b2516109434645b7103d63fb45b14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '49f8c1d86f8dc9586ecc144c28342c1f') in 0.015202 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-95_comp_dir.png
+  artifactKey: Guid(aa1e4b268799e4f45a1506953b218fae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-95_comp_dir.png using Guid(aa1e4b268799e4f45a1506953b218fae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac568e7607282abc77b9aace02766c0b') in 0.016498 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-98_comp_light.exr
+  artifactKey: Guid(bcc979ef0bb616c48a575e65d169d585) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-98_comp_light.exr using Guid(bcc979ef0bb616c48a575e65d169d585) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b3fdfb9afd7f6959e1e9347a1dbc369') in 0.016109 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-101_comp_light.exr
+  artifactKey: Guid(9b86459d39a54824689a5ca5ede86360) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-101_comp_light.exr using Guid(9b86459d39a54824689a5ca5ede86360) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc9b46bc54313046799370de62ac6fb5') in 0.015856 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-91_comp_dir.png
+  artifactKey: Guid(16e0e3257ea0164438c16d1f322753e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-91_comp_dir.png using Guid(16e0e3257ea0164438c16d1f322753e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89a9203a4035bb7def5a72f78abf80dc') in 0.015686 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-90_comp_light.exr
+  artifactKey: Guid(53f2be0e44f7e5c4492cf348fad6b896) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-90_comp_light.exr using Guid(53f2be0e44f7e5c4492cf348fad6b896) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a13b48a360c49de16a55dde901392cb0') in 0.015496 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-84_comp_dir.png
+  artifactKey: Guid(b1410ab3c9806a04a9a5281c038d221d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-84_comp_dir.png using Guid(b1410ab3c9806a04a9a5281c038d221d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73bbd9528ff7efcd073677935bfbfa3c') in 0.015655 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-62_comp_light.exr
+  artifactKey: Guid(a735522f092341c46aa68b42e12ab20c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-62_comp_light.exr using Guid(a735522f092341c46aa68b42e12ab20c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '889444aa08e49f46bc27cfc33a02335c') in 0.016010 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-79_comp_light.exr
+  artifactKey: Guid(3d70d38aad5c9234da7997b817fa3f78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-79_comp_light.exr using Guid(3d70d38aad5c9234da7997b817fa3f78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '61c378d8649e76e14ea2fd9a63580b23') in 0.016587 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.024601 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-105_comp_dir.png
+  artifactKey: Guid(be36dd0db5746ef4bb6b773c2c3d26d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-105_comp_dir.png using Guid(be36dd0db5746ef4bb6b773c2c3d26d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1140158d5b00b7ed1eeca0fcd554537') in 0.016102 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-107_comp_dir.png
+  artifactKey: Guid(f56175b8f88e37a459a9b130c3be91b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-107_comp_dir.png using Guid(f56175b8f88e37a459a9b130c3be91b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d8947e810d8df16ac6eed1c2914d903') in 0.015890 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-118_comp_dir.png
+  artifactKey: Guid(4a1ecab132357534c9271a7d59965b36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-118_comp_dir.png using Guid(4a1ecab132357534c9271a7d59965b36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ab57b34fef46173a23997f51dcbd444') in 0.015859 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-109_comp_light.exr
+  artifactKey: Guid(09dd90c7ace6cc74f947f31bba594227) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-109_comp_light.exr using Guid(09dd90c7ace6cc74f947f31bba594227) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8889b3b49435c2f9063d57cd7e28d74') in 0.018812 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-131_comp_light.exr
+  artifactKey: Guid(1b4e5bbc514f1904eb810f4a9aa46d78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-131_comp_light.exr using Guid(1b4e5bbc514f1904eb810f4a9aa46d78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd1845160e06519e82782449f430143c6') in 0.018358 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-129_comp_light.exr
+  artifactKey: Guid(595afefaf01209b45a479ead5b60a532) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-129_comp_light.exr using Guid(595afefaf01209b45a479ead5b60a532) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63bef9ed474933a061acc7402a44f812') in 0.016733 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-142_comp_light.exr
+  artifactKey: Guid(ac8b76bc4d9fb93469d27f4f7acffb3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-142_comp_light.exr using Guid(ac8b76bc4d9fb93469d27f4f7acffb3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92222d0bd4bc084b2b23ca5b35b8a1cc') in 0.015958 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-150_comp_light.exr
+  artifactKey: Guid(ef2bd9777545b7042a0c7243a49d7518) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-150_comp_light.exr using Guid(ef2bd9777545b7042a0c7243a49d7518) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '821ee720615677c7f3d5c8ba8e2c2727') in 0.016144 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-126_comp_light.exr
+  artifactKey: Guid(5bcb6fdeea243d54d83c36d5b434c8e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-126_comp_light.exr using Guid(5bcb6fdeea243d54d83c36d5b434c8e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d9333c9c9247ff27368df6fad0cda3e') in 0.016955 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-150_comp_dir.png
+  artifactKey: Guid(799401c771308754ab40c0efc6389fc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-150_comp_dir.png using Guid(799401c771308754ab40c0efc6389fc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '936ee57776338f879f7d23030cc11bf5') in 0.015882 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-110_comp_dir.png
+  artifactKey: Guid(431248c759f474a4c9357e374b35a9c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-110_comp_dir.png using Guid(431248c759f474a4c9357e374b35a9c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '649844b5111d37d8c9a450573226076d') in 0.016456 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-120_comp_dir.png
+  artifactKey: Guid(9fe7223306b3e194fb2420767cd04da7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-120_comp_dir.png using Guid(9fe7223306b3e194fb2420767cd04da7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '894b9e06380a60328f074b16e164c012') in 0.017545 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-147_comp_light.exr
+  artifactKey: Guid(89ab80e36d344434d83bde5f6eb39799) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-147_comp_light.exr using Guid(89ab80e36d344434d83bde5f6eb39799) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c0f734c3abf55d77277cca8ccd6cb3a') in 0.017233 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-137_comp_dir.png
+  artifactKey: Guid(97c983853c2de504c843364b3ea69c09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-137_comp_dir.png using Guid(97c983853c2de504c843364b3ea69c09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8faf4395e667bb3ca19c1ab24a8eaedb') in 0.017127 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-140_comp_dir.png
+  artifactKey: Guid(6194ee0ad30d9b245a86118ff22f5fd5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-140_comp_dir.png using Guid(6194ee0ad30d9b245a86118ff22f5fd5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6a86ccfe34fca4e749167b34a0aa358d') in 0.015396 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-117_comp_light.exr
+  artifactKey: Guid(47609a050bebd7641b997c66c7dbff03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-117_comp_light.exr using Guid(47609a050bebd7641b997c66c7dbff03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '782c03bce461a631c22dd305cf3f33ed') in 0.015415 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-140_comp_light.exr
+  artifactKey: Guid(850abef4752014f42b887dc2be236ad7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-140_comp_light.exr using Guid(850abef4752014f42b887dc2be236ad7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba6aa16be48481493e7c5986bd097e02') in 0.015667 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-111_comp_dir.png
+  artifactKey: Guid(e4b201327b303dc4c8d96e0dcf36922c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-111_comp_dir.png using Guid(e4b201327b303dc4c8d96e0dcf36922c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69388257a6ab5112d3712f45bf3cb2cc') in 0.015745 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-147_comp_dir.png
+  artifactKey: Guid(c32a8e8052c79a340babb868d3815f67) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-147_comp_dir.png using Guid(c32a8e8052c79a340babb868d3815f67) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '445b7dc682018022adf23e134db3a2d0') in 0.016420 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-111_comp_light.exr
+  artifactKey: Guid(1eb6d77561072bb4883c0c83d4820c60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-111_comp_light.exr using Guid(1eb6d77561072bb4883c0c83d4820c60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf0e4e3050ac56964d993719bc517a78') in 0.015051 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-153_comp_dir.png
+  artifactKey: Guid(d99a911f3e72c814496716ac9f0a9267) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-153_comp_dir.png using Guid(d99a911f3e72c814496716ac9f0a9267) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6306013b6a72e45700f7b8d28949bda4') in 0.015103 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-116_comp_light.exr
+  artifactKey: Guid(46f3075d059f0f74abab6593e54bebfa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-116_comp_light.exr using Guid(46f3075d059f0f74abab6593e54bebfa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd030618c25e01829cebb70fc124de41a') in 0.015261 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-146_comp_dir.png
+  artifactKey: Guid(af970ef8562fe474e81d7b81745967c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-146_comp_dir.png using Guid(af970ef8562fe474e81d7b81745967c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e070d365dddfa00f56e30c2b2c155af5') in 0.015118 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-136_comp_light.exr
+  artifactKey: Guid(326671f7560d38642997dfcd324a302d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-136_comp_light.exr using Guid(326671f7560d38642997dfcd324a302d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0e57f4a1255447b88097f1fee8756bd') in 0.015840 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-142_comp_dir.png
+  artifactKey: Guid(5f8970357c1870749b8b7fd2891b6c5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-142_comp_dir.png using Guid(5f8970357c1870749b8b7fd2891b6c5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '583a1bb05e651b70aff65fb5d38e559d') in 0.015913 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-130_comp_dir.png
+  artifactKey: Guid(88b6c13d4a9bea940bb57f599d9455a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-130_comp_dir.png using Guid(88b6c13d4a9bea940bb57f599d9455a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6245d053e2fabbb07ebf9ef71ea2ad6e') in 0.016423 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-128_comp_light.exr
+  artifactKey: Guid(2f37936dfe30500429a72a7dd525ba4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-128_comp_light.exr using Guid(2f37936dfe30500429a72a7dd525ba4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dad3e988fea576d2814b0f29b6ce909f') in 0.016706 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-115_comp_dir.png
+  artifactKey: Guid(0f69520b42f23a04a9d4c6fa955ad6e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-115_comp_dir.png using Guid(0f69520b42f23a04a9d4c6fa955ad6e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ca558ffe39b56b3b270c6db335a4d81') in 0.017338 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-141_comp_dir.png
+  artifactKey: Guid(b7c7e473f5b58ba4da1ae50937b95ce4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-141_comp_dir.png using Guid(b7c7e473f5b58ba4da1ae50937b95ce4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5e3e668621779f24a2a6632cf3db955') in 0.018006 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-108_comp_light.exr
+  artifactKey: Guid(f9f360fd5b612f048926eec680dfe59c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-108_comp_light.exr using Guid(f9f360fd5b612f048926eec680dfe59c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ceb5b230691429a677a747ffb33e9bbf') in 0.018905 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-125_comp_dir.png
+  artifactKey: Guid(29aa95bf14920b640be239bd658cb238) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-125_comp_dir.png using Guid(29aa95bf14920b640be239bd658cb238) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d7e3dd81ec084b92d756cf00275e69e') in 0.015614 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-133_comp_light.exr
+  artifactKey: Guid(1ad1b07d6cbc0eb48ab62a6835f2a542) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-133_comp_light.exr using Guid(1ad1b07d6cbc0eb48ab62a6835f2a542) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '53a7ff43d1dd20155fe965a3ebf22808') in 0.015287 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-120_comp_light.exr
+  artifactKey: Guid(b46b09cbaac2af1439e0565b82a0b80c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-120_comp_light.exr using Guid(b46b09cbaac2af1439e0565b82a0b80c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42f32bbb0703a34fbb54ab5fdcd22245') in 0.016711 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-114_comp_dir.png
+  artifactKey: Guid(6386ad385f9d6654da67966b63e07234) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-114_comp_dir.png using Guid(6386ad385f9d6654da67966b63e07234) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8ff18918f4b88e234d8bc7e53e075a5') in 0.018007 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-144_comp_light.exr
+  artifactKey: Guid(d9936b8740926184da2fb108a92dccdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-144_comp_light.exr using Guid(d9936b8740926184da2fb108a92dccdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3332e26a94847d4f9b80f856984e3adb') in 0.018530 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-112_comp_light.exr
+  artifactKey: Guid(9c5c5e0a00858e74d85c6104b567a512) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-112_comp_light.exr using Guid(9c5c5e0a00858e74d85c6104b567a512) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '64e2812449c515272b08c5c2c2cdee16') in 0.017535 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-146_comp_light.exr
+  artifactKey: Guid(de769d42fe73b2140aa8b92a8d8c7343) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-146_comp_light.exr using Guid(de769d42fe73b2140aa8b92a8d8c7343) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a069792e4ae9a447213475e52396c36') in 0.015551 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-141_comp_light.exr
+  artifactKey: Guid(4b020d8987a89084cb05029a8830ea94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-141_comp_light.exr using Guid(4b020d8987a89084cb05029a8830ea94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '459e6e3d3a532678d8c106f41e99f6a6') in 0.016929 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-131_comp_dir.png
+  artifactKey: Guid(3650b6d1caa31b9499fd741589980768) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-131_comp_dir.png using Guid(3650b6d1caa31b9499fd741589980768) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd078de2f5414709cf09502ac9f2c39c2') in 0.015859 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-110_comp_light.exr
+  artifactKey: Guid(681623735a72628488763d2d00c60510) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-110_comp_light.exr using Guid(681623735a72628488763d2d00c60510) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e30462e0fbc920f7ae442859bca6d894') in 0.015595 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-122_comp_light.exr
+  artifactKey: Guid(6b82e9c2c9e553b4785db40aaf580326) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-122_comp_light.exr using Guid(6b82e9c2c9e553b4785db40aaf580326) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2347c437506a3e4e0482118b88d92ab7') in 0.016619 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-133_comp_dir.png
+  artifactKey: Guid(62240d8c426a914409885007871f5500) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-133_comp_dir.png using Guid(62240d8c426a914409885007871f5500) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'db9d477f43b54b42c51d504ab830e00d') in 0.016024 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-117_comp_dir.png
+  artifactKey: Guid(d1829a4df0fbb9443bcad35cfebe78cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-117_comp_dir.png using Guid(d1829a4df0fbb9443bcad35cfebe78cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad647c1c9612067a718d8419b5d1e3ae') in 0.016795 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-118_comp_light.exr
+  artifactKey: Guid(66b882465de2795448f8bc4b8e33787c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-118_comp_light.exr using Guid(66b882465de2795448f8bc4b8e33787c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32047d66bf66c698acac526091b638fb') in 0.020854 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-145_comp_light.exr
+  artifactKey: Guid(310953f12a55d994a809b76bb1e6b43f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-145_comp_light.exr using Guid(310953f12a55d994a809b76bb1e6b43f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00df86ab7805f8fc555874758a97223f') in 0.017191 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-116_comp_dir.png
+  artifactKey: Guid(416cc4343ea9d284f9f00159d189efbd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-116_comp_dir.png using Guid(416cc4343ea9d284f9f00159d189efbd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6efec537dbd157e8573d8a3917415b18') in 0.016187 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-122_comp_dir.png
+  artifactKey: Guid(e1dcb639ba676c648a985735681bbbda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-122_comp_dir.png using Guid(e1dcb639ba676c648a985735681bbbda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c320bcd4f6e5518f22feb08753a06878') in 0.015594 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-144_comp_dir.png
+  artifactKey: Guid(e75430c43b78a3f488e30190ad5159c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-144_comp_dir.png using Guid(e75430c43b78a3f488e30190ad5159c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a84106bd1c8dfa4d7dcd346568a3e98') in 0.016194 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-151_comp_light.exr
+  artifactKey: Guid(8f01e9560757c3f458234d1f1a7a7068) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-151_comp_light.exr using Guid(8f01e9560757c3f458234d1f1a7a7068) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25cb4f2fcf528022c91aaeaed2c4db82') in 0.015568 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Scenes/CastleEnter/Lightmap-129_comp_dir.png
+  artifactKey: Guid(02ef0534479cf3f4d94e18096e9bb8cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/CastleEnter/Lightmap-129_comp_dir.png using Guid(02ef0534479cf3f4d94e18096e9bb8cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '176b170303801cdbf7d1dc1e8c4f3a22') in 0.016410 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 19.771700 seconds.
+  path: Assets/Graphics/Castle.prefab
+  artifactKey: Guid(33dc75f4a14e91d47bf667ba1549e4b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Graphics/Castle.prefab using Guid(33dc75f4a14e91d47bf667ba1549e4b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c5000a8e87f8c9822571d752f088f33') in 0.333698 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 455
+========================================================================
+Received Import Request.
+  Time since last request: 39.098008 seconds.
+  path: Assets/Graphics/Castle/battlement_cornerOuter.fbx
+  artifactKey: Guid(07addcb9a52e02a49baca134399d5fee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Graphics/Castle/battlement_cornerOuter.fbx using Guid(07addcb9a52e02a49baca134399d5fee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e7c1e543f85155280ad18018eba873fe') in 0.046682 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Graphics/Castle/columnPaint_damaged.fbx
+  artifactKey: Guid(74b0707744567b345bcd4bd0dd8acbeb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Graphics/Castle/columnPaint_damaged.fbx using Guid(74b0707744567b345bcd4bd0dd8acbeb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bdfece8e33d1a00dae7b5fc91c64b5ea') in 0.024916 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Graphics/Castle/detail_crate.fbx
+  artifactKey: Guid(6fdc6d43b3927cb408bbdacaa7e5f179) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Graphics/Castle/detail_crate.fbx using Guid(6fdc6d43b3927cb408bbdacaa7e5f179) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af5314e3fd4e5a83e10b6697ce6f9843') in 0.021488 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Graphics/Castle/overhang.fbx
+  artifactKey: Guid(04739620875a02d4a9d2d81d602650c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Graphics/Castle/overhang.fbx using Guid(04739620875a02d4a9d2d81d602650c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82d94547c70a2df8d89143f4e9a6e873') in 0.017785 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Graphics/Castle/towerPaint.fbx
+  artifactKey: Guid(ca81df02115b33a4e8a1b721a6cd9ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Graphics/Castle/towerPaint.fbx using Guid(ca81df02115b33a4e8a1b721a6cd9ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f7241881e66b62e2f14eae594f6aa7f7') in 0.024929 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Graphics/Castle/floor_steps.fbx
+  artifactKey: Guid(4bedd0ebda9383646b28cddf50795e3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Graphics/Castle/floor_steps.fbx using Guid(4bedd0ebda9383646b28cddf50795e3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8190f6aafda61336e78838ee74d7bd3d') in 0.020950 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Graphics/Castle/structure_poles.fbx
+  artifactKey: Guid(cc7353be9e8baeb4daff6db5353c326a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Graphics/Castle/structure_poles.fbx using Guid(cc7353be9e8baeb4daff6db5353c326a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26ca084add032c7c0f28001c5db5eb3b') in 0.016905 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Graphics/Castle/wall_detail.fbx
+  artifactKey: Guid(ee0eeafc0276a174bbb6e46db90a0936) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Graphics/Castle/wall_detail.fbx using Guid(ee0eeafc0276a174bbb6e46db90a0936) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aa7204b8fc8086c5cec2469c99a849ad') in 0.020439 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Graphics/Castle/structure.fbx
+  artifactKey: Guid(fb18853390e58974aa10303a68e59be7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Graphics/Castle/structure.fbx using Guid(fb18853390e58974aa10303a68e59be7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '187d0895623d6ebf8ee2218358e875fb') in 0.017842 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Graphics/Castle/overhang_round.fbx
+  artifactKey: Guid(69df12db44dcf8b4db3ab284e19f7465) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Graphics/Castle/overhang_round.fbx using Guid(69df12db44dcf8b4db3ab284e19f7465) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85f4a715bc0f7759f39c7d317a3bb507') in 0.014528 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Graphics/Castle/wall_gateHalf.fbx
+  artifactKey: Guid(c814627f4e92f4846b4764c457d1be21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Graphics/Castle/wall_gateHalf.fbx using Guid(c814627f4e92f4846b4764c457d1be21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27ecd960556d2f2f59c612c1e1ba7920') in 0.021459 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.602958 seconds.
+  path: Assets/Graphics/Castle/Textures/EntranceEnd.mat
+  artifactKey: Guid(4559312b292c2d8478e12a6232becbbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Graphics/Castle/Textures/EntranceEnd.mat using Guid(4559312b292c2d8478e12a6232becbbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c59822d2df491ffe494dc9894254b8da') in 0.005381 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 1
 ========================================================================
 Received Import Request.
   Time since last request: 0.000011 seconds.
-  path: Assets/1ybobl.jpg
-  artifactKey: Guid(d3a1750fad37cb1409760c2e3d8bfa94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/1ybobl.jpg using Guid(d3a1750fad37cb1409760c2e3d8bfa94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4d5db6f3b62875093b93f172ad69b7d1') in 0.059261 seconds
+  path: Assets/Graphics/Castle/Textures/Stone.mat
+  artifactKey: Guid(68306b7ffed8dab4eb8bbcbc4ac65c3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Graphics/Castle/Textures/Stone.mat using Guid(68306b7ffed8dab4eb8bbcbc4ac65c3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac70fd9f49e5f4dd88933293102addae') in 0.009065 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 4
+Number of asset objects unloaded after import = 3
 ========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.524 seconds
-Refreshing native plugins compatible for Editor in 6.55 ms, found 4 plugins.
-Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-Native extension for WebGL target not found
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.186 seconds
-Domain Reload Profiling: 1707ms
-	BeginReloadAssembly (181ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (12ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (34ms)
-	RebuildCommonClasses (38ms)
-	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (33ms)
-	LoadAllAssembliesAndSetupDomain (255ms)
-		LoadAssemblies (342ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (15ms)
-			TypeCache.Refresh (7ms)
-				TypeCache.ScanAssembly (0ms)
-			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (7ms)
-	FinalizeReload (1187ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (511ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (32ms)
-			SetLoadedEditorAssemblies (4ms)
-			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (80ms)
-			ProcessInitializeOnLoadAttributes (345ms)
-			ProcessInitializeOnLoadMethodAttributes (41ms)
-			AfterProcessingInitializeOnLoad (7ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (17ms)
-Refreshing native plugins compatible for Editor in 7.03 ms, found 4 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4077 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 36 unused Assets / (35.2 KB). Loaded Objects now: 4589.
-Memory consumption went from 151.9 MB to 151.9 MB.
-Total: 4.025100 ms (FindLiveObjects: 0.487600 ms CreateObjectMapping: 0.175600 ms MarkObjects: 3.297800 ms  DeleteObjects: 0.062800 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:CustomObjectIndexerAttribute: 6d391050e5a25f67b0a2c618074f2cd9 -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Graphics/Castle/Textures/stones.png
+  artifactKey: Guid(b017f3ce23929544bb607f7ea7cdac5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Graphics/Castle/Textures/stones.png using Guid(b017f3ce23929544bb607f7ea7cdac5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b2fe71540c284d6fe0b5794050b57fa') in 0.013286 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
 AssetImportWorker is now disconnected from the server

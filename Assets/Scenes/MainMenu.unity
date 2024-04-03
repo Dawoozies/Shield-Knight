@@ -1462,7 +1462,7 @@ MonoBehaviour:
   transitionAcceleration: 1
   transitionSpeed: 0.0005
   transitionValue: 2
-  sceneToTransitionTo: EnterTowerScene
+  sceneToTransitionTo: OutsideCastle
 --- !u!1 &1220214279
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/CastleEnter.unity
-    guid: d3328308c64f08e45abe79c31d0fe5bc
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 09591187c380f1341843b27955d360a0
   - enabled: 1
-    path: Assets/Scenes/EnterTowerScene.unity
+    path: Assets/Scenes/OutsideCastle.unity
     guid: 5599eb674468f1e4684d594ab6e02e33
+  - enabled: 1
+    path: Assets/Scenes/CastleEnter.unity
+    guid: d3328308c64f08e45abe79c31d0fe5bc
+  - enabled: 1
+    path: Assets/Scenes/NewTutorial.unity
+    guid: abd55720a2c9ccf42bce6d64be861139
   m_configObjects: {}
