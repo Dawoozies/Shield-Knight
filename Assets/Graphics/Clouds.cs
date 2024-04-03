@@ -21,10 +21,28 @@ public class Clouds : MonoBehaviour
         public SpriteRenderer spriteRenderer;
         public float speed;
         public Transform transform => spriteRenderer.transform;
+        public float _getWidth(Transform backgroundParent)
+        {
+            return spriteRenderer.sprite.bounds.size.x * backgroundParent.localScale.x;
+        }
     }
     private void Start()
     {
         mainCamera = Camera.main;
+        //Spawn all clouds across screen
+        float distAcrossScreen = 0f;
+        cornerA = mainCamera.ScreenToWorldPoint(Vector2.zero);
+        cornerB = mainCamera.ScreenToWorldPoint(new Vector2(mainCamera.pixelWidth, mainCamera.pixelHeight));
+        for (int i = 0; i < cloudCount; i++)
+        {
+            Cloud cloudSpawned = StartSpawnCloud();
+            distAcrossScreen += cloudSpawned._getWidth(backgroundParent);
+            cloudSpawned.spriteRenderer.transform.position += Vector3.right*distAcrossScreen;
+            if (distAcrossScreen > cornerB.x - cornerA.x)
+            {
+                break;
+            }
+        }
     }
 
     private void Update()
@@ -63,7 +81,16 @@ public class Clouds : MonoBehaviour
         clouds.Add(cloud);
         ResetCloud(cloud);
     }
-
+    Cloud StartSpawnCloud()
+    {
+        GameObject clone = Instantiate(cloudPrefab, transform);
+        SpriteRenderer spriteRenderer = clone.GetComponent<SpriteRenderer>();
+        Cloud cloud = new Cloud();
+        cloud.spriteRenderer = spriteRenderer;
+        clouds.Add(cloud);
+        ResetCloud(cloud);
+        return cloud;
+    }
     void ResetCloud(Cloud cloud)
     {
         cloud.spriteRenderer.sprite = sprites[Random.Range(0, sprites.Length)];

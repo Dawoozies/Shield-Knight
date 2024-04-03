@@ -356,6 +356,10 @@ public class WeaponSystem : MonoBehaviour
         }
         held.right = lookAtPos - (Vector2)owner.position;
         held.position = (Vector2)owner.position + (Vector2)(held.right * holdDistance);
+        if (!attackDriver.inProgress)
+        {
+            
+        }
 
         if (chargeDriver.inProgress)
         {
@@ -371,7 +375,19 @@ public class WeaponSystem : MonoBehaviour
             Vector2 start = (Vector2)owner.position;
             Vector2 end = (Vector2)owner.position + (Vector2)(held.right * heldAttackRange);
             attackDriver.SetPositions(start, end);
-            held.position = attackDriver.pos;
+            
+            RaycastHit2D attackHit = Physics2D.BoxCast(owner.position, (Vector2)held.localScale, Vector2.Angle(Vector2.right, held.right), held.right, heldAttackRange, embeddableLayerMask);
+            Vector3 heldPos = attackDriver.pos;
+            if (attackHit.collider != null)
+            {
+                float distToHeldPos = Vector2.Distance(owner.position, heldPos);
+                float distToCentroid = Vector2.Distance(owner.position, attackHit.centroid);
+                if (distToCentroid < distToHeldPos)
+                {
+                    heldPos = (Vector2)owner.position + (Vector2)(held.right * distToCentroid);
+                }
+            }
+            held.position = heldPos;
         }
         attackDriver.DriverUpdate(Time.deltaTime);
     }

@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 30
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0.9113198, b: 0.5613208, a: 1}
   m_FlipX: 0
@@ -238,7 +238,6 @@ MonoBehaviour:
   airDash: {fileID: 11400000, guid: afda67240e3f4fb4b807450d8f828ab3, type: 2}
   aimGravity: {fileID: 11400000, guid: ada1bb7708e60174e8556ecda703f7bc, type: 2}
   aimMove: {fileID: 11400000, guid: 947f7f9da2d045f47b708bac233b9f23, type: 2}
-  parentFollow: {fileID: 11400000, guid: b4412eef6eb4a1e47a58b9620f4455ae, type: 2}
   grounded: 0
   aiming: 0
   runMagnitude: 10

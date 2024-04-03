@@ -15,6 +15,9 @@ public class TextEffects : MonoBehaviour
     private Color colorA, colorB;
     public float indexTimeOffset;
     public bool active;
+    public float frameStep;
+    public float frameRate;
+    private float nextFrame;
     void Start()
     {
         textComponent = GetComponent<TMP_Text>();
@@ -50,7 +53,6 @@ public class TextEffects : MonoBehaviour
             textComponent.UpdateGeometry(textInfo.meshInfo[i].mesh, i);
             textComponent.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
         }
-        
         curveTime += Time.unscaledDeltaTime;
     }
 
