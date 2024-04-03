@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/CastleEnter.unity
+    guid: d3328308c64f08e45abe79c31d0fe5bc
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 09591187c380f1341843b27955d360a0
   - enabled: 1

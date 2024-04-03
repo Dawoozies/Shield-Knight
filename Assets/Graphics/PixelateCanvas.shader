@@ -7,9 +7,9 @@ Shader "Unlit/PixelateCanvas"
     }
     SubShader
     {
-        Tags { "RenderType"="Transparent" }
+        Tags { "Queue"="Overlay" "RenderType"="Transparent" }
         LOD 100
-        
+        ZTest Always
         Pass
         {
             CGPROGRAM

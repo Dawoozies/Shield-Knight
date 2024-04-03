@@ -218,7 +218,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &4470186126938818478
 MonoBehaviour:
@@ -261,6 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalVelocity: {x: 0, y: 0}
+  externalMove: {fileID: 11400000, guid: 83a0e86b61272264eadd016ab089e867, type: 2}
 --- !u!114 &822130930410770765
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -329,6 +329,8 @@ MonoBehaviour:
     inProgress: 0
     completed: 0
     speedMul: 1
+  minHitForce: 25
+  maxHitForce: 50
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 512

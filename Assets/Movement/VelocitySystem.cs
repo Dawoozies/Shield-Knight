@@ -15,9 +15,13 @@ public class VelocitySystem : MonoBehaviour
     private bool checkParentExit;
     private float t;
     private const float checkTime = 0.06f;
+
+    public VelocityData externalMove;
+    private VelocityComponent externalMoveComponent;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        SetupData(externalMove, out externalMoveComponent);
     }
     private void FixedUpdate()
     {
@@ -96,5 +100,12 @@ public class VelocitySystem : MonoBehaviour
     public bool CheckParent()
     {
         return parentTransform != null;
+    }
+
+    public void ExternalMove(Vector2 force)
+    {
+        externalMoveComponent.SetMagnitude(force.magnitude);
+        externalMoveComponent.SetDirection(force.normalized);
+        externalMoveComponent.PlayFromStart();
     }
 }

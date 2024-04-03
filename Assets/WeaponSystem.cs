@@ -56,15 +56,15 @@ public class WeaponSystem : MonoBehaviour
         }
         public void EndDriver()
         {
+            foreach (var action in onEndDriverActions)
+            {
+                action();
+            }
             inProgress = false;
             t = lerpCurveTimeMin;
             lerpCurveTime = 0f;
             completed = false;
             speedMul = 1f;
-            foreach (var action in onEndDriverActions)
-            {
-                action();
-            }
         }
         public void RegisterOnEndCallback(Action a)
         {
@@ -98,6 +98,7 @@ public class WeaponSystem : MonoBehaviour
     public ActiveTransform activeTransform;
     public Transform[] weaponTransforms = new Transform[3];
     public Transform owner;
+    private VelocitySystem ownerVelSystem;
     Vector2 lookAtPos;
     [Range(0f, 2f)]
     public float holdDistance;
@@ -107,9 +108,12 @@ public class WeaponSystem : MonoBehaviour
     public float chargeShakeAmplitude;
     public float chargeShakeSpeed;
     public WeaponDriver chargeDriver;
+    private float chargePercentage;
     //held attack state
     public float heldAttackRange;
     public WeaponDriver attackDriver;
+    public float minHitForce;
+    public float maxHitForce;
 
 
     //Thrown
@@ -145,6 +149,13 @@ public class WeaponSystem : MonoBehaviour
             );
 
         attackDriver.RegisterEndCondition((bool driverCompleted) => driverCompleted);
+        attackDriver.RegisterOnEndCallback(
+            () =>
+            {
+                Debug.LogError("Charge = " + chargePercentage);
+                chargePercentage = 0f;
+            }
+            );
         throwDriver.RegisterEndCondition((bool driverCompleted) => driverCompleted);
         throwDriver.RegisterOnEndCallback(
                 () => 
@@ -339,6 +350,7 @@ public class WeaponSystem : MonoBehaviour
         if(owner == null)
         {
             owner = FindObjectOfType<Player>().transform;
+            ownerVelSystem = owner.GetComponent<VelocitySystem>();
             return;
         }
         HeldUpdate();
@@ -355,11 +367,21 @@ public class WeaponSystem : MonoBehaviour
             return;
         }
         held.right = lookAtPos - (Vector2)owner.position;
-        held.position = (Vector2)owner.position + (Vector2)(held.right * holdDistance);
+        Vector3 idleHeldPos = (Vector2)owner.position + (Vector2)(held.right * holdDistance);
         if (!attackDriver.inProgress)
         {
-            
+            RaycastHit2D idleHit = Physics2D.Raycast(owner.position, held.right, holdDistance, embeddableLayerMask);
+            if (idleHit.collider != null)
+            {
+                float distToDefaultPos = Vector2.Distance(owner.position, idleHeldPos);
+                float distToCentroid = Vector2.Distance(owner.position, idleHit.centroid);
+                if (distToCentroid < distToDefaultPos)
+                {
+                    idleHeldPos = (Vector2)owner.position + (Vector2)(held.right * distToCentroid);
+                }
+            }
         }
+        held.position = idleHeldPos;
 
         if (chargeDriver.inProgress)
         {
@@ -367,6 +389,10 @@ public class WeaponSystem : MonoBehaviour
             Vector2 end = (Vector2)owner.position + (Vector2)(-held.right * (holdDistance + chargeShakeAmplitude * Mathf.Sin(Time.time * chargeShakeSpeed)));
             chargeDriver.SetPositions(start, end);
             held.position = chargeDriver.pos;
+            if (chargePercentage <= 1)
+            {
+                chargePercentage += Time.deltaTime;
+            }
         }
         chargeDriver.DriverUpdate(Time.deltaTime);
 
@@ -385,6 +411,8 @@ public class WeaponSystem : MonoBehaviour
                 if (distToCentroid < distToHeldPos)
                 {
                     heldPos = (Vector2)owner.position + (Vector2)(held.right * distToCentroid);
+                    float hitForce = Mathf.Lerp(minHitForce, maxHitForce, chargePercentage);
+                    ownerVelSystem?.ExternalMove(-held.right*hitForce);
                 }
             }
             held.position = heldPos;

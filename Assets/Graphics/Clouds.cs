@@ -16,6 +16,7 @@ public class Clouds : MonoBehaviour
     private Vector2 cornerA, cornerB;
     private float timer;
     public Transform backgroundParent;
+    public float zPos;
     private class Cloud
     {
         public SpriteRenderer spriteRenderer;
@@ -65,11 +66,11 @@ public class Clouds : MonoBehaviour
         foreach (var cloud in clouds)
         {
             cloud.transform.position += Vector3.right*(cloud.speed*Time.unscaledDeltaTime);
-            if (cloud.transform.position.x >
-                cornerB.x + cloud.spriteRenderer.sprite.bounds.size.x * backgroundParent.localScale.x)
+            if (cloud.transform.position.x > cornerB.x + cloud.spriteRenderer.sprite.bounds.size.x * backgroundParent.localScale.x)
             {
                 ResetCloud(cloud);
             }
+            cloud.transform.localPosition = new Vector3(cloud.transform.localPosition.x,cloud.transform.localPosition.y, zPos);
         }
     }
     void SpawnCloud()
@@ -100,7 +101,7 @@ public class Clouds : MonoBehaviour
                 Mathf.Lerp(cornerA.y, cornerB.y, yRand)
             );
         float yPos = Mathf.Clamp(cloud.transform.position.y, 0f, cornerB.y - (cloud.spriteRenderer.sprite.bounds.size.y/2f)*backgroundParent.localScale.y);
-        cloud.transform.position = new Vector2(cloud.transform.position.x, yPos);
+        cloud.transform.position = new Vector3(cloud.transform.position.x, yPos, zPos);
         cloud.speed = Random.Range(minSpeed, maxSpeed);
     }
 }
