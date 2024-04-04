@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
@@ -19,6 +20,12 @@ public class InputManager : MonoBehaviour
     public static List<Action<Vector3Int>> mouseUpActions = new();
     public static List<Action> jumpDownActions = new();
     public static List<Action> jumpUpActions = new();
+
+    private void Awake()
+    {
+        ClearAllActions();
+    }
+
     void Update()
     {
         Vector2 mouseScreenPos = Input.mousePosition;
@@ -180,5 +187,16 @@ public class InputManager : MonoBehaviour
     public static void RegisterJumpUpInputCallback(Action action)
     {
         jumpUpActions.Add(action);
+    }
+    public static void ClearAllActions()
+    {
+        mouseInputActions.Clear();
+        moveInputActions.Clear();
+        mouseClickActions.Clear();
+        jumpInputActions.Clear();
+        mouseDownActions.Clear();
+        mouseUpActions.Clear();
+        jumpDownActions.Clear();
+        jumpUpActions.Clear();
     }
 }
