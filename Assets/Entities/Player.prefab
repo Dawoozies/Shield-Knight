@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1151585796034842189}
   - component: {fileID: 4031453512276087833}
   - component: {fileID: 5336858948222026585}
+  - component: {fileID: 8410107560289030218}
   m_Layer: 7
   m_Name: Graphics
   m_TagString: Untagged
@@ -27,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 244662188241686045}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.65, y: 1, z: 1}
+  m_LocalPosition: {x: 0.00060001016, y: -0.0491, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6540044850530147315}
@@ -74,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 30
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.9113198, b: 0.5613208, a: 1}
+  m_Sprite: {fileID: -688483587, guid: 8c9493271dd48ba40915288cf0ddf2eb, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -109,6 +110,29 @@ MonoBehaviour:
   trailLength: 0
   emitTime: 0.1
   trailFadeSpeed: 2
+--- !u!114 &8410107560289030218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244662188241686045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed98c07f37854ea4bb7aef01fbfae949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  run:
+  - {fileID: -688483587, guid: 8c9493271dd48ba40915288cf0ddf2eb, type: 3}
+  - {fileID: -1113608371, guid: 8c9493271dd48ba40915288cf0ddf2eb, type: 3}
+  - {fileID: 1553775464, guid: 8c9493271dd48ba40915288cf0ddf2eb, type: 3}
+  - {fileID: 1557413511, guid: 8c9493271dd48ba40915288cf0ddf2eb, type: 3}
+  - {fileID: 2111025799, guid: 8c9493271dd48ba40915288cf0ddf2eb, type: 3}
+  - {fileID: 1390378335, guid: 8c9493271dd48ba40915288cf0ddf2eb, type: 3}
+  - {fileID: 1444191394, guid: 8c9493271dd48ba40915288cf0ddf2eb, type: 3}
+  - {fileID: -697282089, guid: 8c9493271dd48ba40915288cf0ddf2eb, type: 3}
+  - {fileID: -1933947709, guid: 8c9493271dd48ba40915288cf0ddf2eb, type: 3}
+  runAnimSpeed: 6
 --- !u!1 &2364307283112482766
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,5 +331,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ad545b0a23e48c49b95d42f05d8b408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalScale: {x: 0.65, y: 1, z: 1}
+  originalScale: {x: 2, y: 2, z: 1}
   finalScale: {x: 0, y: 0, z: 0}

@@ -20,7 +20,10 @@ public class EffectsManager : MonoBehaviour
     private void Awake()
     {
         ins = this;
-        materialSwaps = backgroundParent.GetComponentsInChildren<MaterialSwap>();
+        if (backgroundParent != null)
+        {
+            materialSwaps = backgroundParent.GetComponentsInChildren<MaterialSwap>();
+        }
         cameraManager = GetComponent<CameraManager>();
 
         for (int i = 0; i < bloodSystemMax; i++)
@@ -72,6 +75,8 @@ public class EffectsManager : MonoBehaviour
     }
     public void HitFXMaterialSwap(MaterialSwap.SwapState state)
     {
+        if (backgroundParent == null)
+            return;
         foreach (var materialSwap in materialSwaps)
         {
             materialSwap.SwapMaterial(state);
@@ -79,6 +84,8 @@ public class EffectsManager : MonoBehaviour
     }
     public void RequestHitStunFX(Collider2D hitCollider)
     {
+        if (backgroundParent == null)
+            return;
         foreach (var hitStunColorSwap in hitStunColorsSwaps)
         {
             if(hitStunColorSwap.gameObject == hitCollider.gameObject)

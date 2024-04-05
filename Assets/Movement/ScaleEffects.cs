@@ -25,7 +25,7 @@ public class ScaleEffects : MonoBehaviour
     }
     void GroundEnterCallback()
     {
-        if(!landComponent.isPlaying && !velocitySystem.CheckParent())
+        if(!landComponent.isPlaying)
         {
             landComponent.PlayFromStart();
         }
@@ -33,7 +33,7 @@ public class ScaleEffects : MonoBehaviour
     }
     void GroundExitCallback()
     {
-        if(!jumpComponent.isPlaying && !velocitySystem.CheckParent())
+        if(!jumpComponent.isPlaying)
         {
             jumpComponent.PlayFromStart();
         }
