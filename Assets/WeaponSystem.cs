@@ -162,12 +162,15 @@ public class WeaponSystem : MonoBehaviour
                 {
                     if(enemyHitsAlongThrowPath != null && enemyHitsAlongThrowPath.Count > 0)
                     {
+                        Debug.LogError(enemyHitsAlongThrowPath.Count);
                         Transform thrown = weaponTransforms[(int)ActiveTransform.Thrown];
                         //we have been tracking the 0th enemy
                         EffectsManager.ins.RequestBloodFX(enemyHitsAlongThrowPath[0].point);
-                        EffectsManager.ins.RequestHitStunFX(enemyHitsAlongThrowPath[0].collider);
+                        //EffectsManager.ins.RequestHitStunFX(enemyHitsAlongThrowPath[0].collider);
                         enemyHitsAlongThrowPath.RemoveAt(0);
                         EffectsManager.ins.RequestTimeStop(0.05f);
+                        
+                        
                         if (enemyHitsAlongThrowPath.Count > 0)
                         {
                             Vector2 start = thrown.position;
@@ -213,6 +216,8 @@ public class WeaponSystem : MonoBehaviour
                             {
                                 embedTransform.parent = secondaryEmbedCast.collider.transform;
                                 embedTransform.position = secondaryEmbedCast.point - throwDirection * thrown.localScale.x/2f;
+                                
+                                Debug.LogError("we running this?");
                             }
                         }
                     }
@@ -437,7 +442,6 @@ public class WeaponSystem : MonoBehaviour
         if (throwDriver.inProgress)
         {
             thrown.position = throwDriver.pos;
-
         }
         throwDriver.DriverUpdate(Time.deltaTime);
     }
