@@ -286,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finalVelocity: {x: 0, y: 0}
   externalMove: {fileID: 11400000, guid: 83a0e86b61272264eadd016ab089e867, type: 2}
+  externalFollowMove: {fileID: 11400000, guid: 3e41f94fe75b0f3429a8e6a399952eb9, type: 2}
 --- !u!114 &822130930410770765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,7 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkOffset: {x: 0, y: 0, z: 0}
   size: {x: 0.5, y: 0.1}
-  checkDistance: 0.02
+  checkDistance: 0.03
   layerMask:
     serializedVersion: 2
     m_Bits: 15424

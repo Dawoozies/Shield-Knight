@@ -127,6 +127,9 @@ public class WeaponSystem : MonoBehaviour
     Vector2 throwPathEnd;
     public WeaponDriver recallDriver;
     Transform embedTransform;
+    //Go back to using fkn mechanim
+    //i cannot imagine how much worse this gets
+    //most of the time i don't even know which state im in
     void Start()
     {
         embedTransform = new GameObject("embedTransform").transform;

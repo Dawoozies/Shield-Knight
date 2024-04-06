@@ -13,6 +13,7 @@ public class GroundCheck : MonoBehaviour
     
     public List<Action> onGroundEnter = new();
     public List<Action> onGroundExit = new();
+    public List<Action<Vector3, Collider2D>> onGroundEnterDetailed = new();
     bool lastGroundedValue;
 
     void Start()
@@ -20,13 +21,17 @@ public class GroundCheck : MonoBehaviour
         //onGroundEnter.Add(() => Debug.Log("Ground Enter Event"));
         //onGroundExit.Add(() => Debug.Log("Ground Exit Event"));
         characterBoxCollider = GetComponent<BoxCollider2D>();
-        checkOffset = new Vector3(0, -characterBoxCollider.size.y/2f, 0);
+        checkOffset = new Vector3(0, characterBoxCollider.size.y/2f, 0);
         DoBoxCast();
         if(hitResult.collider != null)
         {
             foreach (var action in onGroundEnter)
             {
                 action();
+            }
+            foreach (var action in onGroundEnterDetailed)
+            {
+                action(hitResult.centroid, hitResult.collider);
             }
             lastGroundedValue = true;
         }
@@ -46,7 +51,8 @@ public class GroundCheck : MonoBehaviour
     }
     void DoBoxCast()
     {
-        hitResult = Physics2D.BoxCast(transform.position + checkOffset, size, 0f, Vector2.down, checkDistance, layerMask);
+        //hitResult = Physics2D.BoxCast(transform.position + checkOffset, size, 0f, Vector2.down, checkDistance, layerMask);
+        hitResult = Physics2D.BoxCast(transform.position+checkOffset, characterBoxCollider.size, 0f, Vector2.down, characterBoxCollider.size.y, layerMask);
     }
     void DoGroundCheck()
     {
@@ -57,6 +63,10 @@ public class GroundCheck : MonoBehaviour
                 foreach (var action in onGroundEnter)
                 {
                     action();
+                }
+                foreach (var action in onGroundEnterDetailed)
+                {
+                    action(hitResult.centroid, hitResult.collider);
                 }
             }
 

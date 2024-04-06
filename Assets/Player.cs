@@ -139,26 +139,6 @@ public class Player : MonoBehaviour, IHitReceiver
     }
     void GroundEnterHandler()
     {
-        Collider2D parentCollider = groundCheck.GetResultCollider();
-        if (parentCollider != null)
-        {
-            if (parentCollider.tag == "Shield")
-            {
-                WeaponSystem wSystem = parentCollider.GetComponentInParent<WeaponSystem>();
-                if (wSystem != null)
-                {
-                    if (!wSystem.isRecalling())
-                    {
-                        velocitySystem.SetParent(parentCollider.transform);
-                    }
-                }
-            }
-            else
-            {
-                velocitySystem.SetParent(parentCollider.transform);
-            }
-        }
-
         //If Enter Ground Stop Gravity
         TurnOffGravity();
         grounded = true;
@@ -167,7 +147,6 @@ public class Player : MonoBehaviour, IHitReceiver
     }
     void GroundExitHandler()
     {
-        velocitySystem.CheckParentExit();
         //if we exit ground and it was by air dashing
         if(airDashComponent.isPlaying)
         {

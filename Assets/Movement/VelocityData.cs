@@ -75,6 +75,14 @@ public abstract class VelocityComponent
     {
         return direction;
     }
+    public float GetMagnitude()
+    {
+        return magnitude;
+    }
+    public Vector3 GetVelocity()
+    {
+        return direction * magnitude;
+    }
 }
 public class OneShotVelocity : VelocityComponent
 {

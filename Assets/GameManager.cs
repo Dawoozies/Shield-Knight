@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public Transform playerSpawn;
     public GameObject playerPrefab;
-    Player player;
+    static Player player;
     Manager[] managers;
     void Start()
     {
@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
             manager.RegisterPlayer(player);
             manager.ManagedStart();
         }
+
+        ShieldManager shieldManager = GetComponent<ShieldManager>();
+        shieldManager.InitializeShieldManager(player);
     }
     void Update()
     {
@@ -34,6 +37,10 @@ public class GameManager : MonoBehaviour
         {
             manager.PlayerDied();
         }
+    }
+    public static Player GetActivePlayer()
+    {
+        return player;
     }
 }
 public interface Manager

@@ -2,18 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingRangedEnemy : MonoBehaviour
+public class FlyingRangedEnemy : MonoBehaviour, IOnHit
 {
-    private VelocitySystem velocitySystem;
-    public VelocityData move;
-    public VelocityComponent moveComponent;
-    
-    void Start()
+    public Collider2D col { get => boxCollider; }
+    BoxCollider2D boxCollider;
+    void Awake()
     {
-        
+        boxCollider = GetComponent<BoxCollider2D>();
     }
-    void Update()
+    public void Hit(ShieldSystemType systemType, Vector2 shieldDir, float shieldVelocity)
     {
-        
     }
 }

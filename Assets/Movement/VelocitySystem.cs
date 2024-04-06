@@ -14,44 +14,59 @@ public class VelocitySystem : MonoBehaviour
     private Vector2 lastParentPos;
     private bool checkParentExit;
     private float t;
-    private const float checkTime = 0.06f;
+    private const float checkTime = 0.2f;
 
     public VelocityData externalMove;
     private VelocityComponent externalMoveComponent;
+
+    public VelocityData externalFollowMove;
+    private VelocityComponent externalFollowMoveComponent;
+
+    GroundCheck groundCheck;
+    Transform centroidTransform;
+    Vector3 lastCentroidPos;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         SetupData(externalMove, out externalMoveComponent);
+        SetupData(externalFollowMove, out externalFollowMoveComponent);
+        externalFollowMoveComponent.PlayFromStart();
+
+        centroidTransform = new GameObject("Player_CentroidTransform").transform;
+        groundCheck = GetComponent<GroundCheck>();
+        groundCheck.onGroundEnterDetailed.Add(GroundEnterDetailedHandler);
+        groundCheck.onGroundExit.Add(GroundExitHandler);
+    }
+    void GroundEnterDetailedHandler(Vector3 centroid, Collider2D col)
+    {
+        centroidTransform.parent = col.transform;
+        centroidTransform.position = centroid;
+        lastCentroidPos = centroid;
+        rb.transform.position = centroid;
+    }
+    void GroundExitHandler()
+    {
+        centroidTransform.parent = null;
     }
     private void FixedUpdate()
     {
         finalVelocity = Vector2.zero;
+
+        Vector2 ds = centroidTransform.position - lastCentroidPos;
+        externalFollowMoveComponent.SetDirection(ds.normalized);
+        externalFollowMoveComponent.SetMagnitude(ds.magnitude / Time.fixedDeltaTime);
+        lastCentroidPos = centroidTransform.position;
+
+
         foreach  (var component in oneShotComponents)
         {
-            component.Update(Time.fixedDeltaTime, ref finalVelocity);
+            component.Update(Time.fixedUnscaledDeltaTime, ref finalVelocity);
         }
         foreach (var component in continuousComponents)
         {
-            component.Update(Time.fixedDeltaTime, ref finalVelocity);
+            component.Update(Time.fixedUnscaledDeltaTime, ref finalVelocity);
         }
-        
-        if (parentTransform != null)
-        {
-            Vector2 dv = (Vector2)parentTransform.position - lastParentPos;
-            rb.position = rb.position + dv;
-            lastParentPos = parentTransform.position;
-            if (checkParentExit)
-            {
-                if (t > checkTime)
-                {
-                    //we remove parent
-                    parentTransform = null;
-                    checkParentExit = false;
-                }
-                t += Time.deltaTime;
-            }
-        }      
-        
+
         rb.velocity = finalVelocity;
     }
     public void SetupData(VelocityData velocityData, out VelocityComponent component)
@@ -73,35 +88,6 @@ public class VelocitySystem : MonoBehaviour
                 break;
         }
     }
-    public void SetParent(Transform parent)
-    {
-        if (checkParentExit)
-        {
-            if (parentTransform != null && parentTransform == parent)
-            {
-                checkParentExit = false;
-            }
-        }
-        parentTransform = parent;
-        if (parent != null)
-        {
-            lastParentPos = parent.position;
-        }
-    }
-
-    public void CheckParentExit()
-    {
-        if (parentTransform == null)
-            return;
-        checkParentExit = true;
-        t = 0;
-    }
-
-    public bool CheckParent()
-    {
-        return parentTransform != null;
-    }
-
     public void ExternalMove(Vector2 force)
     {
         externalMoveComponent.SetMagnitude(force.magnitude);
