@@ -24,6 +24,7 @@ public abstract class ShieldSystem : MonoBehaviour
     public List<string> earlyStopColliderTags = new();
 
     public Action<Vector3, Collider2D> earlyStopCallback;
+    public bool debug;
     [Serializable]
     public class DebugHit
     {
@@ -36,6 +37,7 @@ public abstract class ShieldSystem : MonoBehaviour
         public Vector2 hitNormal;
         public Vector2 shieldPos;
         public Vector2 shieldRight;
+        public Vector2 shieldUp;
 
         public BoxCollider2D playerBox;
         public Vector2 BLCorner => playerPos + Vector2.right*(-playerBox.size.x/2f) + Vector2.up*(-playerBox.size.y/2f);
@@ -54,6 +56,7 @@ public abstract class ShieldSystem : MonoBehaviour
             hitNormal = hit.normal;
             shieldPos = shield.position;
             shieldRight = shield.transform.right;
+            shieldUp = shield.transform.up;
 
             playerBox = player.GetComponent<BoxCollider2D>();
         }
@@ -77,7 +80,7 @@ public abstract class ShieldSystem : MonoBehaviour
     public CastInfoDebug castInfo;
     private void OnDrawGizmos()
     {
-        if (!Application.isPlaying)
+        if (!Application.isPlaying || !debug)
         {
             return;
         }
@@ -87,19 +90,28 @@ public abstract class ShieldSystem : MonoBehaviour
         }
         if (hitResultsDebug.Count > 0)
         {
-            DebugHit debugHit = hitResultsDebug[0];
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(debugHit.hitPoint, 0.05f);
-            Gizmos.color = Color.yellow;
-            Vector3[] playerBoundingBox = new Vector3[]{
-            debugHit.BLCorner, debugHit.BRCorner,
-            debugHit.BRCorner, debugHit.TRCorner,
-            debugHit.TRCorner, debugHit.TLCorner,
-            debugHit.TLCorner, debugHit.BLCorner
-            };
-            Gizmos.DrawLineList(playerBoundingBox);
-            Gizmos.color = Color.green;
-            Gizmos.DrawSphere(debugHit.hitCentroid, 0.05f);
+            foreach (var debugHit in hitResultsDebug)
+            {
+                Gizmos.color = Color.red;
+                Vector2 centroidToHitpoint = debugHit.hitPoint - debugHit.hitCentroid;
+                Vector2 rightDir = debugHit.shieldRight;
+                if(Vector2.Dot(centroidToHitpoint, rightDir) < 0)
+                {
+                    Gizmos.color = Color.cyan;
+                }
+                Gizmos.DrawSphere(debugHit.hitPoint, 0.05f);
+                Gizmos.color = Color.yellow;
+                Vector3[] playerBoundingBox = new Vector3[]{
+                    debugHit.BLCorner, debugHit.BRCorner,
+                    debugHit.BRCorner, debugHit.TRCorner,
+                    debugHit.TRCorner, debugHit.TLCorner,
+                    debugHit.TLCorner, debugHit.BLCorner
+                };
+                Gizmos.DrawLineList(playerBoundingBox);
+                Gizmos.color = Color.green;
+                Gizmos.DrawSphere(debugHit.hitCentroid, 0.05f);
+            }
+
         }
 
     }
@@ -121,30 +133,29 @@ public abstract class ShieldSystem : MonoBehaviour
         hitTimes.Clear();
         hitColliders.Clear();
         validHits.Clear();
-        Vector2 origin = rb.transform.position;
+        Vector2 origin = transform.position;
         Vector2 size = col.size;
-        float angle = Vector2.Angle(Vector2.right, rb.transform.position);
-        Vector2 direction = rb.transform.right;
+        Vector2 direction = transform.right;
+        //float angle = Vector2.Angle(Vector2.right, direction);
+        float angle = Angle.AngleFromXAxis(direction);
         float distance = systemCastDistance;
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(origin,size,angle,direction,distance,validCastLayers);
-        castInfo = new CastInfoDebug(origin, size, angle, direction, distance);
+        Vector2 smallCastSize = new Vector2(size.x / 8f, size.y);
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(origin, smallCastSize, angle, direction, distance, validCastLayers);
+        castInfo = new CastInfoDebug(origin, smallCastSize, angle, direction, distance);
         hitResultsDebug.Clear();
         foreach (RaycastHit2D hit in hits)
         {
+            hitResultsDebug.Add(new(hit, rb, GameManager.GetActivePlayer()));
+            //A non fraction zero hit is a hit that occurs which is not a problem
             if (hit.fraction > 0)
             {
                 validHits.Add(hit);
-            }
-            else
-            {
-                hitResultsDebug.Add(new(hit, rb, GameManager.GetActivePlayer()));
-                Debug.LogError("Adding hit debug results");
             }
         }
         foreach (RaycastHit2D validHit in validHits)
         {
             onHitInterfaces.Add(validHit.collider.GetComponent<IOnHit>());
-            hitTimes.Add(validHit.distance / systemVelocity);
+            hitTimes.Add(validHit.distance/ systemVelocity);
             hitColliders.Add(validHit.collider);
         }
         if(validHits.Count > 0)
@@ -179,7 +190,7 @@ public abstract class ShieldSystem : MonoBehaviour
                         if (earlyStopColliderTags.Contains(hitCollider.tag))
                         {
                             Vector3 centroid = Vector3.Lerp(hitPointStart, hitPointEnd, hitTimes[hitIndex]/hitTimeEnd);
-                            earlyStopCallback?.Invoke(centroid, hitCollider);
+                            earlyStopCallback?.Invoke(centroid - col.transform.right*col.size.x/3f, hitCollider);
 
                             hitLerpTime = hitTimeEnd;
                             return;

@@ -126,7 +126,12 @@ MonoBehaviour:
   validCastLayers:
     serializedVersion: 2
     m_Bits: 6848
-  earlyStopColliderTags: []
+  earlyStopColliderTags:
+  - HardSurface
+  debug: 0
+  hitResultsDebug: []
+  recallButtonHeldDown: 0
+  systemActivatedPreviously: 0
 --- !u!1 &5847451176991682772
 GameObject:
   m_ObjectHideFlags: 0

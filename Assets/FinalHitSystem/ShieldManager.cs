@@ -21,6 +21,8 @@ public class ShieldManager : MonoBehaviour
     bool _LMB_DOWN => mouseDownInput.x > 0;
     bool _RMB_DOWN => mouseDownInput.y > 0;
     bool _MMB_DOWN => mouseDownInput.z > 0;
+    Vector3Int mouseUpInput;
+    bool _LMB_UP => mouseUpInput.x > 0;
     bool shieldThrown, shieldRecalled;
     Transform embeddingTransform;
     Vector2 mousePos;
@@ -44,6 +46,7 @@ public class ShieldManager : MonoBehaviour
         InputManager.RegisterMouseInputCallback((Vector2 mousePos) => this.mousePos = mousePos);
         InputManager.RegisterMouseClickCallback((Vector3 mouseClickInput) => this.mouseClickInput = mouseClickInput);
         InputManager.RegisterMouseDownCallback((Vector3Int mouseDownInput) => this.mouseDownInput = mouseDownInput);
+        InputManager.RegisterMouseUpCallback((Vector3Int mouseUpInput) => this.mouseUpInput = mouseUpInput);
         _initialized = true;
     }
     private void Update()
@@ -56,95 +59,86 @@ public class ShieldManager : MonoBehaviour
                 _heldSystem.gameObject.SetActive(true);
                 _throwSystem.gameObject.SetActive(false);
                 _recallSystem.gameObject.SetActive(false);
-                if (_RMB)
-                {
-                    activeShieldSystem = ShieldSystemType.Throw;
-                }
-                if(!_RMB)
-                {
-                    DoHeldAiming();
-                }
                 break;
             case ShieldSystemType.Throw:
                 _heldSystem.gameObject.SetActive(false);
                 _throwSystem.gameObject.SetActive(true);
                 _recallSystem.gameObject.SetActive(false);
-                if(!shieldThrown)
-                {
-                    DoAiming();
-                    _throwSystem.SetColliderActive(false);
-                    if (!_RMB)
-                    {
-                        activeShieldSystem = ShieldSystemType.Held;
-                        break;
-                    }
-                    if (_LMB)
-                    {
-                        embeddingTransform.parent = null;
-                        _throwSystem.SystemCast();
-                        shieldThrown = true;
-                        foreach (var action in onShieldMovingInAir)
-                        {
-                            action();
-                        }
-                    }
-                }
-                else
-                {
-                    if(_LMB_DOWN)
-                    {
-                        //_throwSystem.transform.position = player.transform.position;
-                        activeShieldSystem = ShieldSystemType.Recall;
-                        shieldThrown = false;
-                    }
-                    else
-                    {
-                        if(_throwSystem.SystemComplete())
-                        {
-                            foreach (var action in onShieldMovingInAirCompleted)
-                            {
-                                action();
-                            }
-                        }
-                        if(embeddingTransform.parent != null)
-                        {
-                            _throwSystem.SetColliderActive(true);
-                            _throwSystem.transform.position = embeddingTransform.position;
-                        }
-                    }
-                }
                 break;
             case ShieldSystemType.Recall:
                 _heldSystem.gameObject.SetActive(false);
                 _throwSystem.gameObject.SetActive(false);
                 _recallSystem.gameObject.SetActive(true);
+                break;
+        }
 
-                if(!shieldRecalled)
+        if(_heldSystem.gameObject.activeSelf)
+        {
+            DoHeldAiming();
+            if (_RMB)
+            {
+                activeShieldSystem = ShieldSystemType.Throw;
+            }
+        }
+        if(_throwSystem.gameObject.activeSelf)
+        {
+            if (!shieldThrown)
+            {
+                DoAiming();
+                _throwSystem.SetColliderActive(false);
+                if (!_RMB)
                 {
-                    _recallSystem.transform.position = _throwSystem.transform.position;
-                    _recallSystem.transform.right = -_throwSystem.transform.right;
-                    _recallSystem.SystemCast();
-                    _recallSystem.UpdateRecallParameters(player.transform.position);
-                    shieldRecalled = true;
+                    activeShieldSystem = ShieldSystemType.Held;
+                }
+                if (_LMB)
+                {
+                    embeddingTransform.parent = null;
+                    _throwSystem.SystemCast();
+                    shieldThrown = true;
                     foreach (var action in onShieldMovingInAir)
                     {
                         action();
                     }
                 }
+            }
+            else
+            {
+                if (_LMB_DOWN)
+                {
+                    //_throwSystem.transform.position = player.transform.position;
+                    activeShieldSystem = ShieldSystemType.Recall;
+                    _recallSystem.SetUpRecallSystem(_throwSystem.transform.position);
+                    shieldThrown = false;
+                }
                 else
                 {
-                    _recallSystem.UpdateRecallParameters(player.transform.position);
-                    if (_recallSystem.SystemComplete())
+                    if (_throwSystem.SystemComplete())
                     {
                         foreach (var action in onShieldMovingInAirCompleted)
                         {
                             action();
                         }
-                        activeShieldSystem = ShieldSystemType.Held;
-                        shieldRecalled = false;
+                    }
+                    if (embeddingTransform.parent != null)
+                    {
+                        _throwSystem.SetColliderActive(true);
+                        _throwSystem.transform.position = embeddingTransform.position;
                     }
                 }
-                break;
+            }
+        }
+        if(_recallSystem.gameObject.activeSelf)
+        {
+            if (!_recallSystem.systemActivatedPreviously)
+            {
+                //if not activated previously last frame we must have started the recall
+                _recallSystem.ActivateRecall();
+            }
+            if(_recallSystem.ShieldCaught())
+            {
+                //Then finally we can go to holding the shield again
+                activeShieldSystem = ShieldSystemType.Held;
+            }
         }
     }
     void ThrowEarlyStopHandler(Vector3 throwPos, Collider2D col)
@@ -154,8 +148,8 @@ public class ShieldManager : MonoBehaviour
     }
     void DoAiming()
     {
-        _throwSystem.transform.position = player.transform.position + throwOffset;
-        _throwSystem.transform.right = mousePos - (Vector2)player.transform.position;
+        _throwSystem.transform.position = player.transform.position;
+        _throwSystem.transform.right = mousePos - (Vector2)_throwSystem.transform.position;
     }
     public static void RegisterOnShieldMovingInAirCallback(Action a)
     {
