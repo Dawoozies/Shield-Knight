@@ -19,7 +19,6 @@ public class CameraManager : MonoBehaviour, Manager
 
     public float worldSpaceWidth;
     public float worldSpaceHeight;
-
     public void ManagedUpdate()
     {
         Vector2 cornerA = mainCamera.ScreenToWorldPoint(Vector2.zero);
@@ -55,11 +54,11 @@ public class CameraManager : MonoBehaviour, Manager
             );
         if(xAxisClamp.x != xAxisClamp.y)
         {
-            newCameraPosition.x = Mathf.Clamp(newCameraPosition.x, xAxisClamp.x + worldSpaceWidth, xAxisClamp.y - worldSpaceWidth);
+            newCameraPosition.x = Mathf.Clamp(newCameraPosition.x, xAxisClamp.x + worldSpaceWidth/2f, xAxisClamp.y - worldSpaceWidth/2f);
         }
         if(yAxisClamp.x != yAxisClamp.y)
         {
-            newCameraPosition.y = Mathf.Clamp(newCameraPosition.y, yAxisClamp.x + worldSpaceHeight, yAxisClamp.y - worldSpaceHeight);
+            newCameraPosition.y = Mathf.Clamp(newCameraPosition.y, yAxisClamp.x + worldSpaceHeight/2f, yAxisClamp.y - worldSpaceHeight/2f);
         }
         mainCamera.transform.position = newCameraPosition + cameraOffset;
     }
