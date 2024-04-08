@@ -39,6 +39,8 @@ public class ImageEffectCamera : MonoBehaviour
     private void ChangedActiveScene(Scene current, Scene next)
     {
         mainCamera = Camera.main;
+        imageEffectCamera.orthographic = mainCamera.orthographic;
+        imageEffectCamera.fieldOfView = mainCamera.fieldOfView;
         if (next.name == "CastleEnter")
         {
             gameObject.SetActive(false);
