@@ -10,7 +10,7 @@ public abstract class ShieldSystem : MonoBehaviour
     protected BoxCollider2D col;
     protected List<IOnHit> onHitInterfaces = new();
     public List<Collider2D> hitColliders = new();
-    List<RaycastHit2D> validHits = new();
+    protected List<RaycastHit2D> validHits = new();
     protected List<float> hitTimes = new();
     protected int hitIndex;
     protected float hitTimeEnd;
@@ -204,6 +204,8 @@ public abstract class ShieldSystem : MonoBehaviour
                     }
                 }
             }
+            //Override this to inject things that occur within the system updating
+            LateSystemUpdate();
         }
     }
     public virtual bool SystemComplete()
@@ -214,7 +216,10 @@ public abstract class ShieldSystem : MonoBehaviour
         }
         return false;
     }
+    protected virtual void LateSystemUpdate()
+    {
 
+    }
 }
 public enum ShieldSystemType
 {

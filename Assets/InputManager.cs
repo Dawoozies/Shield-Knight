@@ -28,7 +28,8 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        Vector2 mouseScreenPos = Input.mousePosition;
+        Vector3 mouseScreenPos = Input.mousePosition;
+        mouseScreenPos.z = 10f;
         Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
         foreach (Action<Vector2> action in mouseInputActions)
         {

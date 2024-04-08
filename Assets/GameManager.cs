@@ -22,7 +22,10 @@ public class GameManager : MonoBehaviour
         }
 
         ShieldManager shieldManager = GetComponent<ShieldManager>();
-        shieldManager.InitializeShieldManager(player);
+        if (shieldManager != null)
+        {
+            shieldManager.InitializeShieldManager(player);
+        }
     }
     void Update()
     {

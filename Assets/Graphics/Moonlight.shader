@@ -1,4 +1,4 @@
-Shader "Unlit/PaletteSwap"
+Shader "Unlit/Moonlight"
 {
     Properties
     {

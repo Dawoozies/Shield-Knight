@@ -30,6 +30,14 @@ public class ShieldManager : MonoBehaviour
     static List<Action> onShieldMovingInAir = new();
     static List<Action> onShieldMovingInAirCompleted = new();
     public float heldDistance;
+    [Tooltip("_heldSystem.transform.right * (heldDistance * heldChargePositionCurve.Evaluate(heldCharge) + heldChargeShakeCurve.Evaluate(heldCharge)")]
+    public AnimationCurve heldChargePositionCurve;
+    [Tooltip("_heldSystem.transform.right * (heldDistance * heldChargePositionCurve.Evaluate(heldCharge) + heldChargeShakeCurve.Evaluate(heldCharge)")]
+    public AnimationCurve heldChargeShakeCurve;
+    public float shakeSpeed;
+    public float heldCharge;
+    public AnimationCurve heldReturnToIdle;
+    public float heldReturn;
     public void InitializeShieldManager(Player player)
     {
         GameObject heldObj = Instantiate(heldPrefab);
@@ -41,6 +49,11 @@ public class ShieldManager : MonoBehaviour
 
         embeddingTransform = new GameObject("ShieldThrowEmbeddingTransform").transform;
         _throwSystem.earlyStopCallback = ThrowEarlyStopHandler;
+
+        _heldSystem.earlyStopCallback = (Vector3 centroidPos, Collider2D hitCollider) => {
+            _heldSystem.attackingStoppedPosition = centroidPos;
+            Debug.Log("_heldSystem attack just stopped early");
+        };
 
         this.player = player;
         InputManager.RegisterMouseInputCallback((Vector2 mousePos) => this.mousePos = mousePos);
@@ -74,7 +87,36 @@ public class ShieldManager : MonoBehaviour
 
         if(_heldSystem.gameObject.activeSelf)
         {
-            DoHeldAiming();
+            if (_LMB && !_RMB)
+            {
+                heldCharge += Time.deltaTime;
+                _heldSystem.Charge(heldCharge);
+            }
+            if(_LMB_UP && _heldSystem.charging)
+            {
+                //Do attack based on charge
+                _heldSystem.InitiateAttack();
+            }
+            if(!_heldSystem.attacking)
+            {
+                DoHeldAiming();
+            }
+            if(_heldSystem.attacking && _heldSystem.SystemComplete())
+            {
+                //return to idle state
+                if(heldReturn < heldReturnToIdle.keys[heldReturnToIdle.keys.Length - 1].time)
+                {
+                    heldReturn += Time.deltaTime;
+                    DoHeldReturnToIdle();
+                }
+                else
+                {
+                    //transition to idle state
+                    heldReturn = 0;
+                    heldCharge = 0;
+                    _heldSystem.attacking = false;
+                }
+            }
             if (_RMB)
             {
                 activeShieldSystem = ShieldSystemType.Throw;
@@ -162,6 +204,17 @@ public class ShieldManager : MonoBehaviour
     void DoHeldAiming()
     {
         _heldSystem.transform.right = mousePos - (Vector2)player.transform.position;
-        _heldSystem.transform.position = player.transform.position + _heldSystem.transform.right * heldDistance;
+
+        float c = Mathf.Clamp01(heldCharge);
+        float chargeShakeAmplitude = heldChargeShakeCurve.Evaluate(heldCharge * shakeSpeed) * c;
+        Vector3 chargeShakeDir = Random.Range(0f, 1f) * Vector3.right + Random.Range(0f, 1f) * Vector3.up + Random.Range(0f, 1f) * Vector3.forward;
+        Vector3 chargeShake = chargeShakeDir * chargeShakeAmplitude;
+        _heldSystem.transform.position = player.transform.position + _heldSystem.transform.right * (heldDistance * heldChargePositionCurve.Evaluate(c)) + chargeShake;
+    }
+    void DoHeldReturnToIdle()
+    {
+        _heldSystem.transform.right = mousePos - (Vector2)player.transform.position;
+        Vector2 newPos = Vector2.Lerp(_heldSystem.attackingStoppedPosition, player.transform.position + _heldSystem.transform.right * heldDistance, heldReturnToIdle.Evaluate(heldReturn));
+        _heldSystem.transform.position = newPos;
     }
 }

@@ -14294,8 +14294,9 @@ MonoBehaviour:
   mainCamera: {fileID: 519420031}
   cameraSmoothTime: 0.3
   cameraOffset: {x: 0, y: 0, z: 0}
-  xAxisClamp: {x: -78, y: 78}
-  yAxisClamp: {x: -20, y: 1000}
+  xAxisClamp: {x: -60, y: 60}
+  yAxisClamp: {x: -10, y: 1000}
+  depth: 10
   worldSpaceWidth: 0
   worldSpaceHeight: 0
 --- !u!114 &1651003495

@@ -84,6 +84,8 @@ Shader "Unlit/PaletteSwap"
                 {
                 col = all(distance(col,_target1) <= _threshold) ? _replace1 : col;
                 col = all(distance(col,_target2) <= _threshold) ? _replace2 : col;
+                col = all(distance(col,_target3) <= _threshold) ? _replace3 : col;
+                col = all(distance(col,_target4) <= _threshold) ? _replace4 : col;
                 }
                 //i mean any of these multipliers are either 0 or 1
                 return col * i.color;

@@ -16,13 +16,18 @@ public class CameraManager : MonoBehaviour, Manager
     static CameraZone.ZoneType activeZoneType;
     static Vector2 activeZoneOffset;
     Vector3 cameraTarget;
-
+    public float depth;
+    private Vector3 screenCornerA;
+    private Vector3 screenCornerB;
     public float worldSpaceWidth;
     public float worldSpaceHeight;
+
     public void ManagedUpdate()
     {
-        Vector2 cornerA = mainCamera.ScreenToWorldPoint(Vector2.zero);
-        Vector2 cornerB = mainCamera.ScreenToWorldPoint(new Vector2(mainCamera.pixelWidth, mainCamera.pixelHeight));
+        screenCornerA.z = depth;
+        screenCornerB.z = depth;
+        Vector2 cornerA = mainCamera.ScreenToWorldPoint(screenCornerA);
+        Vector2 cornerB = mainCamera.ScreenToWorldPoint(screenCornerB);
         worldSpaceWidth = Mathf.Abs(cornerA.x - cornerB.x);
         worldSpaceHeight = Mathf.Abs(cornerA.y - cornerB.y);
 
@@ -66,6 +71,12 @@ public class CameraManager : MonoBehaviour, Manager
     {
         if (mainCamera == null)
             mainCamera = Camera.main;
+
+        if (mainCamera != null)
+        {
+            screenCornerA = new Vector3(0f,0f,depth);
+            screenCornerB = new Vector3(mainCamera.pixelWidth, mainCamera.pixelHeight, depth);
+        }
     }
     public void RegisterPlayer(Player player)
     {
