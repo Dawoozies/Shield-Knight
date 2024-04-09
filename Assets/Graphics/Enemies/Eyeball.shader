@@ -4,6 +4,7 @@ Properties
     {
         [Header(Main)]
         _Color ("Color", Color) = (1,1,1,1)
+        _MainTex("Main Texture", 2D) = "white" {}
       
         [Header(Iris)]
         _IrisTex("Iris Texture (RGB)", 2D) = "black" {}
@@ -55,6 +56,7 @@ Properties
             float3 viewDir;
             float3 worldPos;
             float3 worldNormal;
+            float3 normal;
         };
  
  
@@ -69,6 +71,7 @@ Properties
             o.objPos = v.vertex;
             o.worldPos = UnityObjectToWorldDir(v.vertex);
             o.worldNormal = UnityObjectToWorldNormal(v.vertex);
+            o.normal = v.normal;
         }
  
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
@@ -80,9 +83,19 @@ Properties
  
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
- 
- 
+            const float PI = 3.14159265359;
+            // Puff out the direction to compensate for interpolation.
+            float3 direction = normalize(IN.normal);
+
+            // Get a longitude wrapping eastward from x-, in the range 0-1.
+            float longitude = 0.5 - atan2(direction.z, direction.x) / (2.0f * PI);
+            // Get a latitude wrapping northward from y-, in the range 0-1.
+            float latitude = 0.5 + asin(direction.y) / PI;
+
+            // Combine these into our own sampling coordinate pair.
+            float2 customUV = float2(longitude, latitude);
             // circles
+            
             float dis= distance(0, float3(IN.objPos.x * _IrisScaleX, IN.objPos.y * _IrisScaleY, IN.objPos.z - 0.5)); 
             float disPup = (distance(0, float3(IN.objPos.x * _PupilScaleX, IN.objPos.y * _PupilScaleY , IN.objPos.z - 0.5))); 
             float irisRadius = 1- saturate(dis / _Radius);
@@ -137,9 +150,11 @@ Properties
  
  
             float4 irisEdgeColored = irisEdgeCircle * _IrisEdgeColor;
-        
+
+
+            float4 mainCol = tex2D(_MainTex, customUV);
             // all together
-            o.Albedo = eyeWhite + irisColored + pupilColored + irisEdgeColored;
+            o.Albedo = eyeWhite + irisColored + pupilColored + irisEdgeColored + mainCol;
             // glint in emission
             o.Emission =  glint;
             o.Smoothness = 0.75;

@@ -46,6 +46,7 @@ public class VelocitySystem : MonoBehaviour
     }
     void GroundExitHandler()
     {
+        externalFollowMoveComponent.SetMagnitude(0f);
         centroidTransform.parent = null;
     }
     private void FixedUpdate()

@@ -17,6 +17,7 @@ public class EffectsManager : MonoBehaviour
     List<ParticleSystem> bloodSystems = new();
 
     HitStunColorSwap[] hitStunColorsSwaps;
+    private float cameraShakeRequest;
     private void Awake()
     {
         ins = this;
@@ -43,12 +44,20 @@ public class EffectsManager : MonoBehaviour
             Time.timeScale = 0f;
 
             HitFXMaterialSwap(MaterialSwap.SwapState.Mono);
-            CameraShake(amplitude);
         }
         else
         {
             Time.timeScale = 1f;
             HitFXMaterialSwap(MaterialSwap.SwapState.Default);
+        }
+
+        if (cameraShakeRequest > 0)
+        {
+            cameraShakeRequest -= Time.unscaledDeltaTime;
+            CameraShake(amplitude);
+        }
+        else
+        {
             CameraShake(0f);
         }
     }
@@ -72,6 +81,11 @@ public class EffectsManager : MonoBehaviour
             ps.Play();
             break;
         }
+    }
+
+    public void RequestCameraShake(float shakeTime)
+    {
+        this.cameraShakeRequest = shakeTime;
     }
     public void HitFXMaterialSwap(MaterialSwap.SwapState state)
     {

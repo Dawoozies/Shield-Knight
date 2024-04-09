@@ -63,6 +63,10 @@ public class HeldSystem : ShieldSystem
         if(hitLerpTime >= hitTimeEnd)
         {
             attackingStoppedPosition = hitPointEnd;
+            foreach (var onHit in onHitInterfaces)
+            {
+                onHit?.Hit(shieldSystemType, rb.transform.right, systemVelocity);
+            }
             Debug.Log("_heldSystem attack just completed without stopping early");
         }
     }
