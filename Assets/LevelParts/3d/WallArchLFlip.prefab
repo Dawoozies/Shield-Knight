@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1012119074277489675}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WallArchLFlip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,6 +174,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c814627f4e92f4846b4764c457d1be21, type: 3}
       propertyPath: m_Name
       value: wall_gateHalf
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c814627f4e92f4846b4764c457d1be21, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

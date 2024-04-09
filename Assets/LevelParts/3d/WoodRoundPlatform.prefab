@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3034717277403346821}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WoodRoundPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,6 +165,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 69df12db44dcf8b4db3ab284e19f7465, type: 3}
       propertyPath: m_Name
       value: overhang_round
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69df12db44dcf8b4db3ab284e19f7465, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

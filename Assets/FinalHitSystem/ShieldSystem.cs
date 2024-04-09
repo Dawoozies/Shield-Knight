@@ -17,14 +17,16 @@ public abstract class ShieldSystem : MonoBehaviour
     protected float hitTimeEnd;
     protected Vector3 hitPointStart;
     protected Vector3 hitPointEnd;
+    protected Vector3 hitEndNormal;
     protected float hitLerpTime;
     public ShieldSystemType shieldSystemType;
     public float systemVelocity;
     public float systemCastDistance;
     public LayerMask validCastLayers;
     public List<string> earlyStopColliderTags = new();
-
     public Action<Vector3, Collider2D> earlyStopCallback;
+    //end normal, end point, end percentage of distance travelled
+    public Action<Vector3, Vector3, float> hitEndCallback;
     public bool debug;
     [Serializable]
     public class DebugHit
@@ -153,16 +155,19 @@ public abstract class ShieldSystem : MonoBehaviour
                 validHits.Add(hit);
             }
         }
+        hitEndNormal = Vector3.zero;
         foreach (RaycastHit2D validHit in validHits)
         {
             onHitInterfaces.Add(validHit.collider.GetComponent<IOnHit>());
             hitTimes.Add(validHit.distance/ systemVelocity);
             hitColliders.Add(validHit.collider);
+            hitEndNormal = validHit.normal;
         }
         if(validHits.Count > 0)
         {
             hitPointStart = rb.transform.position;
             hitPointEnd = validHits[validHits.Count - 1].centroid;
+            hitEndNormal = validHits[validHits.Count - 1].normal;
             hitTimeEnd = hitTimes[validHits.Count - 1];
             hitLerpTime = 0;
             hitIndex = 0;

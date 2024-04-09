@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7185380390868825671}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WallDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1611523074989479202}
   - component: {fileID: 6981786241463527751}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlackFog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,6 +168,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ab7b2047d20824e4da1587380b38e72e, type: 3}
       propertyPath: m_Name
       value: wall_gate
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ab7b2047d20824e4da1587380b38e72e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

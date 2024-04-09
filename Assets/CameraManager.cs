@@ -72,8 +72,11 @@ public class CameraManager : MonoBehaviour, Manager
         if(xAxisClamp.x != xAxisClamp.y)
         {
             newCameraPosition.x = Mathf.Clamp(newCameraPosition.x, xAxisClamp.x + worldSpaceWidth/2f, xAxisClamp.y - worldSpaceWidth/2f);
-            xAxisClampMin.position = new Vector2(xAxisClamp.x - 0.5f, 480);
-            xAxisClampMax.position = new Vector2(xAxisClamp.y + 0.5f, 480f);
+            if(xAxisClampMin != null)
+            {
+                xAxisClampMin.position = new Vector2(xAxisClamp.x - 0.5f, 480);
+                xAxisClampMax.position = new Vector2(xAxisClamp.y + 0.5f, 480f);
+            }
         }
         if(yAxisClamp.x != yAxisClamp.y)
         {

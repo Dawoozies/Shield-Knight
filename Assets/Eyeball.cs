@@ -33,6 +33,13 @@ public class Eyeball : MonoBehaviour
     public LayerMask viewCastLayers;
     public Gradient beamGradient;
     public ParticleSystem beamHitSystem;
+    public Light beamLight;
+    public AnimationCurve beamLightRangeCurve;
+    public AnimationCurve beamLightIntensityCurve;
+    public Light beamEndLight;
+    public AnimationCurve beamEndLightRangeCurve;
+    public AnimationCurve beamEndLightIntensityCurve;
+    float lightCharge;
     public enum BeamFiringState
     {
         Idle,Charging, Firing, Cooldown
@@ -41,6 +48,7 @@ public class Eyeball : MonoBehaviour
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.colorGradient = beamGradient;
     }
 
     void Update()
@@ -92,8 +100,7 @@ public class Eyeball : MonoBehaviour
 
         if (beamState == BeamFiringState.Idle)
         {
-            lineRenderer.colorGradient.alphaKeys[0].alpha = 0;
-            lineRenderer.colorGradient.alphaKeys[1].alpha = 0;
+            lineRenderer.enabled = false;
         }
         
         UpdateChargeState();
@@ -118,7 +125,9 @@ public class Eyeball : MonoBehaviour
     {
         if (beamState != BeamFiringState.Firing)
             return;
-        lineRenderer.colorGradient = beamGradient;
+        lightCharge += Time.deltaTime;
+        lightCharge = Mathf.Clamp01(lightCharge);
+
         beamLength += Time.deltaTime*beamLengthIncreaseSpeed;
         beamLength = Mathf.Clamp01(beamLength);
         
@@ -128,10 +137,14 @@ public class Eyeball : MonoBehaviour
         if (hit)
         {
             lineRenderer.SetPosition(1, hit.centroid);
+            UpdateLights(hit.centroid);
+            IHitReceiver hitReceiver = hit.collider.GetComponent<IHitReceiver>();
+            hitReceiver?.ApplyForce(beamCastInfo.Direction*100f);
         }
         else
         {
             lineRenderer.SetPosition(1, transform.position + transform.forward*beamCastInfo.Distance);
+            UpdateLights(transform.position + transform.forward * beamCastInfo.Distance);
         }
         beamFiring += Time.deltaTime;
         if (beamFiring > beamFiringTime)
@@ -159,6 +172,8 @@ public class Eyeball : MonoBehaviour
         {
             beamHitSystem.Stop();
         }
+        lightCharge -= Time.deltaTime*10f;
+        lightCharge = Mathf.Clamp01(lightCharge);
         beamLength -= Time.deltaTime * beamLengthDecreaseSpeed;
         float zeroPosDistance = 100f * (1-beamLength);
         float endPosDistance = 100f;
@@ -166,7 +181,15 @@ public class Eyeball : MonoBehaviour
         {
             zeroPosDistance = hit.distance * (1 - beamLength);
             endPosDistance = hit.distance;
+
+            UpdateLights(hit.centroid);
         }
+        else
+        {
+            UpdateLights(transform.position + transform.forward * beamCastInfo.Distance);
+        }
+
+
 
         beamLength = Mathf.Clamp01(beamLength);
         lineRenderer.SetPosition(0, transform.position + transform.forward*zeroPosDistance);
@@ -227,6 +250,7 @@ public class Eyeball : MonoBehaviour
 
     void BeamStateStartFiring()
     {
+        lineRenderer.enabled = true;
         beamState = BeamFiringState.Firing;
         beamFiring = 0;
         firingFx.Play(true);
@@ -236,10 +260,19 @@ public class Eyeball : MonoBehaviour
 
     void BeamStateStartCooldown()
     {
+        lineRenderer.enabled = false;
         beamState = BeamFiringState.Cooldown;
         cooldown = 0;
         firingEndFx.Play(true);
         firingFx.Stop();
         beamLength = 1;
+    }
+    void UpdateLights(Vector3 hitPoint)
+    {
+        beamLight.range = beamLightRangeCurve.Evaluate(lightCharge);
+        beamLight.intensity = beamLightIntensityCurve.Evaluate(lightCharge);
+        beamEndLight.range = beamEndLightRangeCurve.Evaluate(lightCharge);
+        beamEndLight.intensity = beamEndLightIntensityCurve.Evaluate(lightCharge);
+        beamEndLight.transform.position = hitPoint;
     }
 }

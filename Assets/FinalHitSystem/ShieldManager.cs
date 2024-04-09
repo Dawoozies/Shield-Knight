@@ -38,6 +38,7 @@ public class ShieldManager : MonoBehaviour
     public float heldCharge;
     public AnimationCurve heldReturnToIdle;
     public float heldReturn;
+    public Vector2 hitForceMagnitudeBounds;
     public void InitializeShieldManager(Player player)
     {
         GameObject heldObj = Instantiate(heldPrefab);
@@ -52,7 +53,16 @@ public class ShieldManager : MonoBehaviour
 
         _heldSystem.earlyStopCallback = (Vector3 centroidPos, Collider2D hitCollider) => {
             _heldSystem.attackingStoppedPosition = centroidPos;
+            float hitForce = Mathf.Lerp(hitForceMagnitudeBounds.x, hitForceMagnitudeBounds.y, Mathf.Clamp01(heldCharge));
+            player.ExternalMove(-_heldSystem.transform.right*hitForce);
             Debug.Log("_heldSystem attack just stopped early");
+        };
+
+        _heldSystem.hitEndCallback = (Vector3 hitNormal, Vector3 hitPoint, float distancePercentage) =>
+        {
+            float hitForceCharge = Mathf.Lerp(hitForceMagnitudeBounds.x, hitForceMagnitudeBounds.y, Mathf.Clamp01(heldCharge));
+            float distanceForceMultiplier = distancePercentage;
+            player.ExternalMove(-_heldSystem.transform.right * hitForceCharge);
         };
 
         this.player = player;

@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2079491586968104315}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WallRotated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,6 +161,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d59ef463dd9f1884480925f336c54608, type: 3}
       propertyPath: m_Name
       value: WallDefault
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d59ef463dd9f1884480925f336c54608, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

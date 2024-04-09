@@ -60,13 +60,14 @@ public class HeldSystem : ShieldSystem
     }
     protected override void LateSystemUpdate()
     {
-        if(hitLerpTime >= hitTimeEnd)
+        if (hitLerpTime >= hitTimeEnd)
         {
             attackingStoppedPosition = hitPointEnd;
             foreach (var onHit in onHitInterfaces)
             {
                 onHit?.Hit(shieldSystemType, rb.transform.right, systemVelocity);
             }
+            hitEndCallback?.Invoke(hitEndNormal, hitPointEnd, Vector2.Distance(hitPointStart, hitPointEnd)/defaultSystemCastDistance);
             Debug.Log("_heldSystem attack just completed without stopping early");
         }
     }

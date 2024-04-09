@@ -241,4 +241,8 @@ public class Player : MonoBehaviour, IHitReceiver
     {
         onDeathActions.Add(a);
     }
+    public void ExternalMove(Vector2 force)
+    {
+        velocitySystem.ExternalMove(force);
+    }
 }

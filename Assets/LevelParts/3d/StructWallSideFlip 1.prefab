@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7563751734496269251}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StructWallSideFlip 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,6 +163,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: structure_wall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9578ae7ca98dc2f45b0673356f466291, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -233,9 +237,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1714593919180954427, guid: 9a309b53eb9ffed43ac7a04f48534e1a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3358205372026132497, guid: 9a309b53eb9ffed43ac7a04f48534e1a, type: 3}
       propertyPath: m_Name
       value: WoodPoles
+      objectReference: {fileID: 0}
+    - target: {fileID: 3358205372026132497, guid: 9a309b53eb9ffed43ac7a04f48534e1a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
