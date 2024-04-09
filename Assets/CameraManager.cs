@@ -15,13 +15,18 @@ public class CameraManager : MonoBehaviour, Manager
     static BoxCollider2D activeZone;
     static CameraZone.ZoneType activeZoneType;
     static Vector2 activeZoneOffset;
+    private static float activeZoneFieldOfView;
     Vector3 cameraTarget;
     public float depth;
     private Vector3 screenCornerA;
     private Vector3 screenCornerB;
     public float worldSpaceWidth;
     public float worldSpaceHeight;
-
+    public Transform xAxisClampMin, xAxisClampMax;
+    private float fieldOfViewTarget;
+    private float defaultFieldOfView;
+    public float fieldOfViewSmoothTime;
+    private float fieldOfViewVelocity;
     public void ManagedUpdate()
     {
         screenCornerA.z = depth;
@@ -40,14 +45,18 @@ public class CameraManager : MonoBehaviour, Manager
                     cameraTarget = zonePos;
                     break;
                 case CameraZone.ZoneType.Offset:
-                    Vector2 zoneOffset = activeZoneOffset;
-                    cameraTarget = player.transform.position + (Vector3)zoneOffset;
+                    cameraTarget = player.transform.position + (Vector3)activeZoneOffset;
+                    break;
+                case CameraZone.ZoneType.OffsetAndFOV:
+                    cameraTarget = player.transform.position + (Vector3)activeZoneOffset;
+                    fieldOfViewTarget = activeZoneFieldOfView;
                     break;
             }
         }
         else
         {
             cameraTarget = player.transform.position;
+            fieldOfViewTarget = defaultFieldOfView;
         }
         Vector3 cameraPosition = mainCamera.transform.position;
         cameraTarget.z = cameraPosition.z;
@@ -57,15 +66,21 @@ public class CameraManager : MonoBehaviour, Manager
                 ref cameraVelocity,
                 cameraSmoothTime
             );
+        float cameraFieldOfView = mainCamera.fieldOfView;
+        float newFieldOfView =
+            Mathf.SmoothDamp(cameraFieldOfView, fieldOfViewTarget, ref fieldOfViewVelocity, fieldOfViewSmoothTime);
         if(xAxisClamp.x != xAxisClamp.y)
         {
             newCameraPosition.x = Mathf.Clamp(newCameraPosition.x, xAxisClamp.x + worldSpaceWidth/2f, xAxisClamp.y - worldSpaceWidth/2f);
+            xAxisClampMin.position = new Vector2(xAxisClamp.x - 0.5f, 480);
+            xAxisClampMax.position = new Vector2(xAxisClamp.y + 0.5f, 480f);
         }
         if(yAxisClamp.x != yAxisClamp.y)
         {
             newCameraPosition.y = Mathf.Clamp(newCameraPosition.y, yAxisClamp.x + worldSpaceHeight/2f, yAxisClamp.y - worldSpaceHeight/2f);
         }
         mainCamera.transform.position = newCameraPosition + cameraOffset;
+        mainCamera.fieldOfView = newFieldOfView;
     }
     public void ManagedStart()
     {
@@ -76,6 +91,7 @@ public class CameraManager : MonoBehaviour, Manager
         {
             screenCornerA = new Vector3(0f,0f,depth);
             screenCornerB = new Vector3(mainCamera.pixelWidth, mainCamera.pixelHeight, depth);
+            defaultFieldOfView = mainCamera.fieldOfView;
         }
     }
     public void RegisterPlayer(Player player)
@@ -97,5 +113,12 @@ public class CameraManager : MonoBehaviour, Manager
         {
             activeZone = null;
         }
+    }
+
+    public static void CameraEnterOffsetAndFOVZone(BoxCollider2D zoneCollider, CameraZone.ZoneType zoneType,
+        Vector2 offset, float fieldOfView)
+    {
+        CameraEnterLockedZone(zoneCollider,zoneType,offset);
+        activeZoneFieldOfView = fieldOfView;
     }
 }

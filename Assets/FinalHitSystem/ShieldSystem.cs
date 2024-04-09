@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using VectorCalculations;
 
 public abstract class ShieldSystem : MonoBehaviour
 {

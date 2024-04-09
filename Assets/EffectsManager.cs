@@ -18,6 +18,7 @@ public class EffectsManager : MonoBehaviour
 
     HitStunColorSwap[] hitStunColorsSwaps;
     private float cameraShakeRequest;
+    
     private void Awake()
     {
         ins = this;
@@ -82,7 +83,6 @@ public class EffectsManager : MonoBehaviour
             break;
         }
     }
-
     public void RequestCameraShake(float shakeTime)
     {
         this.cameraShakeRequest = shakeTime;

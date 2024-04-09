@@ -14,7 +14,6 @@ Shader "Unlit/Beam"
         Tags { "RenderType"="Transparent" }
         Blend SrcAlpha OneMinusSrcAlpha
         LOD 100
-
         Pass
         {
             CGPROGRAM

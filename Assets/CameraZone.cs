@@ -7,10 +7,11 @@ public class CameraZone : MonoBehaviour
     BoxCollider2D boxCollider;
     public enum ZoneType
     {
-        Default, Offset
+        Default, Offset, OffsetAndFOV
     }
     public ZoneType zoneType;
     public Vector2 offset;
+    public float fieldOfView = 0f;
     void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -19,14 +20,28 @@ public class CameraZone : MonoBehaviour
     {
         if(col.tag == "Player")
         {
-            CameraManager.CameraEnterLockedZone(boxCollider, zoneType, offset);
+            if (fieldOfView > 0)
+            {
+                CameraManager.CameraEnterOffsetAndFOVZone(boxCollider, zoneType, offset, fieldOfView);
+            }
+            else
+            {
+                CameraManager.CameraEnterLockedZone(boxCollider, zoneType, offset);
+            }
         }
     }
     private void OnTriggerStay2D(Collider2D col)
     {
         if (col.tag == "Player")
         {
-            CameraManager.CameraEnterLockedZone(boxCollider, zoneType, offset);
+            if (fieldOfView > 0)
+            {
+                CameraManager.CameraEnterOffsetAndFOVZone(boxCollider, zoneType, offset, fieldOfView);
+            }
+            else
+            {
+                CameraManager.CameraEnterLockedZone(boxCollider, zoneType, offset);
+            }
         }
     }
     void OnTriggerExit2D(Collider2D col)

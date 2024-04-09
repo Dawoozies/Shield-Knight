@@ -77,11 +77,11 @@ Material:
     - _Resolution: 2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 25
+    - _Speed: 340
     - _SrcBlend: 1
-    - _TextureCutoff: 0.02
+    - _TextureCutoff: 0.013
     - _UVSec: 0
-    - _WhiteCutoffFactor: 12
+    - _WhiteCutoffFactor: 8
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

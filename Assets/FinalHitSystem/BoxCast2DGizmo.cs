@@ -63,4 +63,9 @@ public static class BoxCast2DGizmo
     {
         BoxCast(castInfo.origin, castInfo.size, castInfo.angle, castInfo.direction, castInfo.distance);
     }
+
+    public static void BoxCast(BoxCastInfo castInfo)
+    {
+        BoxCast(castInfo.Origin, castInfo.Size, castInfo.Angle, castInfo.Direction, castInfo.Distance);
+    }
 }
