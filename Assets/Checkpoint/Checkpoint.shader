@@ -8,7 +8,7 @@ Shader "Unlit/Checkpoint"
     SubShader
     {
         Tags { "RenderType"="Transparent" }
-        ZWrite Off
+        //ZWrite Always
         Blend SrcAlpha OneMinusSrcAlpha
         Pass
         {

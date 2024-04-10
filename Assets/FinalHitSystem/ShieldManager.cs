@@ -39,6 +39,7 @@ public class ShieldManager : MonoBehaviour
     public AnimationCurve heldReturnToIdle;
     public float heldReturn;
     public Vector2 hitForceMagnitudeBounds;
+    public Action<float, float> shieldRecallCallback;
     public void InitializeShieldManager(Player player)
     {
         GameObject heldObj = Instantiate(heldPrefab);
@@ -186,6 +187,7 @@ public class ShieldManager : MonoBehaviour
                 //if not activated previously last frame we must have started the recall
                 _recallSystem.ActivateRecall();
             }
+            shieldRecallCallback(Vector2.Distance(_recallSystem.transform.position, player.transform.position), _recallSystem.systemVelocity);
             if(_recallSystem.ShieldCaught())
             {
                 //Then finally we can go to holding the shield again
@@ -227,5 +229,4 @@ public class ShieldManager : MonoBehaviour
         Vector2 newPos = Vector2.Lerp(_heldSystem.attackingStoppedPosition, player.transform.position + _heldSystem.transform.right * heldDistance, heldReturnToIdle.Evaluate(heldReturn));
         _heldSystem.transform.position = newPos;
     }
-
 }
