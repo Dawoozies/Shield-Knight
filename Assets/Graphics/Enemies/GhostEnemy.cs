@@ -21,6 +21,11 @@ public class GhostEnemy : MonoBehaviour, IOnHit
     private bool startDeath;
     private SpriteRenderer[] spriteRenderers;
     private GhostEyeShake eyeShake;
+    public ParticleSystem spiritProjectileSystem;
+    public float fireSpeed;
+    public int maxProjectiles;
+    float fireTime;
+    public ParticleSystem spiritProjectileHitSystem;
     void Start()
     {
         deathTime = timeTillDeathAfterBounce;
@@ -49,6 +54,13 @@ public class GhostEnemy : MonoBehaviour, IOnHit
                 //death
                 gameObject.SetActive(false);
             }
+        }
+
+        fireTime -= Time.deltaTime * fireSpeed;
+        if(fireTime < 0)
+        {
+            fireTime = 1;
+            spiritProjectileSystem.Play();
         }
     }
 

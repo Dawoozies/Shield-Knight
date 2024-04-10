@@ -25,6 +25,7 @@ public class VelocitySystem : MonoBehaviour
     GroundCheck groundCheck;
     Transform centroidTransform;
     Vector3 lastCentroidPos;
+    private bool paused;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -51,6 +52,7 @@ public class VelocitySystem : MonoBehaviour
     }
     private void FixedUpdate()
     {
+
         finalVelocity = Vector2.zero;
 
         Vector2 ds = centroidTransform.position - lastCentroidPos;
@@ -67,7 +69,12 @@ public class VelocitySystem : MonoBehaviour
         {
             component.Update(Time.fixedUnscaledDeltaTime, ref finalVelocity);
         }
-
+        
+        if (paused)
+        {
+            return;
+        }
+        
         rb.velocity = finalVelocity;
     }
     public void SetupData(VelocityData velocityData, out VelocityComponent component)
@@ -94,5 +101,14 @@ public class VelocitySystem : MonoBehaviour
         externalMoveComponent.SetMagnitude(force.magnitude);
         externalMoveComponent.SetDirection(force.normalized);
         externalMoveComponent.PlayFromStart();
+    }
+    public void PauseSystem(Vector2 pauseVelocity)
+    {
+        rb.velocity = pauseVelocity;
+        paused = true;
+    }
+    public void PlaySystem()
+    {
+        paused = false;
     }
 }

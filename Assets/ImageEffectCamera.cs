@@ -24,6 +24,13 @@ public class ImageEffectCamera : MonoBehaviour
 
     private void Update()
     {
+        if (mainCamera != null)
+        {
+            imageEffectCamera.orthographic = mainCamera.orthographic;
+            imageEffectCamera.fieldOfView = mainCamera.fieldOfView;
+            imageEffectCamera.transform.forward = mainCamera.transform.forward;
+            imageEffectCamera.backgroundColor = mainCamera.backgroundColor;
+        }
         if (currentDimensions.x != mainCamera.pixelWidth || currentDimensions.y != mainCamera.pixelHeight)
         {
             currentDimensions.x = mainCamera.pixelWidth;
@@ -34,13 +41,12 @@ public class ImageEffectCamera : MonoBehaviour
             imageMaterialEffect.Create();
             mainCamera.targetTexture = imageMaterialEffect;
         }
-        transform.position = mainCamera.transform.position;
+        imageEffectCamera.transform.position = mainCamera.transform.position;
     }
     private void ChangedActiveScene(Scene current, Scene next)
     {
         mainCamera = Camera.main;
-        imageEffectCamera.orthographic = mainCamera.orthographic;
-        imageEffectCamera.fieldOfView = mainCamera.fieldOfView;
+
         if (next.name == "CastleEnter")
         {
             gameObject.SetActive(false);

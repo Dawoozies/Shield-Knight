@@ -20,11 +20,18 @@ public class Player : MonoBehaviour, IHitReceiver
     public float damageResistance;
     public Vector2 checkpointWorldPos;
     public int currentCheckpointNumber; // 0 when its player spawn
-    List<Action> onDeathActions = new();
+    private List<Action> onDeathActions = new();
+    private List<Action> onDeathCompleteActions = new();
     public int maxAirDashes;
     int airDashesLeft;
+    private PlayerDeath deathEffect;
+    public SpriteRenderer playerSpriteRenderer;
+    private float colorValue;
     void Awake()
     {
+        colorValue = 1;
+        deathEffect = GetComponent<PlayerDeath>();
+        
         #region Ground Action Setup
         groundCheck = GetComponent<GroundCheck>();
         groundCheck.onGroundEnter.Add(GroundEnterHandler);
@@ -178,19 +185,15 @@ public class Player : MonoBehaviour, IHitReceiver
     {
         if(damageTaken >= deathDamage)
         {
-            foreach(Action action in onDeathActions)
+            StartDying();
+        }
+        else
+        {
+            if (colorValue < 1)
             {
-                action();
+                playerSpriteRenderer.color = Color.Lerp(Color.red, Color.white, colorValue);
+                colorValue += Time.deltaTime;
             }
-            if (currentCheckpointNumber > 0)
-            {
-                transform.position = checkpointWorldPos;
-            }
-            else
-            {
-                transform.localPosition = Vector3.zero;
-            }
-            damageTaken = 0;
         }
         if(aiming && gravityComponent.isPlaying)
         {
@@ -241,8 +244,40 @@ public class Player : MonoBehaviour, IHitReceiver
     {
         onDeathActions.Add(a);
     }
+    public void RegisterOnDeathCompleteCallback(Action a)
+    {
+        onDeathCompleteActions.Add(a);
+    }
     public void ExternalMove(Vector2 force)
     {
         velocitySystem.ExternalMove(force);
+    }
+    public void StartDying()
+    {
+        colorValue = 0;
+        velocitySystem.PauseSystem(Vector2.zero);
+        deathEffect.StartSystem(DyingComplete);
+        EffectsManager.ins.RequestCameraShake(0.5f);
+        foreach (Action action in onDeathActions)
+        {
+            action();
+        }
+    }
+    public void DyingComplete()
+    {
+        velocitySystem.PlaySystem();
+        foreach(Action action in onDeathCompleteActions)
+        {
+            action();
+        }        
+        if (currentCheckpointNumber > 0)
+        {
+            transform.position = checkpointWorldPos;
+        }
+        else
+        {
+            transform.localPosition = Vector3.zero;
+        }
+        damageTaken = 0;
     }
 }

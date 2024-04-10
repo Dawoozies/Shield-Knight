@@ -34,6 +34,16 @@ public class EnemyManager : MonoBehaviour, Manager
     {
         this.player = player;
     }
+
+    public void PlayerDeathComplete()
+    {
+        ResetAllEnemies();
+    }
+
+    public void PlayerDeath()
+    {
+    }
+
     public void ManagedUpdate()
     {
         if(respawnDeadEnemies)
@@ -67,9 +77,5 @@ public class EnemyManager : MonoBehaviour, Manager
         {
             deadEnemy.Respawn();
         }
-    }
-    public void PlayerDied()
-    {
-        ResetAllEnemies();
     }
 }

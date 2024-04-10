@@ -1,8 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
+public enum CameraState
+{
+    Normal, PointingAtPlayer
+}
 public class CameraManager : MonoBehaviour, Manager
 {
     Player player;
@@ -27,8 +32,40 @@ public class CameraManager : MonoBehaviour, Manager
     private float defaultFieldOfView;
     public float fieldOfViewSmoothTime;
     private float fieldOfViewVelocity;
+    public CameraState cameraState;
+    private Vector3 pointingVector;
+    public float pointingSmoothTime = 0.2f;
+    private float lerpVelocity;
+    private float lerpTime;
+    void PointingAtPlayerUpdate()
+    {
+        lerpTime = Mathf.SmoothDamp(lerpTime, 1, ref lerpVelocity, pointingSmoothTime);
+        mainCamera.transform.forward = Vector3.Slerp(Vector3.forward, pointingVector, lerpTime);
+    }
+    public void PlayerDeathComplete()
+    {
+        cameraState = CameraState.Normal;
+    }
+    public void PlayerDeath()
+    {
+        cameraState = CameraState.PointingAtPlayer;
+    }
     public void ManagedUpdate()
     {
+        pointingVector = player.transform.position - mainCamera.transform.position;
+        if (cameraState == CameraState.PointingAtPlayer)
+        {
+            PointingAtPlayerUpdate();
+            return;
+        }
+        else
+        {
+            lerpTime = Mathf.SmoothDamp(lerpTime, 0, ref lerpVelocity, cameraSmoothTime);
+            mainCamera.transform.forward = Vector3.Lerp(Vector3.forward, pointingVector, lerpTime);
+        }
+
+        bool ignoreClamps = lerpTime > 0.01f;
+        
         screenCornerA.z = depth;
         screenCornerB.z = depth;
         Vector2 cornerA = mainCamera.ScreenToWorldPoint(screenCornerA);
@@ -101,9 +138,8 @@ public class CameraManager : MonoBehaviour, Manager
     {
         this.player = player;
     }
-    public void PlayerDied()
-    {
-    }
+    //This is called on player death complete
+
     public static void CameraEnterLockedZone(BoxCollider2D zoneCollider, CameraZone.ZoneType zoneType, Vector2 offset)
     {
         activeZone = zoneCollider;

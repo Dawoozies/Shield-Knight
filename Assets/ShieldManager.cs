@@ -85,6 +85,17 @@ namespace OldSystems
         {
             this.player = player;
         }
+
+        public void PlayerDeathComplete()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void PlayerDeath()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void ManagedUpdate()
         {
             if (shieldThrow.thrown)
@@ -227,10 +238,6 @@ namespace OldSystems
                     Gizmos.DrawLine(shieldGizmoTransform.position, shiftedHit);
                 }
             }
-        }
-
-        public void PlayerDied()
-        {
         }
     }
 }

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
         player = playerObject.GetComponent<Player>();
         player.transform.localPosition = Vector3.zero;
         player.RegisterOnDeathCallback(PlayerDeathHandler);
+        player.RegisterOnDeathCompleteCallback(PlayerDeathCompleteHandler);
         managers = GetComponents<Manager>();
         foreach (Manager manager in managers)
         {
@@ -38,7 +39,15 @@ public class GameManager : MonoBehaviour
     {
         foreach(Manager manager in managers)
         {
-            manager.PlayerDied();
+            manager.PlayerDeath();
+        }
+    }
+
+    void PlayerDeathCompleteHandler()
+    {
+        foreach (Manager manager in managers)
+        {
+            manager.PlayerDeathComplete();
         }
     }
     public static Player GetActivePlayer()
@@ -51,5 +60,6 @@ public interface Manager
     public void ManagedStart();
     public void ManagedUpdate();
     public void RegisterPlayer(Player player);
-    public void PlayerDied();
+    public void PlayerDeathComplete();
+    public void PlayerDeath();
 }
