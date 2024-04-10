@@ -21,6 +21,7 @@ public class CameraManager : MonoBehaviour, Manager
     static CameraZone.ZoneType activeZoneType;
     static Vector2 activeZoneOffset;
     private static float activeZoneFieldOfView;
+    private static Transform[] activeHeightClamps;
     Vector3 cameraTarget;
     public float depth;
     private Vector3 screenCornerA;
@@ -86,6 +87,7 @@ public class CameraManager : MonoBehaviour, Manager
                     break;
                 case CameraZone.ZoneType.OffsetAndFOV:
                     cameraTarget = player.transform.position + (Vector3)activeZoneOffset;
+                    cameraTarget.y = Mathf.Clamp(cameraTarget.y, activeHeightClamps[0].position.y, activeHeightClamps[1].position.y);
                     fieldOfViewTarget = activeZoneFieldOfView;
                     break;
             }
@@ -155,9 +157,10 @@ public class CameraManager : MonoBehaviour, Manager
     }
 
     public static void CameraEnterOffsetAndFOVZone(BoxCollider2D zoneCollider, CameraZone.ZoneType zoneType,
-        Vector2 offset, float fieldOfView)
+        Vector2 offset, float fieldOfView, Transform[] heightClamps)
     {
         CameraEnterLockedZone(zoneCollider,zoneType,offset);
         activeZoneFieldOfView = fieldOfView;
+        activeHeightClamps = heightClamps;
     }
 }

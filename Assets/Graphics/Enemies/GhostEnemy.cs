@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VectorCalculations;
 
-public class GhostEnemy : MonoBehaviour, IOnHit
+public class GhostEnemy : MonoBehaviour, IOnHit, IManagedEnemy
 {
     public float detectionRadius;
     private Rigidbody2D rb;
@@ -23,11 +23,11 @@ public class GhostEnemy : MonoBehaviour, IOnHit
     private GhostEyeShake eyeShake;
     public ParticleSystem spiritProjectileSystem;
     public float fireSpeed;
-    public int maxProjectiles;
     float fireTime;
-    public ParticleSystem spiritProjectileHitSystem;
+    private Vector3 originalPosition;
     void Start()
     {
+        originalPosition = transform.position;
         deathTime = timeTillDeathAfterBounce;
         rb = GetComponent<Rigidbody2D>();
         _col = GetComponent<BoxCollider2D>();
@@ -55,12 +55,31 @@ public class GhostEnemy : MonoBehaviour, IOnHit
                 gameObject.SetActive(false);
             }
         }
-
-        fireTime -= Time.deltaTime * fireSpeed;
+        float distToPlayer = Vector2.Distance(player.transform.position, transform.position);
+        if (distToPlayer < detectionRadius)
+        {
+            fireTime -= Time.deltaTime * fireSpeed;
+        }
+        else
+        {
+            fireTime += Time.deltaTime;
+            fireTime = Mathf.Clamp(fireTime, 0, 1);
+        }
         if(fireTime < 0)
         {
             fireTime = 1;
-            spiritProjectileSystem.Play();
+            spiritProjectileSystem.Emit(1);
+            foreach (var spriteRenderer in spriteRenderers)
+            {
+                spriteRenderer.color = Color.white;
+            }
+        }
+        if (fireTime < 0.2)
+        {
+            foreach (var spriteRenderer in spriteRenderers)
+            {
+                spriteRenderer.color = Color.Lerp(Color.cyan, Color.white, fireTime/0.2f);
+            }
         }
     }
 
@@ -116,6 +135,7 @@ public class GhostEnemy : MonoBehaviour, IOnHit
         startDeath = false;
         velocity = Vector2.zero;
         gameObject.SetActive(true);
+        transform.position = originalPosition;
         spriteRenderers[0].color = Color.white;
         spriteRenderers[1].color = Color.white;
         eyeShake.Reset();

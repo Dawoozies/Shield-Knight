@@ -18,6 +18,10 @@ public class EffectsManager : MonoBehaviour
 
     HitStunColorSwap[] hitStunColorsSwaps;
     private float cameraShakeRequest;
+
+    public GameObject spiritProjectileHit;
+    public int spiritProjectileHitMax;
+    private List<ParticleSystem> spiritProjectileHitSystems = new();
     
     private void Awake()
     {
@@ -32,6 +36,12 @@ public class EffectsManager : MonoBehaviour
         {
             GameObject clone = Instantiate(bloodFXPrefab, transform);
             bloodSystems.Add(clone.GetComponent<ParticleSystem>());
+        }
+        
+        for (int i = 0; i < spiritProjectileHitMax; i++)
+        {
+            GameObject clone = Instantiate(spiritProjectileHit, transform);
+            spiritProjectileHitSystems.Add(clone.GetComponent<ParticleSystem>());
         }
 
         hitStunColorsSwaps = FindObjectsOfType<HitStunColorSwap>();
@@ -82,6 +92,21 @@ public class EffectsManager : MonoBehaviour
             ps.Play();
             break;
         }
+    }
+
+    public void RequestSpiritProjectileHit(Vector2 pos, Vector2 hitNormal)
+    {
+        foreach (var ps in spiritProjectileHitSystems)
+        {
+            if(ps.isPlaying)
+            {
+                continue;
+            }
+            ps.transform.position = pos;
+            ps.transform.forward = hitNormal;
+            ps.Play();
+            break;
+        }          
     }
     public void RequestCameraShake(float shakeTime)
     {

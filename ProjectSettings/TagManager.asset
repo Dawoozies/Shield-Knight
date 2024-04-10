@@ -7,6 +7,7 @@ TagManager:
   - Shield
   - Enemy
   - HardSurface
+  - SpiritProjectile
   layers:
   - Default
   - TransparentFX

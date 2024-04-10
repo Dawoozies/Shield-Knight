@@ -227,4 +227,5 @@ public class ShieldManager : MonoBehaviour
         Vector2 newPos = Vector2.Lerp(_heldSystem.attackingStoppedPosition, player.transform.position + _heldSystem.transform.right * heldDistance, heldReturnToIdle.Evaluate(heldReturn));
         _heldSystem.transform.position = newPos;
     }
+
 }

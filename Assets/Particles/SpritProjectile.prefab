@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 974366274595423574}
   m_Layer: 0
   m_Name: SpritProjectile
-  m_TagString: Untagged
+  m_TagString: SpiritProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3850,7 +3850,7 @@ ParticleSystem:
     radiusScale: 0.1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 57792
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5

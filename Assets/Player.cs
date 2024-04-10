@@ -280,4 +280,13 @@ public class Player : MonoBehaviour, IHitReceiver
         }
         damageTaken = 0;
     }
+    void OnParticleCollision(GameObject other)
+    {
+        if (other.tag == "SpiritProjectile")
+        {
+            damageTaken++;
+            colorValue = 0;
+            EffectsManager.ins.RequestSpiritProjectileHit(transform.position, other.transform.position - transform.position);
+        }
+    }
 }

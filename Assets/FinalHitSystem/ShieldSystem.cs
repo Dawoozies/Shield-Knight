@@ -226,6 +226,13 @@ public abstract class ShieldSystem : MonoBehaviour
     {
 
     }
+    void OnParticleCollision(GameObject other)
+    {
+        if (other.tag == "SpiritProjectile")
+        {
+            EffectsManager.ins.RequestSpiritProjectileHit(transform.position, other.transform.position - transform.position);
+        }
+    }
 }
 public enum ShieldSystemType
 {

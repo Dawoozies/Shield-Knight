@@ -7,11 +7,12 @@ public class CameraZone : MonoBehaviour
     BoxCollider2D boxCollider;
     public enum ZoneType
     {
-        Default, Offset, OffsetAndFOV
+        Default, Offset, OffsetAndFOV, OffsetAndFOVClamp
     }
     public ZoneType zoneType;
     public Vector2 offset;
     public float fieldOfView = 0f;
+    public Transform[] heightClamps;
     void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
@@ -22,7 +23,7 @@ public class CameraZone : MonoBehaviour
         {
             if (fieldOfView > 0)
             {
-                CameraManager.CameraEnterOffsetAndFOVZone(boxCollider, zoneType, offset, fieldOfView);
+                CameraManager.CameraEnterOffsetAndFOVZone(boxCollider, zoneType, offset, fieldOfView, heightClamps);
             }
             else
             {
@@ -36,7 +37,7 @@ public class CameraZone : MonoBehaviour
         {
             if (fieldOfView > 0)
             {
-                CameraManager.CameraEnterOffsetAndFOVZone(boxCollider, zoneType, offset, fieldOfView);
+                CameraManager.CameraEnterOffsetAndFOVZone(boxCollider, zoneType, offset, fieldOfView, heightClamps);
             }
             else
             {
