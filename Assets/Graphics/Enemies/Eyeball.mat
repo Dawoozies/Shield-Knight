@@ -32,7 +32,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _IrisTex:
-        m_Texture: {fileID: 2800000, guid: f3735b4b68ee21f46ac0e1cbb36fe506, type: 3}
+        m_Texture: {fileID: 2800000, guid: 00f4839728f19474dabff7dd0887a298, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -40,24 +40,24 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PupilTex:
-        m_Texture: {fileID: 2800000, guid: 54ad9a37e9ba12b45994e16b0dc6eb11, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5db9ef05ca606e548b4bb941bd02e11a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _Brightness: 5
     - _Distort: 0.525
-    - _Edgewidth: 0.175
-    - _GlintScale: 0.447
+    - _Edgewidth: 0
+    - _GlintScale: 0.9
     - _IrisRadius: 2
     - _IrisScaleX: 1
     - _IrisScaleY: 1
     - _PupilRadius: 1
-    - _PupilScale: 1
-    - _PupilScaleX: 0.5
-    - _PupilScaleY: 0.5
-    - _Radius: 0.3
-    - _RadiusPupil: 0.15
+    - _PupilScale: 0.58
+    - _PupilScaleX: 0
+    - _PupilScaleY: 0
+    - _Radius: 1
+    - _RadiusPupil: 0.5
     - _Scale: 1
     - _Speed: 0
     - _TEXTURE: 0
@@ -66,7 +66,7 @@ Material:
     - _IrisColor: {r: 0, g: 0, b: 0, a: 1}
     - _IrisColorOut: {r: 0, g: 0, b: 0, a: 1}
     - _IrisEdgeColor: {r: 0, g: 1, b: 1, a: 1}
-    - _IrisTexColor: {r: 1, g: 1, b: 1, a: 1}
-    - _PupilColor: {r: 1, g: 0, b: 0.17433167, a: 1}
-    - _PupilColorOut: {r: 0, g: 1, b: 1, a: 1}
+    - _IrisTexColor: {r: 0, g: 0, b: 0, a: 1}
+    - _PupilColor: {r: 0, g: 1, b: 0.8273995, a: 1}
+    - _PupilColorOut: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

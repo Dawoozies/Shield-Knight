@@ -154,10 +154,10 @@ Properties
 
             float4 mainCol = tex2D(_MainTex, customUV);
             // all together
-            o.Albedo = eyeWhite + irisColored + pupilColored + irisEdgeColored + mainCol;
+            o.Albedo = eyeWhite + irisColored + pupilColored*pupilColored + irisEdgeColored + mainCol;
             // glint in emission
-            o.Emission =  glint;
-            o.Smoothness = 0.75;
+            o.Emission =  pow(glint,8);
+            o.Smoothness = 0.75 + pupilColored;
  
  
         }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Physics2DFunctions;
-public class Eyeball : MonoBehaviour
+public class Eyeball : MonoBehaviour, IOnHit
 {
     Player player;
     public float viewRadius;
@@ -40,6 +40,14 @@ public class Eyeball : MonoBehaviour
     public AnimationCurve beamEndLightRangeCurve;
     public AnimationCurve beamEndLightIntensityCurve;
     float lightCharge;
+    public float lookSmoothTime;
+    private Vector3 lookVelocity;
+    private bool isDead;
+    public Transform lightShaftParent;
+    private MeshRenderer[] lightShafts;
+    private List<Material> instancedMaterials = new();
+    private BoxCastInfo lightShaftCast = new();
+    public LayerMask lightShaftLayers;
     public enum BeamFiringState
     {
         Idle,Charging, Firing, Cooldown
@@ -49,8 +57,19 @@ public class Eyeball : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.colorGradient = beamGradient;
+        lightShafts = lightShaftParent.GetComponentsInChildren<MeshRenderer>();
+        foreach (var meshRenderer in lightShafts)
+        {
+            Material instancedMaterial = new Material(meshRenderer.material);
+            meshRenderer.material = instancedMaterial;
+            instancedMaterials.Add(instancedMaterial);
+        }
     }
 
+    void DeadUpdate()
+    {
+        
+    }
     void Update()
     {
         if(player == null)
@@ -58,8 +77,17 @@ public class Eyeball : MonoBehaviour
             player = GameManager.GetActivePlayer();
             return;
         }
+
+        if (isDead)
+        {
+            return;
+        }
+
+
+
         Vector3 playerDistVector = player.transform.position - transform.position;
-        transform.forward = playerDistVector.normalized + Vector3.forward * zLookDepth;
+        Vector3 lookTarget = playerDistVector.normalized + Vector3.forward * zLookDepth;
+        transform.forward = Vector3.SmoothDamp(transform.forward, lookTarget, ref lookVelocity, lookSmoothTime);
         Vector2 projDistVector = playerDistVector;
         if (projDistVector.magnitude < viewRadius)
         {
@@ -84,10 +112,21 @@ public class Eyeball : MonoBehaviour
         beamCastInfo.Distance = 100f * beamLength;
         beamCastInfo.Size = castSize;
         beamCastInfo.Layers = castHitLayers;
+        //update light shaft cast info
+        lightShaftCast.Origin = shiftedOrigin;
+        lightShaftCast.Direction = fwdProjOntoRight;
+        lightShaftCast.Distance = 1000f;
+        lightShaftCast.Size = castSize;
+        lightShaftCast.Layers = lightShaftLayers;
+        lightShaftCast.Cast(false);
+        float maxLightShaftDistance = 250f;
+        if (lightShaftCast.Hit)
+        {
+            maxLightShaftDistance = lightShaftCast.Hit.distance;
+        }
 
         if (playerInRange && beamState == BeamFiringState.Idle)
         {
-            
             viewCastInfo.Cast(false);
             if (viewHit)
             {
@@ -97,6 +136,7 @@ public class Eyeball : MonoBehaviour
                 }
             }
         }
+        
 
         if (beamState == BeamFiringState.Idle)
         {
@@ -106,8 +146,15 @@ public class Eyeball : MonoBehaviour
         UpdateChargeState();
         UpdateFiringState();
         UpdateCooldownState();
+        
+        foreach (var material in instancedMaterials)
+        {
+            material.SetFloat("_originPosX", transform.position.x);
+            material.SetFloat("_originPosY", transform.position.y);
+            material.SetFloat("_originPosZ", transform.position.z);
 
-
+            material.SetFloat("_distanceFromOriginCutoff", maxLightShaftDistance);      
+        }
     }
 
     void UpdateChargeState()
@@ -274,5 +321,11 @@ public class Eyeball : MonoBehaviour
         beamEndLight.range = beamEndLightRangeCurve.Evaluate(lightCharge);
         beamEndLight.intensity = beamEndLightIntensityCurve.Evaluate(lightCharge);
         beamEndLight.transform.position = hitPoint;
+    }
+
+    public Collider2D col { get; }
+    public void Hit(ShieldSystemType systemType, Vector2 shieldDir, float shieldVelocity)
+    {
+        isDead = true;
     }
 }
