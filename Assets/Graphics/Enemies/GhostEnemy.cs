@@ -25,6 +25,9 @@ public class GhostEnemy : MonoBehaviour, IOnHit, IManagedEnemy
     public float fireSpeed;
     float fireTime;
     private Vector3 originalPosition;
+    public Vector2 moveBounds;
+    public float moveFrequency;
+    float t;
     void Start()
     {
         originalPosition = transform.position;
@@ -41,7 +44,7 @@ public class GhostEnemy : MonoBehaviour, IOnHit, IManagedEnemy
             player = GameManager.GetActivePlayer();
             return;
         }
-
+        float distToPlayer = Vector2.Distance(player.transform.position, transform.position);
         if (startDeath)
         {
             deathTime -= Time.deltaTime;
@@ -55,7 +58,13 @@ public class GhostEnemy : MonoBehaviour, IOnHit, IManagedEnemy
                 gameObject.SetActive(false);
             }
         }
-        float distToPlayer = Vector2.Distance(player.transform.position, transform.position);
+        else
+        {
+            if(velocity.magnitude <= 0.05f && distToPlayer > detectionRadius)
+            {
+                transform.position = (Vector2)originalPosition+Vector2.Lerp(Vector2.right*moveBounds.x, Vector2.right*moveBounds.y, Mathf.Abs(Mathf.Sin(Time.time*moveFrequency)));
+            }
+        }
         if (distToPlayer < detectionRadius)
         {
             fireTime -= Time.deltaTime * fireSpeed;

@@ -130,6 +130,7 @@ public class ShieldManager : MonoBehaviour
             }
             if (_RMB)
             {
+                _heldSystem.StopCharge();
                 activeShieldSystem = ShieldSystemType.Throw;
             }
         }
@@ -187,7 +188,7 @@ public class ShieldManager : MonoBehaviour
                 //if not activated previously last frame we must have started the recall
                 _recallSystem.ActivateRecall();
             }
-            shieldRecallCallback(Vector2.Distance(_recallSystem.transform.position, player.transform.position), _recallSystem.systemVelocity);
+            shieldRecallCallback?.Invoke(Vector2.Distance(_recallSystem.transform.position, player.transform.position), _recallSystem.systemVelocity);
             if(_recallSystem.ShieldCaught())
             {
                 //Then finally we can go to holding the shield again

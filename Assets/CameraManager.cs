@@ -28,7 +28,6 @@ public class CameraManager : MonoBehaviour, Manager
     private Vector3 screenCornerB;
     public float worldSpaceWidth;
     public float worldSpaceHeight;
-    public Transform xAxisClampMin, xAxisClampMax;
     private float fieldOfViewTarget;
     private float defaultFieldOfView;
     public float fieldOfViewSmoothTime;
@@ -87,7 +86,10 @@ public class CameraManager : MonoBehaviour, Manager
                     break;
                 case CameraZone.ZoneType.OffsetAndFOV:
                     cameraTarget = player.transform.position + (Vector3)activeZoneOffset;
-                    cameraTarget.y = Mathf.Clamp(cameraTarget.y, activeHeightClamps[0].position.y, activeHeightClamps[1].position.y);
+                    if(activeHeightClamps != null && activeHeightClamps.Length > 0)
+                    {
+                        cameraTarget.y = Mathf.Clamp(cameraTarget.y, activeHeightClamps[0].position.y, activeHeightClamps[1].position.y);
+                    }
                     fieldOfViewTarget = activeZoneFieldOfView;
                     break;
             }
@@ -111,11 +113,6 @@ public class CameraManager : MonoBehaviour, Manager
         if(xAxisClamp.x != xAxisClamp.y)
         {
             newCameraPosition.x = Mathf.Clamp(newCameraPosition.x, xAxisClamp.x + worldSpaceWidth/2f, xAxisClamp.y - worldSpaceWidth/2f);
-            if(xAxisClampMin != null)
-            {
-                xAxisClampMin.position = new Vector2(xAxisClamp.x - 0.5f, 480);
-                xAxisClampMax.position = new Vector2(xAxisClamp.y + 0.5f, 480f);
-            }
         }
         if(yAxisClamp.x != yAxisClamp.y)
         {

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     static Player player;
     Manager[] managers;
-    void Start()
+    void Awake()
     {
         GameObject playerObject = Instantiate(playerPrefab, playerSpawn);
         player = playerObject.GetComponent<Player>();

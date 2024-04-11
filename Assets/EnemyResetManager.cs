@@ -20,6 +20,10 @@ public class EnemyResetManager : MonoBehaviour, Manager
     }
     public void PlayerDeathComplete()
     {
+        if(!enemyParent.gameObject.activeSelf)
+        {
+            return;
+        }
         foreach (var enemy in enemies)
         {
             enemy.ResetEnemy();

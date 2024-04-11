@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RemoveAllColliders : MonoBehaviour
 {
-    void Start()
+    void Awake()
     {
         Collider2D[] collidersToRemove = GetComponentsInChildren<Collider2D>();
         foreach (Collider2D col in collidersToRemove)

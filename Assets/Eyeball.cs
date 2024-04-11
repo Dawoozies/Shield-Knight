@@ -48,6 +48,7 @@ public class Eyeball : MonoBehaviour, IOnHit
     private List<Material> instancedMaterials = new();
     private BoxCastInfo lightShaftCast = new();
     public LayerMask lightShaftLayers;
+    public Vector2 beamWidthStartEnd = Vector2.one;
     public enum BeamFiringState
     {
         Idle,Charging, Firing, Cooldown
@@ -57,6 +58,8 @@ public class Eyeball : MonoBehaviour, IOnHit
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.colorGradient = beamGradient;
+        lineRenderer.startWidth = beamWidthStartEnd.x;
+        lineRenderer.endWidth = beamWidthStartEnd.y;
         lightShafts = lightShaftParent.GetComponentsInChildren<MeshRenderer>();
         foreach (var meshRenderer in lightShafts)
         {
@@ -87,7 +90,6 @@ public class Eyeball : MonoBehaviour, IOnHit
 
         Vector3 playerDistVector = player.transform.position - transform.position;
         Vector3 lookTarget = playerDistVector.normalized + Vector3.forward * zLookDepth;
-        transform.forward = Vector3.SmoothDamp(transform.forward, lookTarget, ref lookVelocity, lookSmoothTime);
         Vector2 projDistVector = playerDistVector;
         if (projDistVector.magnitude < viewRadius)
         {
@@ -96,6 +98,10 @@ public class Eyeball : MonoBehaviour, IOnHit
         else
         {
             playerInRange = false;
+        }
+        if(playerInRange)
+        {
+            transform.forward = Vector3.SmoothDamp(transform.forward, lookTarget, ref lookVelocity, lookSmoothTime);
         }
 
         Vector2 shiftedOrigin = transform.position - Vector3.forward * transform.localScale.z / 2f;

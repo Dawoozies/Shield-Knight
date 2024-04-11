@@ -41,9 +41,10 @@ Properties
         {
             Tags { "RenderType" = "Opaque" }
             LOD 200
+            Fog {Mode Off}
           CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf  Standard fullforwardshadows vertex:vert
+        #pragma surface surf  Standard fullforwardshadows vertex:vert nofog
         #pragma target 3.5
       
         #pragma shader_feature TEXTURE
