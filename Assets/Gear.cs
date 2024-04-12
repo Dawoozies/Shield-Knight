@@ -16,6 +16,8 @@ public class Gear : MonoBehaviour
     public GearEvent onGearHit;
     public GearEvent onGearRotating;
     public bool returnMagnitude;
+    public bool constantOutput;
+    public float constantOutputValue;
     private void Start()
     {
         hitTargets = GetComponentsInChildren<GearHitTarget>();
@@ -38,11 +40,25 @@ public class Gear : MonoBehaviour
             Debug.Log("Gear rotating");
             if(returnMagnitude)
             {
-                onGearRotating?.Invoke(Mathf.Abs(angularVelocity) * Time.deltaTime);
+                if(constantOutput)
+                {
+                    onGearRotating?.Invoke(constantOutputValue*Time.deltaTime);
+                }
+                else
+                {
+                    onGearRotating?.Invoke(Mathf.Abs(angularVelocity) * Time.deltaTime);
+                }
             }
             else
             {
-                onGearRotating?.Invoke(angularVelocity * Time.deltaTime);
+                if (constantOutput)
+                {
+                    onGearRotating?.Invoke(constantOutputValue * Time.deltaTime);
+                }
+                else
+                {
+                    onGearRotating?.Invoke(angularVelocity * Time.deltaTime);
+                }
             }
             transform.Rotate(Vector3.forward, -angularVelocity*Time.deltaTime);
             float drag = Mathf.Sign(angularVelocity) *angularDrag*Time.deltaTime;

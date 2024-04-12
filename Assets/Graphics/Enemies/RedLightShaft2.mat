@@ -43,7 +43,7 @@ Material:
     m_Floats:
     - _distanceFromOriginCutoff: 0
     - _fadeOffStrength: 1.8
-    - _maximumDistance: 600
+    - _maximumDistance: 300
     - _noise1Alpha: 0.1
     - _noise1AlphaCutoff: 1.22
     - _noise1ScrollSpeed: 0

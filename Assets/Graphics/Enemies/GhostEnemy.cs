@@ -28,6 +28,7 @@ public class GhostEnemy : MonoBehaviour, IOnHit, IManagedEnemy
     public Vector2 moveBounds;
     public float moveFrequency;
     float t;
+
     void Start()
     {
         originalPosition = transform.position;
@@ -68,6 +69,10 @@ public class GhostEnemy : MonoBehaviour, IOnHit, IManagedEnemy
         if (distToPlayer < detectionRadius)
         {
             fireTime -= Time.deltaTime * fireSpeed;
+            if(distToPlayer > detectionRadius/2f)
+            {
+                velocity += (Vector2)(player.transform.position - transform.position).normalized * Time.deltaTime*distToPlayer;
+            }
         }
         else
         {
@@ -76,8 +81,9 @@ public class GhostEnemy : MonoBehaviour, IOnHit, IManagedEnemy
         }
         if(fireTime < 0)
         {
-            fireTime = 1;
+            fireTime = 1 + UnityEngine.Random.Range(0.1f, 1f);
             spiritProjectileSystem.Emit(1);
+            velocity -= (Vector2)(player.transform.position - transform.position).normalized* UnityEngine.Random.Range(1f, 2f);
             foreach (var spriteRenderer in spriteRenderers)
             {
                 spriteRenderer.color = Color.white;
@@ -114,18 +120,18 @@ public class GhostEnemy : MonoBehaviour, IOnHit, IManagedEnemy
     public Collider2D col { get => _col; }
     public void Hit(ShieldSystemType systemType, Vector2 shieldDir, float shieldVelocity)
     {
-        if (systemType == ShieldSystemType.Held)
-        {
-            //then push ghost in direction
-            velocity = shieldDir * shieldVelocity;
-            Debug.LogWarning($"velocity = {velocity}");
-            heldHit = true;
-            EffectsManager.ins.RequestCameraShake(0.5f);
-            EffectsManager.ins.RequestBloodFX(rb.position);
-            eyeShake.StartShake();
-        }
+        //if (systemType == ShieldSystemType.Held)
+        //{
+        //    //then push ghost in direction
+        //    velocity = shieldDir * shieldVelocity;
+        //    Debug.LogWarning($"velocity = {velocity}");
+        //    heldHit = true;
+        //    EffectsManager.ins.RequestCameraShake(0.5f);
+        //    EffectsManager.ins.RequestBloodFX(rb.position);
+        //    eyeShake.StartShake();
+        //}
 
-        if (systemType == ShieldSystemType.Throw)
+        if (systemType == ShieldSystemType.Throw || systemType == ShieldSystemType.Held)
         {
             //dont push ghost just kill
             throwHit = true;

@@ -651,7 +651,7 @@ MonoBehaviour:
   originalFogDensity: 0.003
   endFogDensity: 2
   fogLerpTime: 5
-  sceneToTransitionTo: NewTutorial
+  sceneToTransitionTo: Level1Gears
 --- !u!1 &829797298
 GameObject:
   m_ObjectHideFlags: 0
