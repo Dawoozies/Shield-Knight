@@ -131,6 +131,7 @@ public class CameraManager : MonoBehaviour, Manager
             screenCornerA = new Vector3(0f,0f,depth);
             screenCornerB = new Vector3(mainCamera.pixelWidth, mainCamera.pixelHeight, depth);
             defaultFieldOfView = mainCamera.fieldOfView;
+            mainCamera.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, mainCamera.transform.position.z);
         }
     }
     public void RegisterPlayer(Player player)

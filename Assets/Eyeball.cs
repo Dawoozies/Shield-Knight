@@ -42,13 +42,17 @@ public class Eyeball : MonoBehaviour, IOnHit
     float lightCharge;
     public float lookSmoothTime;
     private Vector3 lookVelocity;
-    private bool isDead;
     public Transform lightShaftParent;
     private MeshRenderer[] lightShafts;
     private List<Material> instancedMaterials = new();
     private BoxCastInfo lightShaftCast = new();
     public LayerMask lightShaftLayers;
     public Vector2 beamWidthStartEnd = Vector2.one;
+    public bool useBeamEndPoint;
+    public Transform beamEndPoint;
+    public float beamDistance;
+    public bool manuallyCharge;
+    public bool manuallyFire;
     public enum BeamFiringState
     {
         Idle,Charging, Firing, Cooldown
@@ -69,10 +73,6 @@ public class Eyeball : MonoBehaviour, IOnHit
         }
     }
 
-    void DeadUpdate()
-    {
-        
-    }
     void Update()
     {
         if(player == null)
@@ -80,13 +80,6 @@ public class Eyeball : MonoBehaviour, IOnHit
             player = GameManager.GetActivePlayer();
             return;
         }
-
-        if (isDead)
-        {
-            return;
-        }
-
-
 
         Vector3 playerDistVector = player.transform.position - transform.position;
         Vector3 lookTarget = playerDistVector.normalized + Vector3.forward * zLookDepth;
@@ -115,7 +108,7 @@ public class Eyeball : MonoBehaviour, IOnHit
         //UpdateBeamCastInfo
         beamCastInfo.Origin = shiftedOrigin;
         beamCastInfo.Direction = Vector2.Dot(transform.forward, Vector2.right)*Vector2.right + Vector2.Dot(transform.forward, Vector2.up)*Vector2.up;
-        beamCastInfo.Distance = 100f * beamLength;
+        beamCastInfo.Distance = beamDistance * beamLength;
         beamCastInfo.Size = castSize;
         beamCastInfo.Layers = castHitLayers;
         //update light shaft cast info
@@ -125,7 +118,7 @@ public class Eyeball : MonoBehaviour, IOnHit
         lightShaftCast.Size = castSize;
         lightShaftCast.Layers = lightShaftLayers;
         lightShaftCast.Cast(false);
-        float maxLightShaftDistance = 250f;
+        float maxLightShaftDistance = 750f;
         if (lightShaftCast.Hit)
         {
             maxLightShaftDistance = lightShaftCast.Hit.distance;
@@ -162,7 +155,10 @@ public class Eyeball : MonoBehaviour, IOnHit
             material.SetFloat("_distanceFromOriginCutoff", maxLightShaftDistance);      
         }
     }
+    void ManualControlUpdate()
+    {
 
+    }
     void UpdateChargeState()
     {
         if (beamState != BeamFiringState.Charging)
@@ -192,7 +188,7 @@ public class Eyeball : MonoBehaviour, IOnHit
             lineRenderer.SetPosition(1, hit.centroid);
             UpdateLights(hit.centroid);
             IHitReceiver hitReceiver = hit.collider.GetComponent<IHitReceiver>();
-            hitReceiver?.ApplyForce(beamCastInfo.Direction*100f);
+            hitReceiver?.ApplyForce(beamCastInfo.Direction* beamDistance);
         }
         else
         {
@@ -228,8 +224,8 @@ public class Eyeball : MonoBehaviour, IOnHit
         lightCharge -= Time.deltaTime*10f;
         lightCharge = Mathf.Clamp01(lightCharge);
         beamLength -= Time.deltaTime * beamLengthDecreaseSpeed;
-        float zeroPosDistance = 100f * (1-beamLength);
-        float endPosDistance = 100f;
+        float zeroPosDistance = beamDistance * (1-beamLength);
+        float endPosDistance = beamDistance;
         if (hit)
         {
             zeroPosDistance = hit.distance * (1 - beamLength);
@@ -332,6 +328,5 @@ public class Eyeball : MonoBehaviour, IOnHit
     public Collider2D col { get; }
     public void Hit(ShieldSystemType systemType, Vector2 shieldDir, float shieldVelocity)
     {
-        isDead = true;
     }
 }

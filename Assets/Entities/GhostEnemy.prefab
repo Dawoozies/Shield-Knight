@@ -89,7 +89,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 738639970071717435}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -132,6 +132,8 @@ MonoBehaviour:
   throwHit: 0
   spiritProjectileSystem: {fileID: 6853253540723185802}
   fireSpeed: 0.5
+  moveBounds: {x: 0, y: 0}
+  moveFrequency: 0
 --- !u!1 &3660242150862424128
 GameObject:
   m_ObjectHideFlags: 0

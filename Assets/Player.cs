@@ -272,7 +272,14 @@ public class Player : MonoBehaviour, IHitReceiver
         }        
         if (currentCheckpointNumber > 0)
         {
-            transform.position = checkpointWorldPos;
+            if(checkpointPosPointer != null)
+            {
+                transform.position = checkpointPosPointer();
+            }
+            else
+            {
+                transform.position = checkpointWorldPos;
+            }
         }
         else
         {
@@ -288,5 +295,10 @@ public class Player : MonoBehaviour, IHitReceiver
             colorValue = 0;
             EffectsManager.ins.RequestSpiritProjectileHit(transform.position, other.transform.position - transform.position);
         }
+    }
+    Func<Vector3> checkpointPosPointer;
+    public void SetCheckpoint(Func<Vector3> checkpointPos)
+    {
+        checkpointPosPointer = checkpointPos;
     }
 }

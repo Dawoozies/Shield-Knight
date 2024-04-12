@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
+using System.Runtime.InteropServices.WindowsRuntime;
+
 public class Checkpoint : MonoBehaviour
 {
     public int checkpointNumber;
@@ -42,6 +45,7 @@ public class Checkpoint : MonoBehaviour
             if(checkpointNumber > player.currentCheckpointNumber)
             {
                 player.checkpointWorldPos = transform.position;
+                player.SetCheckpoint(() => { return transform.position; }) ;
                 player.currentCheckpointNumber = checkpointNumber;
                 checkpointActivated = true;
                 onCheckpointGet?.Invoke();

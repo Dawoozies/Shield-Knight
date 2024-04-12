@@ -5,9 +5,18 @@ using UnityEngine;
 public class SpriteRendererClearOnStart : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
+    MeshRenderer meshRenderer;
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.color = Color.clear;
+        if(spriteRenderer != null)
+        {
+            spriteRenderer.color = Color.clear;
+        }
+        meshRenderer = GetComponent<MeshRenderer>();
+        if(meshRenderer != null)
+        {
+            meshRenderer.enabled = false;
+        }
     }
 }

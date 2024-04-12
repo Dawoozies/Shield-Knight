@@ -61,9 +61,12 @@ public class GhostEnemy : MonoBehaviour, IOnHit, IManagedEnemy
         }
         else
         {
-            if(velocity.magnitude <= 0.05f && distToPlayer > detectionRadius)
+            if(!heldHit)
             {
-                transform.position = (Vector2)originalPosition+Vector2.Lerp(Vector2.right*moveBounds.x, Vector2.right*moveBounds.y, Mathf.Abs(Mathf.Sin(Time.time*moveFrequency)));
+                if (velocity.magnitude <= 0.05f && distToPlayer > detectionRadius)
+                {
+                    transform.position = (Vector2)originalPosition + Vector2.Lerp(Vector2.right * moveBounds.x, Vector2.right * moveBounds.y, Mathf.Abs(Mathf.Sin(Time.time * moveFrequency)));
+                }
             }
         }
         if (distToPlayer < detectionRadius)
@@ -71,7 +74,10 @@ public class GhostEnemy : MonoBehaviour, IOnHit, IManagedEnemy
             fireTime -= Time.deltaTime * fireSpeed;
             if(distToPlayer > detectionRadius/2f)
             {
-                velocity += (Vector2)(player.transform.position - transform.position).normalized * Time.deltaTime*distToPlayer;
+                if(!heldHit)
+                {
+                    velocity += (Vector2)(player.transform.position - transform.position).normalized * Time.deltaTime * distToPlayer;
+                }
             }
         }
         else
@@ -82,8 +88,11 @@ public class GhostEnemy : MonoBehaviour, IOnHit, IManagedEnemy
         if(fireTime < 0)
         {
             fireTime = 1 + UnityEngine.Random.Range(0.1f, 1f);
-            spiritProjectileSystem.Emit(1);
-            velocity -= (Vector2)(player.transform.position - transform.position).normalized* UnityEngine.Random.Range(1f, 2f);
+            if(!heldHit)
+            {
+                spiritProjectileSystem.Emit(1);
+                velocity -= (Vector2)(player.transform.position - transform.position).normalized * UnityEngine.Random.Range(1f, 2f);
+            }
             foreach (var spriteRenderer in spriteRenderers)
             {
                 spriteRenderer.color = Color.white;
@@ -120,18 +129,18 @@ public class GhostEnemy : MonoBehaviour, IOnHit, IManagedEnemy
     public Collider2D col { get => _col; }
     public void Hit(ShieldSystemType systemType, Vector2 shieldDir, float shieldVelocity)
     {
-        //if (systemType == ShieldSystemType.Held)
-        //{
-        //    //then push ghost in direction
-        //    velocity = shieldDir * shieldVelocity;
-        //    Debug.LogWarning($"velocity = {velocity}");
-        //    heldHit = true;
-        //    EffectsManager.ins.RequestCameraShake(0.5f);
-        //    EffectsManager.ins.RequestBloodFX(rb.position);
-        //    eyeShake.StartShake();
-        //}
+        if (systemType == ShieldSystemType.Held)
+        {
+            //then push ghost in direction
+            velocity = shieldDir * shieldVelocity;
+            Debug.LogWarning($"velocity = {velocity}");
+            heldHit = true;
+            EffectsManager.ins.RequestCameraShake(0.5f);
+            EffectsManager.ins.RequestBloodFX(rb.position);
+            eyeShake.StartShake();
+        }
 
-        if (systemType == ShieldSystemType.Throw || systemType == ShieldSystemType.Held)
+        if (systemType == ShieldSystemType.Throw )
         {
             //dont push ghost just kill
             throwHit = true;
@@ -151,8 +160,10 @@ public class GhostEnemy : MonoBehaviour, IOnHit, IManagedEnemy
         velocity = Vector2.zero;
         gameObject.SetActive(true);
         transform.position = originalPosition;
-        spriteRenderers[0].color = Color.white;
-        spriteRenderers[1].color = Color.white;
+        foreach (var spriteRenderer in spriteRenderers)
+        {
+            spriteRenderer.color = Color.white;
+        }
         eyeShake.Reset();
     }
 }
