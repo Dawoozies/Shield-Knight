@@ -27,7 +27,7 @@ TagManager:
   - RecalledWeapon
   - ShieldThrowBounds
   - Managers
-  - 
+  - NoInteractionWithPlayer
   - 
   - 
   - 

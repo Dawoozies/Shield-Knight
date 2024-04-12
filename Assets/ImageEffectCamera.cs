@@ -47,7 +47,7 @@ public class ImageEffectCamera : MonoBehaviour
     {
         mainCamera = Camera.main;
 
-        if (next.name == "CastleEnter")
+        if (next.name == "CastleEnter" || next.name == "Level1Gears")
         {
             gameObject.SetActive(false);
         }

@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +8,7 @@ public class GearEvent : UnityEvent<float>
 {
 
 }
-public class Gear : MonoBehaviour
+public class Gear : MonoBehaviour, IHitReceiver
 {
     GearHitTarget[] hitTargets;
     public float angularVelocity;
@@ -68,5 +68,11 @@ public class Gear : MonoBehaviour
                 angularVelocity = 0f;
             }
         }
+    }
+
+    public void ApplyForce(Vector2 force)
+    {
+        Debug.LogError("Force = " + force);
+        angularVelocity += force.magnitude*Time.deltaTime;
     }
 }
