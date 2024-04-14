@@ -15,6 +15,7 @@ public class Gear : MonoBehaviour, IHitReceiver
     public float angularDrag;
     public GearEvent onGearHit;
     public GearEvent onGearRotating;
+    public GearEvent onGearNotRotating;
     public bool returnMagnitude;
     public bool constantOutput;
     public float constantOutputValue;
@@ -68,11 +69,15 @@ public class Gear : MonoBehaviour, IHitReceiver
                 angularVelocity = 0f;
             }
         }
+        else
+        {
+            onGearNotRotating?.Invoke(angularDrag);
+        }
     }
 
     public void ApplyForce(Vector2 force)
     {
-        Debug.LogError("Force = " + force);
+        Debug.LogError($"Apply Force to = {gameObject.name}" + force);
         angularVelocity += force.magnitude*Time.deltaTime;
     }
 }

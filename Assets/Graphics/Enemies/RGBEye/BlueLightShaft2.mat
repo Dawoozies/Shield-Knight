@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BlueLightShaft2
+  m_Shader: {fileID: 4800000, guid: 7eee406add9373140a482d737cfdb5b1, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _noise1:
+        m_Texture: {fileID: 2800000, guid: 5db9ef05ca606e548b4bb941bd02e11a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _noise2:
+        m_Texture: {fileID: 2800000, guid: 83c6ab433a2376f42952ac438e23ecd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - noise1:
+        m_Texture: {fileID: 2800000, guid: 930a2da279bfa114b8e7e2e81ae54f58, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - noise2:
+        m_Texture: {fileID: 2800000, guid: 83c6ab433a2376f42952ac438e23ecd3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _distanceFromOriginCutoff: 0
+    - _fadeOffStrength: 1.8
+    - _maximumDistance: 300
+    - _noise1Alpha: 0.1
+    - _noise1AlphaCutoff: 1.22
+    - _noise1ScrollSpeed: 0
+    - _noise2Alpha: 0.1
+    - _noise2AlphaCutoff: 0.2
+    - _noise2ScrollSpeed: -0.05
+    - _onlyNoise: 0
+    - _originPosX: 0
+    - _originPosY: 0
+    - _originPosZ: 0
+    m_Colors:
+    - _backFaceColor: {r: 0, g: 0.047058824, b: 1, a: 0.59607846}
+    - _frontFaceColor: {r: 0, g: 0.13725491, b: 1, a: 0.09411765}
+  m_BuildTextureStacks: []

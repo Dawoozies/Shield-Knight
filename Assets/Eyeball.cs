@@ -56,6 +56,8 @@ public class Eyeball : MonoBehaviour, IOnHit
     public int beamReflects = 2;
     public LayerMask castReflectLayers;
     public bool hittingReflectiveSurface;
+    public bool canBeDamaged;
+    public bool isDying;
     public enum BeamFiringState
     {
         Idle,Charging, Firing, Cooldown
@@ -75,7 +77,7 @@ public class Eyeball : MonoBehaviour, IOnHit
             instancedMaterials.Add(instancedMaterial);
         }
     }
-
+    float velocity;
     void Update()
     {
         if(player == null)
@@ -84,15 +86,29 @@ public class Eyeball : MonoBehaviour, IOnHit
             return;
         }
 
+        if(isDying)
+        {
+            if(transform.position.y < -300f)
+            {
+                return;
+            }
+            transform.position += Vector3.up * velocity;
+            velocity -= Time.deltaTime;
+            return;
+        }
+
         Vector3 playerDistVector = player.transform.position - transform.position;
         Vector3 lookTarget = playerDistVector.normalized + Vector3.forward * zLookDepth;
+        if(useBeamEndPoint)
+        {
+            lookTarget = beamEndPoint.position - transform.position;
+        }
         Vector2 projDistVector = playerDistVector;
         playerInRange = projDistVector.magnitude < viewRadius;
-        if(playerInRange)
+        if(playerInRange || useBeamEndPoint)
         {
             transform.forward = Vector3.SmoothDamp(transform.forward, lookTarget, ref lookVelocity, lookSmoothTime);
         }
-
         Vector2 shiftedOrigin = transform.position - Vector3.forward * transform.localScale.z / 2f;
         Vector2 fwdProjOntoRight =Vector2.Dot(transform.forward, Vector2.right)*Vector2.right + Vector2.Dot(transform.forward, Vector2.up)*Vector2.up;
         //UpdateViewCastInfo
@@ -103,33 +119,10 @@ public class Eyeball : MonoBehaviour, IOnHit
         viewCastInfo.Layers = viewCastLayers;
         //UpdateBeamCastInfo
         beamCastInfo.Origin = shiftedOrigin;
-        beamCastInfo.Direction = Vector2.Dot(transform.forward, Vector2.right)*Vector2.right + Vector2.Dot(transform.forward, Vector2.up)*Vector2.up;
+        beamCastInfo.Direction = fwdProjOntoRight;
         beamCastInfo.Distance = beamDistance * beamLength;
         beamCastInfo.Size = castSize;
         beamCastInfo.Layers = castHitLayers;
-        
-        if(hit)
-        {
-            if(hit.collider.CompareTag("Shield"))
-            {
-                hittingReflectiveSurface = true;
-                RaycastHit2D beamHit = beamCastInfo.Hit;
-                beamReflectCastInfo.Origin = beamHit.centroid;
-                Vector2 reflectedDir = Vector2.Reflect(beamCastInfo.Direction, hit.normal);
-                beamReflectCastInfo.Direction = reflectedDir;
-                beamReflectCastInfo.Distance = beamDistance * beamLength;
-                beamReflectCastInfo.Size = castSize;
-                beamReflectCastInfo.Layers = castReflectLayers;
-            }
-            else
-            {
-                beamReflectCastInfo.Distance = 0f;
-            }
-        }
-        else
-        {
-            hittingReflectiveSurface = false;
-        }
 
         //update light shaft cast info
         lightShaftCast.Origin = shiftedOrigin;
@@ -197,7 +190,7 @@ public class Eyeball : MonoBehaviour, IOnHit
         
         lineRenderer.SetPosition(0, transform.position);
         beamCastInfo.Cast(false);
-        beamReflectCastInfo.Cast(false);
+        Vector3 reflectEndPoint = transform.position;
         //hit = Physics2D.BoxCast(beamCastInfo.Origin, beamCastInfo.Size, beamCastInfo.Angle, beamCastInfo, distance, castHitLayers);
         if (hit)
         {
@@ -205,39 +198,72 @@ public class Eyeball : MonoBehaviour, IOnHit
             UpdateLights(hit.centroid);
             IHitReceiver hitReceiver = hit.collider.GetComponent<IHitReceiver>();
             hitReceiver?.ApplyForce(beamCastInfo.Direction* beamDistance);
+
+            //Only cast the reflection if we hit something
+            if (hit.collider.CompareTag("Shield"))
+            {
+                hittingReflectiveSurface = true;
+                lineRenderer.positionCount = 3;
+                lineRenderer.SetPosition(2, beamCastInfo.Hit.centroid + beamCastInfo.Hit.normal * beamDistance);
+
+                beamReflectCastInfo.Origin = beamCastInfo.Hit.centroid;
+                beamReflectCastInfo.Direction = beamCastInfo.Hit.normal;
+                beamReflectCastInfo.Distance = beamDistance;
+                beamReflectCastInfo.Size = castSize;
+                beamReflectCastInfo.Layers = castReflectLayers;
+                beamReflectCastInfo.Cast(false);
+
+                //Debug.LogWarning($"Reflect Surface Hit name = {beamCastInfo.Hit.collider.name} Normal = {beamCastInfo.Hit.normal} Dir = {beamCastInfo.Direction} ReflectVec = {Vector2.Reflect(beamCastInfo.Hit.normal, beamCastInfo.Direction)}");
+                if(beamReflectCastInfo.Hit)
+                {
+                    lineRenderer.SetPosition(2, beamReflectCastInfo.Hit.centroid);
+                    IHitReceiver reflectHitReceiver = beamReflectCastInfo.Hit.collider.GetComponentInParent<IHitReceiver>();
+                    reflectHitReceiver?.ApplyForce(beamReflectCastInfo.Direction*beamDistance);
+                }
+                //if(beamReflectCastInfo.Hit)
+                //{
+                //    Debug.LogWarning("Reflecting beam off shield! Reflection Object = " + beamReflectCastInfo.Hit.collider.name + " normal = ");
+                //}
+
+            }
+            else
+            {
+                hittingReflectiveSurface = false;
+                lineRenderer.positionCount = 2;
+            }
         }
         else
         {
             lineRenderer.SetPosition(1, transform.position + transform.forward*beamCastInfo.Distance);
             UpdateLights(transform.position + transform.forward * beamCastInfo.Distance);
+            hittingReflectiveSurface = false;
         }
-        Vector2 reflectedEndPoint = Vector2.zero;
         if(hittingReflectiveSurface)
         {
-            //then add line renderer point
-            if(reflectHit)
-            {
-                Debug.Log("THIS RUNNING");
-                lineRenderer.SetPosition(2, reflectHit.centroid);
-                IHitReceiver hitReceiver = reflectHit.collider.GetComponentInParent<IHitReceiver>();
-                hitReceiver?.ApplyForce(beamReflectCastInfo.Direction*beamDistance);
-            }
-            else
-            {
-                Vector2 reflectedDir = Vector2.Reflect(beamCastInfo.Direction, hit.normal);
-                lineRenderer.SetPosition(2, hit.centroid + reflectedDir*beamReflectCastInfo.Distance);
-            }
+            ////then add line renderer point
+            //if(reflectHit)
+            //{
+            //    Debug.Log("THIS RUNNING");
+            //    lineRenderer.SetPosition(2, reflectHit.centroid);
+            //    IHitReceiver hitReceiver = reflectHit.collider.GetComponentInParent<IHitReceiver>();
+            //    hitReceiver?.ApplyForce(beamReflectCastInfo.Direction*beamDistance);
+            //}
+            //else
+            //{
+            //    Vector2 reflectedDir = Vector2.Reflect(beamCastInfo.Direction, hit.normal);
+            //    lineRenderer.SetPosition(2, hit.centroid + reflectedDir * beamDistance);
+            //}
         }
         else
         {
-            if(hit)
-            {
-                lineRenderer.SetPosition(2, hit.centroid);
-            }
-            else
-            {
-                lineRenderer.SetPosition(2,transform.position + transform.forward*beamCastInfo.Distance);
-            }
+            //if(hit)
+            //{
+            //    lineRenderer.SetPosition(2, hit.centroid);
+            //}
+            //else
+            //{
+            //    lineRenderer.SetPosition(2,transform.position + transform.forward*beamCastInfo.Distance);
+            //}
         }
 
         beamFiring += Time.deltaTime;
@@ -257,6 +283,7 @@ public class Eyeball : MonoBehaviour, IOnHit
                 beamHitSystem.Play();
             }
         }
+
     }
 
     void UpdateCooldownState()
@@ -297,7 +324,7 @@ public class Eyeball : MonoBehaviour, IOnHit
     }
 
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         if(!debug)
         {
@@ -312,6 +339,13 @@ public class Eyeball : MonoBehaviour, IOnHit
         {
             Gizmos.color = Color.yellow;
         }
+
+        if(useBeamEndPoint)
+        {
+            Gizmos.color = beamGradient.colorKeys[0].color;
+            Gizmos.DrawLine(transform.position, beamEndPoint.position);
+        }
+
         Gizmos.DrawWireSphere(transform.position, viewRadius);
         Gizmos.color = Color.white;
         if (hit)
@@ -384,5 +418,16 @@ public class Eyeball : MonoBehaviour, IOnHit
     public Collider2D col { get; }
     public void Hit(ShieldSystemType systemType, Vector2 shieldDir, float shieldVelocity)
     {
+        if(canBeDamaged && !isDying)
+        {
+            if(systemType == ShieldSystemType.Held)
+            {
+                EffectsManager.ins.RequestBloodFX(transform.position);
+                EffectsManager.ins.RequestBloodFX(transform.position);
+                EffectsManager.ins.RequestBloodFX(transform.position);
+                EffectsManager.ins.RequestCameraShake(2f);
+                isDying = true;
+            }
+        }
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6547069749992320687}
   m_Layer: 15
   m_Name: ShieldRecall
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   systemCastDistance: 320
   validCastLayers:
     serializedVersion: 2
-    m_Bits: 6848
+    m_Bits: 531136
   earlyStopColliderTags:
   - HardSurface
   debug: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3573545911476880854}
   m_Layer: 13
   m_Name: ShieldThrow
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   systemCastDistance: 240
   validCastLayers:
     serializedVersion: 2
-    m_Bits: 72256
+    m_Bits: 596544
   earlyStopColliderTags:
   - HardSurface
   debug: 0

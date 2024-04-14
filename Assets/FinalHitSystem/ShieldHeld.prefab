@@ -125,7 +125,7 @@ MonoBehaviour:
   systemCastDistance: 4
   validCastLayers:
     serializedVersion: 2
-    m_Bits: 6720
+    m_Bits: 531008
   earlyStopColliderTags:
   - HardSurface
   debug: 1
